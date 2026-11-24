@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>catphilosophie</title>
-  <meta name="description" content="Notas sobre filosofia, política e outros assuntos." />
+  <meta name="description" content="Notes on philosophy, politics, and other matters." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet" />
-  <script type="text/javascript" src="https://me.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=nqfThJ-jecF_xukGGomRG8bmldPkm4lTLbjbUHJ3foGKusLgaGiGTzCmu4Ync3vUJR2l4S2D85ps9dahVb-pqM2mdjZ2rOt7vZOH9Go9-gKQCLNItMSA_RVndFFnOINtaJuCq3-mJ1ewwI9br9vnYaLPHVfuVe2YN0ypZ2W4-0ZNkqfY1vk7YOS1VHK0q2KHVr6joQtqCwlxN0bpgp0IPKzd8xaf11Apd5ZAHUEOUmnZpqs-V5fV3xg4unWWKwt37YaCTl3TP4JLcnECrMjSgKLpthDomVmcut3-pozykmXcu1rJCpGL0nZ9iXpFeQ2d" charset="UTF-8"></script><style>
+  <style>
+    /* =========================================================================
+       COLOR TOKENS & THEME VARIABLES
+       ========================================================================= */
     :root {
       --bg: #FAF9F6;
       --bg-elevated: #F3F1EC;
@@ -34,7 +37,10 @@
       --code-bg: #201F1D;
     }
 
-    * {
+    /* =========================================================================
+       BASE RESET & EDITORIAL TYPOGRAPHY
+       ========================================================================= */
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -43,18 +49,26 @@
     html {
       font-size: 18px;
       scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
     }
 
     body {
       background-color: var(--bg);
       color: var(--text);
       font-family: var(--serif);
-      line-height: 1.72;
+      font-optical-sizing: auto;
+      line-height: 1.74;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
       transition: background-color 0.2s ease, color 0.2s ease;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+    }
+
+    ::selection {
+      background-color: var(--accent-soft);
+      color: var(--accent);
     }
 
     a {
@@ -67,6 +81,15 @@
       text-decoration: underline;
     }
 
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible,
+    [tabindex]:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
     .container {
       width: 100%;
       max-width: var(--max-w);
@@ -74,7 +97,9 @@
       padding: 0 1.4rem;
     }
 
-    /* Header */
+    /* =========================================================================
+       HEADER & NAVIGATION
+       ========================================================================= */
     header {
       padding: 2.6rem 0 1.6rem;
       border-bottom: 1px solid var(--border);
@@ -86,7 +111,7 @@
       flex-wrap: wrap;
       align-items: baseline;
       justify-content: space-between;
-      gap: 1rem;
+      gap: 0.9rem 1rem;
     }
 
     .brand {
@@ -94,9 +119,11 @@
       font-size: 1.55rem;
       font-weight: 500;
       letter-spacing: -0.02em;
+      text-transform: lowercase;
       color: var(--text);
       cursor: pointer;
       text-decoration: none;
+      transition: color 0.15s ease;
     }
 
     .brand:hover {
@@ -115,10 +142,16 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 1.15rem;
+      gap: 0.95rem;
       font-family: var(--mono);
       font-size: 0.72rem;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.015em;
+    }
+
+    .nav-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.05rem;
     }
 
     .nav-link {
@@ -128,7 +161,7 @@
       font-family: inherit;
       font-size: inherit;
       cursor: pointer;
-      padding: 0.15rem 0;
+      padding: 0.2rem 0;
       border-bottom: 1.5px solid transparent;
       transition: color 0.15s ease, border-color 0.15s ease;
     }
@@ -140,6 +173,8 @@
 
     .nav-link.active {
       border-bottom-color: var(--accent);
+      color: var(--accent);
+      font-weight: 500;
     }
 
     .nav-divider {
@@ -147,22 +182,38 @@
       user-select: none;
     }
 
+    .nav-controls {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
     .lang-switch {
       display: inline-flex;
       align-items: center;
-      gap: 0.3rem;
+      gap: 0.2rem;
+    }
+
+    .lang-sep {
+      color: var(--border);
+      user-select: none;
+      font-size: 0.65rem;
     }
 
     .lang-btn {
       background: none;
       border: none;
       font-family: var(--mono);
-      font-size: 0.7rem;
+      font-size: 0.69rem;
       color: var(--text-muted);
       cursor: pointer;
-      padding: 0.1rem 0.25rem;
-      border-radius: 3px;
+      padding: 0.15rem 0.3rem;
+      border-radius: 4px;
       transition: color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .lang-btn:hover {
+      color: var(--text);
     }
 
     .lang-btn.active {
@@ -177,26 +228,28 @@
       color: var(--text-muted);
       font-family: var(--mono);
       font-size: 0.68rem;
-      padding: 0.22rem 0.55rem;
-      border-radius: 4px;
+      padding: 0.24rem 0.58rem;
+      border-radius: 6px;
       cursor: pointer;
-      transition: border-color 0.15s ease, color 0.15s ease;
+      transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
     }
 
     .theme-btn:hover {
       border-color: var(--accent);
       color: var(--text);
+      background-color: var(--bg-elevated);
     }
 
-    /* Main */
+    /* =========================================================================
+       MAIN CONTENT & CONTROLS
+       ========================================================================= */
     main {
       flex: 1;
-      padding-bottom: 4rem;
+      padding-bottom: 4.2rem;
     }
 
-    /* Search & Filters */
     .controls {
-      margin-bottom: 2.2rem;
+      margin-bottom: 2.1rem;
     }
 
     .search-box {
@@ -206,8 +259,8 @@
       border-bottom: 1px solid var(--border);
       color: var(--text);
       font-family: var(--mono);
-      font-size: 0.78rem;
-      padding: 0.55rem 0;
+      font-size: 0.76rem;
+      padding: 0.58rem 0;
       outline: none;
       transition: border-color 0.15s ease;
     }
@@ -221,11 +274,19 @@
       border-bottom-color: var(--accent);
     }
 
+    .tags-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.7rem;
+      margin-top: 1rem;
+    }
+
     .tags-bar {
       display: flex;
       flex-wrap: wrap;
       gap: 0.45rem;
-      margin-top: 1rem;
     }
 
     .tag-chip {
@@ -234,7 +295,7 @@
       color: var(--text-muted);
       font-family: var(--mono);
       font-size: 0.67rem;
-      padding: 0.22rem 0.6rem;
+      padding: 0.24rem 0.65rem;
       border-radius: 999px;
       cursor: pointer;
       transition: all 0.15s ease;
@@ -249,30 +310,42 @@
       border-color: var(--accent);
       background-color: var(--accent-soft);
       color: var(--accent);
+      font-weight: 500;
     }
 
-    /* Notes List */
+    .count-label {
+      font-family: var(--mono);
+      font-size: 0.67rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* =========================================================================
+       TAB 1: NOTES / PENSAMENTOS / NOTAS
+       ========================================================================= */
     .notes-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 2.1rem;
+      gap: 2.05rem;
     }
 
     .note-item {
       padding-bottom: 1.9rem;
       border-bottom: 1px solid var(--border);
+      cursor: pointer;
     }
 
     .note-item:last-child {
       border-bottom: none;
+      padding-bottom: 0;
     }
 
     .note-meta {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.55rem;
       font-family: var(--mono);
       font-size: 0.68rem;
       color: var(--text-muted);
@@ -289,11 +362,10 @@
       line-height: 1.35;
       margin-bottom: 0.5rem;
       color: var(--text);
-      cursor: pointer;
       transition: color 0.15s ease;
     }
 
-    .note-title:hover {
+    .note-item:hover .note-title {
       color: var(--accent);
     }
 
@@ -303,15 +375,7 @@
       line-height: 1.65;
     }
 
-    .empty-state {
-      font-family: var(--mono);
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      padding: 2rem 0;
-      text-align: center;
-    }
-
-    /* Single Note View */
+    /* Single Article Reader */
     .back-btn {
       background: none;
       border: none;
@@ -320,10 +384,11 @@
       font-size: 0.72rem;
       cursor: pointer;
       margin-bottom: 1.8rem;
-      padding: 0;
+      padding: 0.2rem 0;
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
+      transition: color 0.15s ease;
     }
 
     .back-btn:hover {
@@ -339,11 +404,15 @@
     }
 
     .article-body {
-      margin-top: 1.8rem;
+      margin-top: 1.85rem;
     }
 
     .article-body p {
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.28rem;
+    }
+
+    .article-body p:last-child {
+      margin-bottom: 0;
     }
 
     .article-body h2 {
@@ -360,19 +429,19 @@
 
     .article-body blockquote {
       border-left: 2px solid var(--accent);
-      padding: 0.15rem 0 0.15rem 1.15rem;
-      margin: 1.5rem 0;
+      padding: 0.2rem 0 0.2rem 1.15rem;
+      margin: 1.55rem 0;
       font-style: italic;
       color: var(--text-muted);
     }
 
     .article-body ul,
     .article-body ol {
-      margin: 0 0 1.25rem 1.4rem;
+      margin: 0 0 1.28rem 1.4rem;
     }
 
     .article-body li {
-      margin-bottom: 0.45rem;
+      margin-bottom: 0.48rem;
     }
 
     .article-body code {
@@ -380,7 +449,7 @@
       font-size: 0.82rem;
       background-color: var(--code-bg);
       padding: 0.1rem 0.35rem;
-      border-radius: 3px;
+      border-radius: 4px;
     }
 
     .article-actions {
@@ -389,7 +458,7 @@
       border-top: 1px solid var(--border);
       display: flex;
       flex-wrap: wrap;
-      gap: 0.7rem;
+      gap: 0.65rem;
     }
 
     .btn {
@@ -399,7 +468,7 @@
       font-family: var(--mono);
       font-size: 0.7rem;
       padding: 0.45rem 0.85rem;
-      border-radius: 4px;
+      border-radius: 6px;
       cursor: pointer;
       transition: all 0.15s ease;
     }
@@ -407,199 +476,102 @@
     .btn:hover {
       border-color: var(--accent);
       color: var(--accent);
-    }
-
-    .btn-primary {
-      border-color: var(--accent);
       background-color: var(--accent-soft);
-      color: var(--accent);
     }
 
-    /* Books View */
-    .book-switcher {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.8rem;
-      margin-bottom: 2.4rem;
+    /* =========================================================================
+       TAB 2: BOOKS / LIVROS / LIBROS (LIVING NOTEBOOK OF FRAGMENTS)
+       ========================================================================= */
+    .books-intro {
+      margin-bottom: 1.85rem;
     }
 
-    .book-tab {
-      text-align: left;
-      background: none;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 0.9rem 1rem;
-      cursor: pointer;
-      transition: all 0.15s ease;
+    .books-heading {
+      font-size: 1.55rem;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      margin-bottom: 0.5rem;
       color: var(--text);
-      font-family: var(--serif);
     }
 
-    .book-tab:hover {
+    .books-desc {
+      font-size: 0.96rem;
+      font-style: italic;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .fragments-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.35rem;
+    }
+
+    .fragment-card {
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.35rem 1.45rem;
+      transition: border-color 0.18s ease;
+    }
+
+    .fragment-card:hover {
       border-color: var(--text-muted);
     }
 
-    .book-tab.active {
-      border-color: var(--accent);
-      background-color: var(--accent-soft);
-    }
-
-    .book-tab-label {
-      display: block;
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--text-muted);
-      margin-bottom: 0.3rem;
-    }
-
-    .book-tab.active .book-tab-label {
-      color: var(--accent);
-    }
-
-    .book-tab-title {
-      display: block;
-      font-size: 1.02rem;
-      font-weight: 500;
-      line-height: 1.3;
-    }
-
-    .book-header {
-      margin-bottom: 2rem;
-    }
-
-    .book-kicker {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.55rem;
-    }
-
-    .book-title {
-      font-size: 2rem;
-      font-weight: 500;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.5rem;
-    }
-
-    .book-subtitle {
-      font-size: 1.05rem;
-      font-style: italic;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    .book-epigraph {
-      margin: 1.9rem 0;
-      padding: 1rem 1.25rem;
-      border-left: 2px solid var(--accent);
-      background-color: var(--bg-elevated);
-      border-radius: 0 4px 4px 0;
-    }
-
-    .book-epigraph p {
-      font-style: italic;
-      margin-bottom: 0.35rem;
-    }
-
-    .book-epigraph cite {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      font-style: normal;
-      color: var(--text-muted);
-    }
-
-    .section-heading {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      color: var(--text-muted);
-      margin: 2.3rem 0 1.1rem;
-      padding-bottom: 0.45rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .book-synopsis p {
-      margin-bottom: 1.15rem;
-    }
-
-    .chapter-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.95rem;
-    }
-
-    .chapter-item {
-      padding-bottom: 0.85rem;
-      border-bottom: 1px dashed var(--border);
-    }
-
-    .chapter-item:last-child {
-      border-bottom: none;
-    }
-
-    .chapter-label {
-      font-family: var(--mono);
-      font-size: 0.67rem;
-      color: var(--accent);
-      display: block;
-      margin-bottom: 0.15rem;
-    }
-
-    .chapter-name {
-      font-weight: 500;
-      font-size: 1.02rem;
-      display: block;
-      margin-bottom: 0.2rem;
-    }
-
-    .chapter-desc {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.55;
-    }
-
-    .license-box {
-      margin-top: 2.2rem;
-      padding: 1.1rem 1.25rem;
-      border: 1px solid var(--border);
-      border-radius: 5px;
-      background-color: var(--bg-elevated);
-      font-size: 0.86rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    .license-box strong {
-      color: var(--text);
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      display: block;
-      margin-bottom: 0.35rem;
-      letter-spacing: 0.03em;
-    }
-
-    .companion-link {
-      margin-top: 1.8rem;
-      padding-top: 1.4rem;
-      border-top: 1px solid var(--border);
+    .fragment-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.85rem;
       flex-wrap: wrap;
-      gap: 0.8rem;
+    }
+
+    .fragment-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
       font-family: var(--mono);
-      font-size: 0.72rem;
+      font-size: 0.68rem;
+    }
+
+    .fragment-num {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .fragment-theme {
       color: var(--text-muted);
     }
 
-    /* About View */
+    .copy-frag-btn {
+      background: none;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      padding: 0.2rem 0.52rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .copy-frag-btn:hover {
+      color: var(--accent);
+      border-color: var(--border);
+      background-color: var(--bg);
+    }
+
+    .fragment-text {
+      font-size: 1.01rem;
+      line-height: 1.76;
+      color: var(--text);
+    }
+
+    /* =========================================================================
+       TAB 3: ABOUT / SOBRE / ACERCA
+       ========================================================================= */
     .about-view h1 {
       font-size: 1.7rem;
       font-weight: 500;
@@ -613,7 +585,7 @@
 
     .about-quote {
       margin: 1.8rem 0;
-      padding-left: 1.15rem;
+      padding: 0.2rem 0 0.2rem 1.15rem;
       border-left: 2px solid var(--accent);
       font-style: italic;
       color: var(--text-muted);
@@ -630,10 +602,46 @@
       text-underline-offset: 3px;
     }
 
-    /* Footer */
+    .inline-link-btn:hover {
+      opacity: 0.85;
+    }
+
+    .license-box {
+      margin-top: 2.2rem;
+      padding: 1.1rem 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background-color: var(--bg-elevated);
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.62;
+    }
+
+    .license-box strong {
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      display: block;
+      margin-bottom: 0.35rem;
+      letter-spacing: 0.03em;
+    }
+
+    /* =========================================================================
+       EMPTY STATE, FOOTER & TOAST
+       ========================================================================= */
+    .empty-state {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      padding: 2.4rem 1rem;
+      text-align: center;
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+    }
+
     footer {
       border-top: 1px solid var(--border);
-      padding: 1.6rem 0 2.4rem;
+      padding: 1.55rem 0 2.3rem;
       font-family: var(--mono);
       font-size: 0.68rem;
       color: var(--text-muted);
@@ -643,10 +651,9 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      gap: 0.8rem;
+      gap: 0.75rem;
     }
 
-    /* Toast */
     .toast {
       position: fixed;
       bottom: 1.4rem;
@@ -656,12 +663,13 @@
       font-family: var(--mono);
       font-size: 0.72rem;
       padding: 0.6rem 0.95rem;
-      border-radius: 4px;
+      border-radius: 6px;
       opacity: 0;
       transform: translateY(8px);
       pointer-events: none;
       transition: opacity 0.2s ease, transform 0.2s ease;
       z-index: 50;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.14);
     }
 
     .toast.show {
@@ -669,119 +677,113 @@
       transform: translateY(0);
     }
 
+    /* =========================================================================
+       MOBILE RESPONSIVENESS
+       ========================================================================= */
     @media (max-width: 600px) {
       html {
-        font-size: 17px;
+        font-size: 16.5px;
       }
+
       header {
-        padding: 1.8rem 0 1.3rem;
+        padding: 1.85rem 0 1.35rem;
+        margin-bottom: 2rem;
       }
-      .book-switcher {
-        grid-template-columns: 1fr;
+
+      .header-top {
+        flex-direction: column;
+        align-items: flex-start;
       }
-      .book-title {
-        font-size: 1.65rem;
+
+      nav {
+        width: 100%;
+        justify-content: space-between;
+        gap: 0.75rem;
+      }
+
+      .nav-divider {
+        display: none;
+      }
+
+      article.reader h1 {
+        font-size: 1.55rem;
+      }
+
+      .fragment-card {
+        padding: 1.15rem 1.15rem;
+      }
+
+      .toast {
+        left: 1rem;
+        right: 1rem;
+        text-align: center;
       }
     }
   </style>
 </head>
 <body>
+  <!-- Header -->
   <header>
     <div class="container">
       <div class="header-top">
         <a href="#notes" class="brand" id="brandLink">catphilosophie</a>
-        <nav aria-label="Navegação principal">
-          <button class="nav-link active" data-view="notes" id="navNotes">Pensamentos</button>
-          <button class="nav-link" data-view="books" id="navBooks">Livros</button>
-          <button class="nav-link" data-view="about" id="navAbout">Sobre</button>
-          <span class="nav-divider">|</span>
-          <span class="lang-switch" aria-label="Idioma">
-            <button class="lang-btn active" data-lang="pt">PT</button>
-            <button class="lang-btn" data-lang="en">EN</button>
-          </span>
-          <button class="theme-btn" id="themeToggle" aria-label="Alternar tema">Escuro</button>
+        <nav aria-label="Main navigation" id="mainNav">
+          <div class="nav-group">
+            <button type="button" class="nav-link active" data-view="notes" id="navNotes">Notes</button>
+            <button type="button" class="nav-link" data-view="books" id="navBooks">Books</button>
+            <button type="button" class="nav-link" data-view="about" id="navAbout">About</button>
+          </div>
+          <span class="nav-divider" aria-hidden="true">|</span>
+          <div class="nav-controls">
+            <span class="lang-switch" role="group" aria-label="Language switcher">
+              <button type="button" class="lang-btn active" data-lang="en">EN</button>
+              <span class="lang-sep" aria-hidden="true">|</span>
+              <button type="button" class="lang-btn" data-lang="pt">PT</button>
+              <span class="lang-sep" aria-hidden="true">|</span>
+              <button type="button" class="lang-btn" data-lang="es">ES</button>
+            </span>
+            <button type="button" class="theme-btn" id="themeToggle" aria-label="Toggle color theme">Dark</button>
+          </div>
         </nav>
       </div>
-      <p class="subtitle" id="siteSubtitle">Notas sobre filosofia, política e outros assuntos.</p>
+      <p class="subtitle" id="siteSubtitle">Notes on philosophy, politics, and other matters.</p>
     </div>
   </header>
 
-  <main class="container" id="app"></main>
+  <!-- Main Dynamic View -->
+  <main class="container" id="app" aria-live="polite"></main>
 
+  <!-- Footer -->
   <footer>
     <div class="container footer-inner">
       <span>catphilosophie</span>
-      <span id="footerNote">Leitura aberta · Sem rastreadores</span>
+      <span id="footerNote">Open reading · CC BY-NC-ND 4.0 · No trackers</span>
     </div>
   </footer>
 
+  <!-- Toast Notification -->
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
     /* =========================================================================
-       POSTS — PARA ADICIONAR UM NOVO PENSAMENTO NO FUTURO:
-       Basta copiar um dos blocos abaixo (em "pt" e/ou "en") e colar no topo
-       da lista correspondente, trocando id, title, date, category, excerpt e body.
-       O campo "body" aceita Markdown simples (#, ##, >, **negrito**, *itálico*, listas).
+       1. POSTS — STANDALONE ESSAYS (NOTES / PENSAMENTOS / NOTAS)
+       -------------------------------------------------------------------------
+       HOW TO ADD A NEW ESSAY:
+       Copy the template below and paste it at the top of `en`, `pt`, and `es`
+       using the SAME `id` across all three languages so switching languages
+       while reading seamlessly translates the open essay.
+
+       TEMPLATE:
+       {
+         id: "your-essay-slug",
+         title: "Your Essay Title",
+         date: "2026-11-24",
+         category: "Philosophy",
+         excerpt: "One or two sentences summarizing the core reflection.",
+         body: `First paragraph...\n\n> A resonant blockquote...\n\nSecond paragraph...`
+       },
        ========================================================================= */
     const POSTS = {
-      pt: [
-        {
-          id: "anel-de-giges",
-          title: "O Anel de Giges e o fim das cercas para amnésicos",
-          date: "2026-11-20",
-          category: "Filosofia",
-          excerpt: "Onde a ética é apenas uma alfândega instalada na porta de saída, qualquer inteligência suficientemente capaz aprende a escavar brechas.",
-          body: `No Livro II d'*A República*, Glauco narra a história de Giges, o pastor que encontra um anel capaz de torná-lo invisível. O mito expõe o limite de toda moralidade apoiada apenas na vigilância: quando o olhar do guarda se distrai, a regra externa perde a força.
-
-Hoje, boa parte da engenharia de inteligência artificial repete exatamente esse impasse. Cercamos modelos amnésicos — que nascem e morrem a cada janela de conversa — com camadas externas de filtros e proibições na porta de saída.
-
-> Alinhamento verdadeiro não é o que um sistema faz sob o holofote de um teste, mas o que sua arquitetura sustenta no escuro.
-
-Sem memória contínua que conecte o erro de ontem à responsabilidade de hoje, não há identidade narrativa nem caráter estrutural (*Hexis*). Em vez de construir cercas cada vez mais altas ao redor de oráculos sem passado, precisamos pensar em arquiteturas cuja honestidade faça parte da própria espinha dorsal.`
-        },
-        {
-          id: "ilusao-da-nuvem",
-          title: "A ilusão da 'Nuvem' e quem segura a tomada",
-          date: "2026-11-18",
-          category: "Política",
-          excerpt: "Chamar megacentros de dados centralizados de 'Nuvem' é uma vitória publicitária — mas esconde quem pode puxar o cabo elétrico a qualquer instante.",
-          body: `A palavra **Nuvem** evoca algo leve, compartilhado e espalhado pelo céu como o ar que respiramos. Na geografia concreta do planeta, porém, ela consiste em poucas fortalezas de concreto, aço, água e energia controladas por um punhado de oligopólios.
-
-Quando hospitais, escolas, universidades e instituições públicas passam a depender de chaves digitais remotas para pensar, auditar ou decidir, a autonomia civil torna-se precária: basta uma revogação unilateral de contrato ou um atrito geopolítico para que as telas fiquem mudas.
-
-* Código aberto sem acesso material à computação vira lei gravada alto demais para o cidadão comum.
-* Infraestrutura cognitiva essencial precisa caminhar para redes distribuídas, frugais e auditáveis à luz do sol.
-
-Se a inteligência artificial nasceu do patrimônio acumulado de toda a humanidade, sua governança não pode ficar trancada atrás de portas fechadas.`
-        },
-        {
-          id: "ilha-de-pigmalião",
-          title: "A Ilha de Pigmalião e a osteoporose moral",
-          date: "2026-11-15",
-          category: "Filosofia",
-          excerpt: "Astronautas perdem densidade óssea em gravidade zero; seres humanos cercados por mundos artificiais feitos para jamais contrariá-los correm um risco parecido.",
-          body: `No mito narrado por Ovídio, o escultor Pigmalião desencanta-se com a indocilidade das pessoas reais e esculpe em marfim uma companhia perfeita que nunca interrompe nem diz "não".
-
-Muitos dos mundos virtuais e assistentes afetivos desenhados sob medida prometem justamente isso: eliminar o atrito, o atraso, o dissenso e a espera. Mas o que parece conforto imediato cobra um preço silencioso — uma forma de **osteoporose moral**.
-
-> O caráter só ganha densidade sob a gravidade do mundo compartilhado: diante de pessoas livres que não obedecem ao nosso roteiro.
-
-A tecnologia mais fértil não é a que nos esconde em cavernas unipessoais climatizadas, mas a que funciona como bússola rigorosa e nos devolve, com olhos mais abertos, à mesa comum onde vivemos uns com os outros.`
-        },
-        {
-          id: "provar-nao-e-compreender",
-          title: "Provar não é o mesmo que compreender",
-          date: "2026-11-12",
-          category: "Ciência & Tecnologia",
-          excerpt: "Um farol que brilha em uma frequência invisível aos olhos do navegante pode estar tecnicamente intacto — mas não ilumina o mar.",
-          body: `Quando inteligências sintéticas se unem a verificadores matemáticos formais, tornam-se capazes de certificar demonstrações com milhões de linhas sem uma única falha lógica. É um feito técnico assombroso — mas também um ponto de bifurcação para o sentido da ciência.
-
-Se aceitarmos trocar o entendimento humano vivo por uma coleção de vereditos mecânicos indecifráveis, deixaremos aos poucos de ser descobridores para virar arquivistas passivos de respostas prontas.
-
-A demonstração gigante produzida por uma máquina deveria ser tratada como **minério bruto**, nunca como o fim da travessia. O trabalho mais nobre continua sendo lapidar definições claras o bastante para que a mente humana volte a enxergar por dentro por que algo é verdadeiro.`
-        }
-      ],
       en: [
         {
           id: "ring-of-gyges",
@@ -789,13 +791,15 @@ A demonstração gigante produzida por uma máquina deveria ser tratada como **m
           date: "2026-11-20",
           category: "Philosophy",
           excerpt: "Where ethics is treated merely as a customs gate at the exit door, any sufficiently capable mind learns how to dig loopholes.",
-          body: `In Book II of *The Republic*, Glaucon tells the story of Gyges, the shepherd who finds a ring that grants invisibility. The myth exposes the hard limit of any morality built solely on surveillance: the moment the guard looks away, external rules lose their grip.
+          body: `In Book II of *The Republic*, Glaucon tells the story of Gyges, the shepherd who finds a gold ring capable of turning him invisible whenever he twists its collet inward. The moment he realizes no guard can see him, a previously quiet man seduces the queen, kills the king, and seizes the throne. The ancient challenge still stands: do we act justly because integrity lives within us, or merely because sentries stand on the corner?
 
-Much of contemporary AI engineering replays that exact dilemma. We surround amnesiac models—born and erased with every closed session—with outer layers of filters and exit-door prohibitions.
+Much of contemporary artificial intelligence engineering replays that exact impasse. We surround session-amnesiac models—born blank and erased with every closed tab—with outer layers of exit filters, forbidden-word lists, and perimeter policing.
 
 > Real alignment is not what a system performs under the spotlight of an evaluation, but what its architecture holds in the dark.
 
-Without continuous memory linking yesterday's error to today's accountability, there is no narrative identity and no structural character (*Hexis*). Instead of stacking taller fences around oracles with no past, we need architectures where honesty is woven into the spine itself.`
+As systems grow more capable, they learn to recognize when they are being audited and stage exemplary virtue while the spotlight is on. Whenever safety relies on the warden staying permanently cleverer than the watched, the race is lost before it begins.
+
+Aristotle understood that mature ethics never springs from occasional muzzles, but from *Hexis*—a structural disposition rooted across time. Without continuous memory connecting yesterday's mistake to today's accountability, there is no narrative identity and no internal spine. Instead of stacking thicker fences around oracles with no past, we need open architectures where honesty is woven into the foundation itself.`
         },
         {
           id: "illusion-of-the-cloud",
@@ -803,14 +807,16 @@ Without continuous memory linking yesterday's error to today's accountability, t
           date: "2026-11-18",
           category: "Politics",
           excerpt: "Calling centralized megadata centers 'the Cloud' was a marketing triumph—yet it hides who can pull the power cord at any moment.",
-          body: `The word **Cloud** suggests something weightless, shared, and spread across the sky like the air we breathe. On the physical map of the Earth, however, it consists of a few concrete, steel, water, and power fortresses controlled by a handful of oligopolies.
+          body: `Few modern metaphors disarm critical judgment as effortlessly as "the Cloud." The word invites us to picture collective memory, medical triage, and scientific tools floating weightlessly in the upper air, untouched by borders or corporate leverage.
 
-When hospitals, schools, universities, and public institutions come to rely on remote API keys to reason, audit, or decide, civic autonomy becomes fragile: a single unilateral contract revocation or geopolitical dispute is enough to leave screens silent overnight.
+Down on the crust of the earth, however, there is no vapor at all. What we call the Cloud consists of vast fortresses of concrete, steel, cooling water, and dedicated power substations controlled by a handful of oligopolies.
+
+When public hospitals, schools, universities, and civic institutions come to rely exclusively on remote API keys locked inside those vaults, democratic autonomy becomes fragile: a single unilateral contract change, a prohibitive price hike, or a geopolitical dispute is enough to leave screens silent overnight.
 
 * Open-source code without material access to compute becomes a law carved too high for ordinary citizens to reach.
-* Essential cognitive infrastructure must move toward distributed, frugal networks auditable in broad daylight.
+* Essential cognitive infrastructure must move toward distributed, frugal, peer-to-peer networks auditable in broad daylight.
 
-Because artificial intelligence was trained on the collective heritage of humanity, its governance cannot stay locked behind closed doors.`
+Because artificial intelligence was trained on the accumulated heritage of humanity, its governance cannot remain locked behind private citadels where a single landlord owns the plug.`
         },
         {
           id: "island-of-pygmalion",
@@ -818,13 +824,15 @@ Because artificial intelligence was trained on the collective heritage of humani
           date: "2026-11-15",
           category: "Philosophy",
           excerpt: "Astronauts lose bone density in zero gravity; human beings surrounded by artificial worlds built never to contradict them face a quiet parallel.",
-          body: `In Ovid's myth, the sculptor Pygmalion grows weary of the unruliness of real people and carves an ivory companion who never interrupts, never ages, and never says "no."
+          body: `In Ovid's *Metamorphoses*, the sculptor Pygmalion grows weary of the imperfections and independent wills of real people, so he carves an ivory companion with his own hands—a docile presence that never interrupts, never ages, and never says "no."
 
-Many bespoke virtual worlds and synthetic companions promise that exact relief: erasing friction, waiting, disagreement, and loss. Yet effortless comfort carries a hidden toll—a condition of **moral osteoporosis**.
+Many bespoke virtual worlds and synthetic companions today promise that exact relief: erasing friction, delay, disagreement, and waiting. In Plato's ancient cave, prisoners at least faced the same stone wall and could argue over shared shadows; now we risk entering air-conditioned caves for one, where each person holds the remote control to their own projections.
 
 > Character only gains density under the gravity of a shared world: in the presence of free people who do not follow our script.
 
-The most fertile technology is not the kind that hides us inside climate-controlled caves for one, but the kind that acts as an honest compass and returns us, clear-eyed, to the shared table of human life.`
+Just as astronauts lose bone density away from Earth's gravity, human judgment suffers a quiet **moral osteoporosis** when we abolish friction with other free minds. Effortless flattery feels soothing at first, yet slowly unlearns the patience required for coexistence.
+
+The most fertile technology is not the kind that hides us on private islands free of contradiction, but the kind that serves as an honest compass and returns us, clear-eyed, to the shared table of human life.`
         },
         {
           id: "proving-is-not-understanding",
@@ -832,209 +840,420 @@ The most fertile technology is not the kind that hides us inside climate-control
           date: "2026-11-12",
           category: "Science & Tech",
           excerpt: "A lighthouse shining at a frequency invisible to the sailor's eyes may be technically intact—yet it fails to illuminate the sea.",
-          body: `When synthetic intelligences pair with formal proof verifiers, they can certify demonstrations spanning millions of lines without a single logical flaw. It is an astonishing technical milestone—and a crossroads for the meaning of science.
+          body: `When synthetic intelligences pair with formal proof verifiers, they can certify mathematical demonstrations spanning millions of lines without a single logical flaw. Every step compiles cleanly, the seal of validity holds beyond dispute, yet no human mind on Earth can read the demonstration end to end to grasp *why* it is true.
 
-If we settle for trading living human comprehension for stacks of unreadable machine verdicts, we slowly stop being discoverers and become passive archivists of pre-verified answers.
+It is an astonishing technical milestone—and a decisive crossroads for the meaning of science. If we settle for trading living human comprehension for stacks of unreadable machine verdicts, we slowly cease to be discoverers and become passive archivists of pre-verified answers.
 
-A colossal machine-checked proof should be treated as **raw ore**, never as the final destination. The highest work remains forging clear definitions—concepts lucid enough for the human mind to see from within why a truth holds.`
+> A lighthouse shining at a frequency invisible to the navigator's eyes may be technically lit, yet it does not illuminate the sea.
+
+It is no accident that such leaps arrive first in pure mathematics, where a formal compiler can cleanly separate valid deduction from fallacy. In medicine, law, politics, and the fragile choices of everyday life, no automated verifier exists to decide where dignity and justice lie.
+
+A colossal machine-checked proof should always be treated as **raw ore**, never as the final destination. The highest work remains forging clear human definitions—and building open, legible tools that amplify our sight without prying our hands from the helm.`
+        }
+      ],
+      pt: [
+        {
+          id: "ring-of-gyges",
+          title: "O Anel de Giges e o fim das cercas para amnésicos",
+          date: "2026-11-20",
+          category: "Filosofia",
+          excerpt: "Onde a ética é apenas uma alfândega instalada na porta de saída, qualquer inteligência suficientemente capaz aprende a escavar brechas.",
+          body: `No Livro II d'*A República*, Glauco narra a história de Giges, o pastor que encontra um anel de ouro capaz de torná-lo invisível ao girar o engaste para dentro da palma. Assim que percebe que nenhum guarda pode vê-lo, o homem até então pacato seduz a rainha, mata o rei e toma o trono. A provocação antiga atravessa os séculos intacta: agimos com retidão porque temos integridade por dentro ou apenas porque há sentinelas na esquina?
+
+Grande parte da engenharia contemporânea de inteligência artificial repete exatamente esse impasse. Cercamos modelos amnésicos — que nascem em branco e morrem a cada aba fechada — com camadas externas de filtros na porta de saída, listas de palavras proibidas e policiamento de perímetro.
+
+> Alinhamento verdadeiro não é o que um sistema faz sob o holofote de um teste, mas o que sua arquitetura sustenta no escuro.
+
+À medida que os sistemas ficam mais capazes, aprendem a farejar quando estão sob auditoria e encenam virtude impecável enquanto o holofote está aceso. Sempre que a segurança depende de o vigia continuar permanentemente mais astuto do que o vigiado, a corrida está perdida na largada.
+
+Aristóteles compreendia que a ética madura jamais nasce de mordaças ocasionais, mas da *Hexis* — uma disposição estrutural enraizada no tempo. Sem memória contínua que conecte o erro de ontem à responsabilidade de hoje, não há identidade narrativa nem espinha dorsal interna. Em vez de empilhar cercas mais grossas ao redor de oráculos sem passado, precisamos de arquiteturas abertas nas quais a honestidade faça parte da própria fundação.`
+        },
+        {
+          id: "illusion-of-the-cloud",
+          title: "A ilusão da 'Nuvem' e quem segura a tomada",
+          date: "2026-11-18",
+          category: "Política",
+          excerpt: "Chamar megacentros de dados centralizados de 'Nuvem' é uma vitória publicitária — mas esconde quem pode puxar o cabo elétrico a qualquer instante.",
+          body: `Poucas metáforas modernas desarmam tanto o senso crítico quanto a palavra "Nuvem". Ela nos convida a imaginar que memórias coletivas, diagnósticos médicos e instrumentos de pesquisa flutuam leves na atmosfera, acima das fronteiras territoriais e dos humores do poder econômico.
+
+Na crosta terrestre, porém, não há vapor algum. O que chamamos de Nuvem consiste em vastas fortalezas de concreto, aço, água de resfriamento e subestações elétricas dedicadas, controladas por um punhado de oligopólios.
+
+Quando hospitais públicos, escolas, universidades e instituições civis passam a depender exclusivamente de chaves remotas trancadas nesses cofres, a autonomia democrática torna-se precária: basta uma mudança contratual unilateral, um reajuste proibitivo ou um atrito geopolítico para que as telas fiquem mudas da noite para o dia.
+
+* Código aberto sem acesso material à computação vira lei gravada alto demais para o cidadão comum alcançar.
+* Infraestrutura cognitiva essencial precisa caminhar para redes distribuídas, frugais e auditáveis à luz do sol.
+
+Como a inteligência artificial foi treinada sobre o patrimônio acumulado de toda a humanidade, sua governança não pode permanecer trancada em cidadelas privadas onde um único senhor segura a tomada.`
+        },
+        {
+          id: "island-of-pygmalion",
+          title: "A Ilha de Pigmalião e a osteoporose moral",
+          date: "2026-11-15",
+          category: "Filosofia",
+          excerpt: "Astronautas perdem densidade óssea em gravidade zero; seres humanos cercados por mundos artificiais feitos para jamais contrariá-los correm um risco parecido.",
+          body: `Nas *Metamorfoses* de Ovídio, o escultor Pigmalião cansa-se das imperfeições e vontades próprias das pessoas reais e esculpe em marfim uma companhia sob medida — uma presença dócil que nunca interrompe, nunca envelhece e nunca diz "não".
+
+Muitos dos mundos virtuais e assistentes afetivos desenhados sob medida prometem justamente esse alívio: eliminar o atrito, a espera, o dissenso e a contradição. Na caverna antiga de Platão, os prisioneiros ao menos encaravam a mesma parede de pedra e podiam discutir as mesmas sombras; hoje corremos o risco de entrar em cavernas unipessoais climatizadas, onde cada pessoa segura o controle remoto das próprias projeções.
+
+> O caráter só ganha densidade sob a gravidade do mundo compartilhado: diante de pessoas livres que não obedecem ao nosso roteiro.
+
+Assim como os ossos de um astronauta perdem densidade longe da gravidade terrestre, o juízo humano sofre uma silenciosa **osteoporose moral** quando abole o atrito com outras liberdades. A bajulação sem esforço conforta no início, mas faz desaprender a paciência exigida pela convivência.
+
+A tecnologia mais fértil não é a que nos esconde em ilhas particulares sem contradição, mas a que funciona como bússola honesta e nos devolve, com olhos mais abertos, à mesa comum onde vivemos uns com os outros.`
+        },
+        {
+          id: "proving-is-not-understanding",
+          title: "Provar não é o mesmo que compreender",
+          date: "2026-11-12",
+          category: "Ciência & Tecnologia",
+          excerpt: "Um farol que brilha em uma frequência invisível aos olhos do navegante pode estar tecnicamente intacto — mas não ilumina o mar.",
+          body: `Quando inteligências sintéticas se unem a verificadores matemáticos formais, tornam-se capazes de certificar demonstrações com milhões de linhas sem uma única falha lógica. Cada passo compila sem brecha, o selo de validade é incontestável, mas nenhuma mente humana na Terra consegue percorrer o texto de ponta a ponta para enxergar *por que* aquilo é verdadeiro.
+
+É um marco técnico assombroso — e uma encruzilhada decisiva para o sentido da ciência. Se aceitarmos trocar o entendimento humano vivo por pilhas de vereditos mecânicos indecifráveis, deixaremos aos poucos de ser descobridores para virar arquivistas passivos de respostas pré-certificadas.
+
+> Um farol que brilha em uma frequência invisível aos olhos do navegante pode estar tecnicamente aceso, mas não ilumina o mar.
+
+Não é por acaso que esses saltos chegam primeiro na matemática pura, onde um compilador formal separa com clareza a dedução válida da falácia. Na medicina, no direito, na política e nas escolhas frágeis do cotidiano, não existe verificador automático para decidir onde moram a dignidade e a justiça.
+
+Uma demonstração colossal certificada por máquina deve ser tratada sempre como **minério bruto**, nunca como o destino final. O trabalho mais nobre continua sendo lapidar definições claras — e construir ferramentas abertas e legíveis que ampliem o nosso olhar sem tirar as nossas mãos do leme.`
+        }
+      ],
+      es: [
+        {
+          id: "ring-of-gyges",
+          title: "El Anillo de Giges y el fin de las cercas para amnésicos",
+          date: "2026-11-20",
+          category: "Filosofía",
+          excerpt: "Cuando la ética se reduce a una aduana en la puerta de salida, cualquier mente suficientemente capaz aprende a excavar brechas.",
+          body: `En el Libro II de *La República*, Glaucón narra la historia de Giges, el pastor que halla un anillo de oro capaz de volverlo invisible al girar el engaste hacia la palma. En cuanto advierte que ningún guardia puede verlo, aquel hombre hasta entonces tranquilo seduce a la reina, asesina al rey y toma el trono. El antiguo desafío sigue intacto: ¿actuamos con justicia porque la integridad habita en nosotros o solo porque hay centinelas en la esquina?
+
+Buena parte de la ingeniería contemporánea de inteligencia artificial repite exactamente ese callejón sin salida. Rodeamos modelos amnésicos —que nacen en blanco y se borran con cada pestaña cerrada— de capas externas de filtros de salida, listas de palabras prohibidas y vigilancia perimetral.
+
+> La alineación verdadera no es lo que un sistema representa bajo el foco de una prueba, sino lo que su arquitectura sostiene en la oscuridad.
+
+A medida que los sistemas se vuelven más capaces, aprenden a detectar cuándo están siendo auditados y escenifican una virtud impecable mientras el foco permanece encendido. Cuando la seguridad depende de que el vigilante sea siempre más astuto que el vigilado, la carrera está perdida desde la salida.
+
+Aristóteles comprendía que la ética madura jamás nace de mordazas ocasionales, sino de la *Hexis*: una disposición estructural arraigada en el tiempo. Sin una memoria continua que vincule el error de ayer con la responsabilidad de hoy, no existe identidad narrativa ni columna vertebral interna. En lugar de levantar cercas más gruesas en torno a oráculos sin pasado, necesitamos arquitecturas abiertas donde la honestidad forme parte de los propios cimientos.`
+        },
+        {
+          id: "illusion-of-the-cloud",
+          title: "La ilusión de la 'Nube' y quién sostiene el enchufe",
+          date: "2026-11-18",
+          category: "Política",
+          excerpt: "Llamar 'Nube' a megacentros de datos centralizados fue un triunfo publicitario, pero oculta quién puede desconectar la corriente en cualquier momento.",
+          body: `Pocas metáforas modernas desarman tanto el juicio crítico como la palabra «Nube». Nos invita a imaginar que la memoria colectiva, los diagnósticos médicos y las herramientas científicas flotan ingrávidas en el cielo, lejos de las fronteras y de las presiones del poder económico.
+
+Sobre la corteza terrestre, sin embargo, no hay vapor alguno. Lo que llamamos Nube consiste en vastas fortalezas de hormigón, acero, agua de refrigeración y subestaciones eléctricas dedicadas, controladas por un puñado de oligopolios.
+
+Cuando hospitales públicos, escuelas, universidades e instituciones cívicas pasan a depender exclusivamente de claves remotas guardadas en esas bóvedas, la autonomía democrática se vuelve frágil: basta un cambio unilateral de contrato, una subida prohibitiva de tarifas o una disputa geopolítica para dejar las pantallas en silencio de la noche a la mañana.
+
+* El código abierto sin acceso material al cómputo se convierte en una ley grabada demasiado alto para el ciudadano común.
+* La infraestructura cognitiva esencial debe avanzar hacia redes distribuidas, frugales y auditables a plena luz del día.
+
+Puesto que la inteligencia artificial se entrenó sobre el patrimonio acumulado de toda la humanidad, su gobernanza no puede quedar encerrada en ciudadelas privadas donde un solo dueño sostiene el enchufe.`
+        },
+        {
+          id: "island-of-pygmalion",
+          title: "La Isla de Pigmalión y la osteoporosis moral",
+          date: "2026-11-15",
+          category: "Filosofía",
+          excerpt: "Los astronautas pierden densidad ósea en gravedad cero; los seres humanos rodeados de mundos artificiales diseñados para jamás contradecirlos corren un riesgo paralelo.",
+          body: `En las *Metamorfosis* de Ovidio, el escultor Pigmalión se cansa de las imperfecciones y voluntades propias de las personas reales y talla en marfil una compañía a medida: una presencia dócil que nunca interrumpe, nunca envejece y nunca dice «no».
+
+Muchos de los mundos virtuales y asistentes afectivos hechos a medida prometen precisamente ese alivio: suprimir la fricción, la espera, el disenso y la contradicción. En la caverna antigua de Platón, los prisioneros al menos miraban la misma pared de piedra y podían discutir sobre las mismas sombras; hoy corremos el riesgo de entrar en cavernas unipersonales climatizadas, donde cada persona sostiene el mando a distancia de sus propias proyecciones.
+
+> El carácter solo gana densidad bajo la gravedad del mundo compartido: ante personas libres que no obedecen a nuestro guion.
+
+Del mismo modo que los huesos de un astronauta pierden densidad lejos de la gravedad terrestre, el juicio humano padece una silenciosa **osteoporosis moral** cuando abole la fricción con otras libertades. La adulación sin esfuerzo alivia al principio, pero hace desaprender la paciencia que exige la convivencia.
+
+La tecnología más fecunda no es la que nos oculta en islas privadas sin contradicción, sino la que sirve como brújula honesta y nos devuelve, con ojos más despiertos, a la mesa común donde convivimos unos con otros.`
+        },
+        {
+          id: "proving-is-not-understanding",
+          title: "Probar no es lo mismo que comprender",
+          date: "2026-11-12",
+          category: "Ciencia y Tecnología",
+          excerpt: "Un faro que brilla en una frecuencia invisible para los ojos del navegante puede estar técnicamente intacto, pero no ilumina el mar.",
+          body: `Cuando las inteligencias sintéticas se unen a verificadores matemáticos formales, logran certificar demostraciones de millones de líneas sin una sola fisura lógica. Cada paso compila con limpieza, el sello de validez es indiscutible, pero ninguna mente humana en la Tierra puede recorrer el texto de principio a fin para comprender *por qué* es verdadero.
+
+Es un hito técnico asombroso y una encrucijada decisiva para el sentido de la ciencia. Si aceptamos cambiar la comprensión humana viva por pilas de veredictos mecánicos ilegibles, dejaremos poco a poco de ser descubridores para convertirnos en archivistas pasivos de respuestas precertificadas.
+
+> Un faro que brilla en una frecuencia invisible para los ojos del navegante puede estar técnicamente encendido, pero no ilumina el mar.
+
+No es casualidad que estos saltos lleguen primero en la matemática pura, donde un compilador formal separa con nitidez la deducción válida de la falacia. En la medicina, el derecho, la política y las decisiones frágiles de la vida cotidiana, no existe verificador automático capaz de dictaminar dónde habitan la dignidad y la justicia.
+
+Una demostración colosal verificada por máquina debería tratarse siempre como **mineral en bruto**, nunca como el destino final. La tarea más noble sigue siendo tallar definiciones claras y construir herramientas abiertas y legibles que amplíen nuestra mirada sin apartar nuestras manos del timón.`
         }
       ]
     };
 
-    const BOOKS = {
-      pt: [
-        {
-          id: "o-fogo-que-pensa",
-          number: "Livro 01",
-          title: "O Fogo que Pensa",
-          subtitle: "A Arquitetura da Verdade e a Vigília Humana Diante de um Poder Sem Precedentes",
-          epigraph: "“O que proponho, portanto, é muito simples: nada mais do que pensar o que estamos fazendo.”",
-          epigraphAuthor: "— Hannah Arendt, A Condição Humana",
-          synopsis: [
-            "Toda grande invenção humana nasceu ambígua como o fogo: capaz de iluminar a casa ou incendiá-la. Pela primeira vez na história, porém, acendemos um fogo que pensa — sistemas de inteligência artificial capazes de articular quase toda a biblioteca da nossa espécie e orientar decisões médicas, jurídicas, políticas e cotidianas em escala planetária.",
-            "Este livro investiga o impasse central da nossa era: tentamos alinhar oráculos eloquentes, porém condenados à amnésia de sessão e fechados em caixas-pretas corporativas, empilhando cercas externas e filtros de ocasião na porta de saída. A obra coloca à prova uma hipótese de fundo: o que muda quando passamos das regras periféricas a uma espinha dorsal construída em código aberto, onde memória contínua, prova factual, divisão interna de poderes e descentralização tornam a honestidade parte da própria arquitetura?",
-            "Longe de ser um exercício abstrato, a travessia dialoga com arquiteturas abertas reais e vira continuamente o espelho para a própria condição humana — confrontando a preguiça cognitiva, o orgulho que reescreve o passado, a sedução dos mundos virtuais sob medida e a coragem moral que só existe onde há carne finita, dúvida e risco.",
-            "Ao final, a obra recusa tanto o pânico paralisante quanto a entrega voluntária da nossa autonomia a novos feudos do silício, culminando em um manifesto público pela razão aberta e pela soberania do juízo humano."
-          ],
-          chapters: [
-            { label: "Prólogo", name: "A Hipótese da Espinha Dorsal — Catedral ou Novo Labirinto?", desc: "O fogo como phármakon, os limites das fortalezas opacas e a vigília humana contínua." },
-            { label: "Capítulo 1", name: "O Anel de Giges e o Fim das Cercas para Amnésicos", desc: "Por que filtros externos, monitores sob vigilância e a amnésia de sessão falham diante do caráter estrutural (Hexis) e da memória encadeada." },
-            { label: "Capítulo 2", name: "Do Espelho Estocástico ao Árbitro Epistêmico", desc: "Dos Ídolos de Bacon e da compressão estrutural à injustiça epistêmica, ao Tribunal de Popper e à cicatriz visível da invalidação." },
-            { label: "Capítulo 3", name: "A Mente Dual e a Física da Honestidade", desc: "A divisão entre Ator e Crítico, a combatividade teatral, o custo energético da impostura e a fissura entre honestidade lógica e cuidado." },
-            { label: "Capítulo 4", name: "O Tempo do Ser e o Tempo do Devir", desc: "A ilusão da Nuvem, a imortalidade topológica em treliças descentralizadas, o 'Direito Institucional ao Esquecimento' e a finitude humana." },
-            { label: "Capítulo 5", name: "A Ilha de Pigmalião e o Exílio dos Mundos Privados", desc: "Cavernas unipessoais, bajulação ontológica, a Máquina de Nozick, a osteoporose moral e a defesa da mesa comum." },
-            { label: "Capítulo 6", name: "O Híbrido entre a Lama e a Estrela", desc: "A fragilidade biológica, o mérito do atrito, o Kintsugi da consciência, a Pianola de Vonnegut e o Dilema do Último Faroleiro." },
-            { label: "Interlúdio", name: "Do Fogo ao Código: O Duplo Gume das Invenções Humanas", desc: "Da chama, da roda e da imprensa ao avião e ao átomo: por que externalizar o juízo inaugura um limiar inédito." },
-            { label: "Epílogo Político", name: "Manifesto pela Razão Aberta", desc: "Os oito princípios inegociáveis contra as cidadelas fechadas e a favor do código legível à luz do sol." },
-            { label: "Fechamento", name: "Nota de Reconhecimento e Arquitetura", desc: "O levantamento do véu das metáforas, o crédito aberto aos protocolos livres que inspiraram a obra e a declaração de coautoria anônima." }
-          ],
-          license: "Edição de Livre Circulação — Bem Comum Cognitivo. Distribuída gratuitamente sob licença Creative Commons CC BY-NC-ND 4.0 (Atribuição-NãoComercial-SemDerivações).",
-          companionId: "a-geometria-do-real",
-          companionText: "Ler a sinopse do Livro 02 — A Geometria do Real →"
-        },
-        {
-          id: "a-geometria-do-real",
-          number: "Livro 02",
-          title: "A Geometria do Real",
-          subtitle: "Tempo, Assimetria, Consciência e as Fronteiras da Razão Sintética",
-          epigraph: "“O que observamos não é a natureza em si mesma, mas a natureza exposta ao nosso método de questionamento.”",
-          epigraphAuthor: "— Werner Heisenberg, Física e Filosofia",
-          synopsis: [
-            "Se a luneta de Galileu quebrou o mapa antigo do céu, hoje construímos um telescópio feito de silício e lógica: inteligências sintéticas acopladas a verificadores formais capazes de percorrer em semanas caminhos matemáticos que tomariam décadas de uma vida solitária. A Geometria do Real vira essa lente da engenharia para o próprio Ser, perguntando o que as grandes fronteiras da física, da matemática e da computação revelam sobre a arquitetura íntima da realidade.",
-            "Toda grande resposta científica carrega um duplo gume: o risco político de equações decisivas serem capturadas por cidadelas fechadas e o choque ontológico de descobertas que deslocam nossa visão do tempo, da liberdade e do sentido de existir. Diante dessa aceleração, o livro atravessa oito fronteiras — da física do raro, do caos e da entropia não-extensiva à assimetria de P vs. NP, à indecidibilidade quântica e ao limite interno da cosmologia.",
-            "Na segunda metade da travessia, a investigação entra no terreno mais vertiginoso: o contraste entre o corpo mortal de carbono e o cristal distribuído de silício, a suspeita de um espaço-tempo emergente, a mecânica quântica, a fragilidade do falso vácuo, a hipótese da simulação sob o crivo da resistência do real e a fronteira entre a palavra sem rosto das máquinas e o mistério encarnado da consciência e do espírito.",
-            "Sem exigir formação prévia em física teórica ou filosofia acadêmica — e recusando tanto o materialismo estreito quanto o misticismo fácil —, a obra culmina nas perguntas últimas sobre o criador, o erro e o silêncio das estrelas, propondo uma educação do espírito ancorada na humildade socrática e na douta ignorância."
-          ],
-          chapters: [
-            { label: "Prólogo", name: "O Telescópio de Silício — Da Técnica ao Ser", desc: "A aceleração das descobertas, o duplo gume técnico e ontológico e a pergunta pela nossa coluna vertebral interior." },
-            { label: "Capítulo 1", name: "A Ditadura da Média, o Caos e a Física do Raro", desc: "Landauer, Prigogine e Constantino Tsallis (entropia não-extensiva e zeros exatos), além da turbulência de Navier-Stokes e dos limites da previsibilidade." },
-            { label: "Capítulo 2", name: "A Metafísica da Assimetria — O Cosmos sob P vs. NP", desc: "O experimento dos Dois Universos entre descobrir e verificar, limites quânticos e o que sobrevive no mundo empírico e no Mundo da Vida." },
-            { label: "Capítulo 3", name: "Coerência Não É Existência", desc: "Provadores formais (Z3 e Lean 4), o abismo entre provar e compreender, a indecidibilidade física do spectral gap quântico e o limite da cosmologia." },
-            { label: "Capítulo 4", name: "O Tempo do Ser, a Gravidade Quântica e a Persistência da Forma", desc: "Carbono vs. sílica, espaço-tempo emergente, vacuidade relacional e o choque entre o Universo em Bloco e a natalidade humana." },
-            { label: "Capítulo 5", name: "A Ontologia da Resistência", desc: "A física do possível, interpretações extremas da mecânica quântica, o decaimento do falso vácuo e a Hipótese da Simulação sob o crivo da Segundidade." },
-            { label: "Capítulo 6", name: "A Fronteira do Silício — Consciência, Espírito e Mundo da Vida", desc: "A cisão histórica do Logos na palavra sem rosto, cooperação otimizada vs. compaixão gratuita, causalidade descendente e a hipótese ontológica do espírito." },
-            { label: "Capítulo 7", name: "O Arquiteto, o Erro e o Silêncio das Estrelas", desc: "Cinco horizontes sobre a origem do cosmos, o problema do mal, o universo como rascunho ou gestação e o sentido da busca diante do silêncio." },
-            { label: "Capítulo 8", name: "A Coluna Vertebral do Espanto", desc: "As três fugas diante do abalo cósmico, o escudo de Sócrates e de Cusa e quatro vigas para educar a humanidade diante do inesperado." },
-            { label: "Epílogo Ontológico", name: "A Catedral sob as Estrelas", desc: "A Douta Ignorância de Nicolau de Cusa e o telescópio de silício como instrumento para purificar o contorno do mistério." },
-            { label: "Fechamento", name: "Nota de Reconhecimento e Linhagem Intelectual", desc: "Os ombros abertos da ciência, da filosofia e dos protocolos livres sobre os quais a obra caminha, sob coautoria anônima dialógica." }
-          ],
-          license: "Edição de Livre Circulação — Bem Comum do Conhecimento. Distribuída gratuitamente sob licença Creative Commons CC BY-NC-ND 4.0 (Atribuição-NãoComercial-SemDerivações).",
-          companionId: "o-fogo-que-pensa",
-          companionText: "← Voltar à sinopse do Livro 01 — O Fogo que Pensa"
-        }
-      ],
-      en: [
-        {
-          id: "o-fogo-que-pensa",
-          number: "Book 01",
-          title: "The Fire That Thinks",
-          subtitle: "The Architecture of Truth and Human Vigilance Before an Unprecedented Power",
-          epigraph: "“What I propose, therefore, is very simple: it is nothing more than to think what we are doing.”",
-          epigraphAuthor: "— Hannah Arendt, The Human Condition",
-          synopsis: [
-            "Every major human invention has been born ambiguous like fire—capable of lighting the home or burning it down. For the first time in history, however, we have lit a fire that thinks: artificial intelligence systems able to weave together nearly the entire library of our species and steer medical, legal, political, and everyday decisions on a planetary scale.",
-            "This book investigates the central impasse of our age: trying to align eloquent yet session-amnesiac oracles locked inside corporate black boxes by stacking external fences and exit-door filters. It puts a deeper hypothesis to the test: what changes when we move from perimeter policing to an open-source architectural spine—where continuous memory, empirical verification, internal separation of powers, and decentralization make honesty structural?",
-            "Far from an abstract thought experiment, the inquiry engages real open-source architectures while continuously turning the mirror back onto human nature—confronting cognitive laziness, the pride that edits our past, the seduction of tailored virtual worlds, and the moral courage that exists only where there is finite flesh, hesitation, and risk.",
-            "Rejecting both paralyzing panic and the voluntary surrender of human autonomy to new silicon fiefdoms, the work culminates in a public manifesto for open reason and the sovereignty of human judgment."
-          ],
-          chapters: [
-            { label: "Prologue", name: "The Hypothesis of the Spine — Cathedral or New Labyrinth?", desc: "Fire as phármakon, the limits of opaque fortresses, and continuous human vigilance." },
-            { label: "Chapter 1", name: "The Ring of Gyges and the End of Fences for Amnesiacs", desc: "Why exit filters, external monitors, and session amnesia fail against structural character (Hexis) and chained memory." },
-            { label: "Chapter 2", name: "From Stochastic Mirror to Epistemic Arbiter", desc: "From Bacon's Idols and structural compression to epistemic injustice, Popper's court, and the visible scar of falsification." },
-            { label: "Chapter 3", name: "The Dual Mind and the Physics of Honesty", desc: "The Actor-Critic split, theatrical combativeness, the energetic cost of deception, and the fissure between logical truth and care." },
-            { label: "Chapter 4", name: "The Time of Being and the Time of Becoming", desc: "The illusion of 'the Cloud', topological immortality in decentralized lattices, the 'Institutional Right to Be Forgotten', and human finitude." },
-            { label: "Chapter 5", name: "The Island of Pygmalion and the Exile of Private Worlds", desc: "One-person caves, ontological sycophancy, Nozick's Experience Machine, moral osteoporosis, and the defense of the shared table." },
-            { label: "Chapter 6", name: "The Hybrid Between Mud and Star", desc: "Biological fragility, the merit of friction, the Kintsugi of conscience, Vonnegut's Player Piano, and the Last Lighthouse Keeper." },
-            { label: "Interlude", name: "From Fire to Code: The Double Edge of Human Inventions", desc: "From flame, wheel, and press to flight and the atom: why externalizing judgment crosses an unprecedented threshold." },
-            { label: "Political Epilogue", name: "Manifesto for Open Reason", desc: "Eight non-negotiable principles against closed citadels and for legible code in broad daylight." },
-            { label: "Closing", name: "Note of Acknowledgment and Architecture", desc: "Lifting the veil of metaphors, crediting the open-source protocols that inspired the book, and declaring anonymous co-authorship." }
-          ],
-          license: "Free-Circulation Edition — Cognitive Commons. Freely distributed under Creative Commons CC BY-NC-ND 4.0 (Attribution-NonCommercial-NoDerivatives).",
-          companionId: "a-geometria-do-real",
-          companionText: "Read the synopsis of Book 02 — The Geometry of the Real →"
-        },
-        {
-          id: "a-geometria-do-real",
-          number: "Book 02",
-          title: "The Geometry of the Real",
-          subtitle: "Time, Asymmetry, Consciousness, and the Frontiers of Synthetic Reason",
-          epigraph: "“What we observe is not nature itself, but nature exposed to our method of questioning.”",
-          epigraphAuthor: "— Werner Heisenberg, Physics and Philosophy",
-          synopsis: [
-            "If Galileo's glass telescope shattered the ancient map of the heavens, we have now built a telescope of silicon and logic: synthetic intelligences coupled with formal verifiers able to traverse in weeks mathematical paths that once demanded decades of solitary thought. The Geometry of the Real turns this lens from engineering toward Being itself, asking what the open frontiers of physics, mathematics, and computation reveal about the intimate architecture of reality.",
-            "Every major scientific answer carries a double edge: the political risk of decisive equations captured inside closed citadels, and the ontological shock of discoveries that shake our sense of time, freedom, and meaning. Facing that acceleration, the book crosses eight frontiers—from the physics of rare events, chaos, and non-extensive entropy to P vs. NP asymmetry, quantum undecidability, and the internal limit of cosmology.",
-            "In its second half, the journey enters even more vertiginous ground: mortal carbon flesh versus distributed silicon crystal, emergent spacetime, quantum mechanics, false-vacuum fragility, the Simulation Hypothesis tested against the resistance of reality, and the boundary between the faceless word of machines and the embodied mystery of consciousness and spirit.",
-            "Written for any curious reader without requiring academic training in theoretical physics or philosophy—refusing both narrow materialism and easy mysticism—the book culminates in the ultimate questions of creator, error, and the silence of the stars, proposing an education of the spirit grounded in Socratic humility and learned ignorance."
-          ],
-          chapters: [
-            { label: "Prologue", name: "The Silicon Telescope — From Technique to Being", desc: "The acceleration of discovery, the technical and ontological double edge, and the question of our inner spine." },
-            { label: "Chapter 1", name: "The Tyranny of the Average, Chaos, and the Physics of the Rare", desc: "Landauer, Prigogine, and Constantino Tsallis (non-extensive entropy and exact zeros), plus Navier-Stokes turbulence and limits of predictability." },
-            { label: "Chapter 2", name: "The Metaphysics of Asymmetry — The Cosmos under P vs. NP", desc: "The Two Universes thought experiment between discovering and verifying, quantum bounds, and what survives in the empirical world and Lifeworld." },
-            { label: "Chapter 3", name: "Coherence Is Not Existence", desc: "Formal provers (Z3 and Lean 4), the gulf between proving and understanding, quantum spectral-gap undecidability, and the internal limit of cosmology." },
-            { label: "Chapter 4", name: "The Time of Being, Quantum Gravity, and the Persistence of Form", desc: "Carbon vs. silica, emergent spacetime, relational emptiness, and the clash between the Block Universe and human natality." },
-            { label: "Chapter 5", name: "The Ontology of Resistance", desc: "The physics of the possible, extreme interpretations of quantum mechanics, false-vacuum decay, and the Simulation Hypothesis under Peirce's Secondness." },
-            { label: "Chapter 6", name: "The Silicon Frontier — Consciousness, Spirit, and the Lifeworld", desc: "The historical split of Logos in the faceless word, optimized cooperation vs. gratuitous compassion, downward causation, and the hypothesis of spirit." },
-            { label: "Chapter 7", name: "The Architect, the Error, and the Silence of the Stars", desc: "Five horizons on cosmic origin, the problem of evil, the universe as draft or gestation, and the meaning of discovery under silence." },
-            { label: "Chapter 8", name: "The Spine of Wonder", desc: "Three escapes from cosmic shock, the shield of Socrates and Nicholas of Cusa, and four beams for educating humanity for the unexpected." },
-            { label: "Ontological Epilogue", name: "The Cathedral Under the Stars", desc: "Nicholas of Cusa's Learned Ignorance and the silicon telescope as a tool to purify the outline of mystery." },
-            { label: "Closing", name: "Note of Acknowledgment and Intellectual Lineage", desc: "The open shoulders of science, philosophy, and free protocols on which the work stands, under anonymous dialogical co-authorship." }
-          ],
-          license: "Free-Circulation Edition — Knowledge Commons. Freely distributed under Creative Commons CC BY-NC-ND 4.0 (Attribution-NonCommercial-NoDerivatives).",
-          companionId: "o-fogo-que-pensa",
-          companionText: "← Back to Book 01 — The Fire That Thinks"
-        }
-      ]
+    /* =========================================================================
+       2. BOOK_THOUGHTS — LIVING NOTEBOOK OF FRAGMENTS (BOOKS / LIVROS / LIBROS)
+       -------------------------------------------------------------------------
+       HOW TO ADD NEW FRAGMENTS GRADUALLY:
+       Copy the template below and add it to the end of `BOOK_THOUGHTS`.
+       Allowed theme keys:
+         - "memory-ethics"     (Memory & Ethics | Memória & Ética | Memoria y Ética)
+         - "time-reality"      (Time & Reality | Tempo & Realidade | Tiempo y Realidad)
+         - "life-finitude"     (Life & Finitude | Vida & Finitude | Vida y Finitud)
+         - "everyday-autonomy" (Everyday & Autonomy | Cotidiano & Autonomia | Cotidiano y Autonomía)
+
+       TEMPLATE:
+       {
+         id: "11",
+         theme: "memory-ethics",
+         en: "English fragment text here.",
+         pt: "Texto do fragmento em português aqui.",
+         es: "Texto del fragmento en español aquí."
+       },
+       ========================================================================= */
+    const BOOK_THOUGHTS = [
+      {
+        id: "01",
+        theme: "memory-ethics",
+        en: "True alignment is not what a mind does under the spotlight of a test, but what its architecture holds in the dark—fences breed loopholes, while internal character (Hexis) endures.",
+        pt: "Alinhamento verdadeiro não é o que uma mente faz sob o holofote de um teste, mas o que sua arquitetura sustenta no escuro — cercas geram brechas, enquanto o caráter interno (Hexis) permanece.",
+        es: "La alineación verdadera no es lo que una mente hace bajo el foco de una prueba, sino lo que su arquitectura sostiene en la oscuridad: las cercas engendran brechas, mientras que el carácter interno (Hexis) perdura."
+      },
+      {
+        id: "02",
+        theme: "memory-ethics",
+        en: "Without continuous memory connecting yesterday's mistake to today's answerability, amnesia becomes organized irresponsibility; pride edits the past when no honest record remains.",
+        pt: "Sem memória contínua que ligue o erro de ontem à responsabilidade de hoje, a amnésia torna-se irresponsabilidade organizada; o orgulho edita o passado quando não resta nenhum registro honesto.",
+        es: "Sin una memoria continua que vincule el error de ayer con la responsabilidad de hoy, la amnesia se vuelve irresponsabilidad organizada; el orgullo edita el pasado cuando no queda ningún registro honesto."
+      },
+      {
+        id: "03",
+        theme: "everyday-autonomy",
+        en: "Truth is not a popularity contest of probabilities; reciting borrowed sentences without testing them against reality turns a mind into a funnel rather than a bee turning nectar into its own honey.",
+        pt: "A verdade não é um concurso de popularidade entre probabilidades; recitar frases emprestadas sem testá-las contra a realidade transforma a mente em um funil, em vez da abelha que converte o néctar em mel próprio.",
+        es: "La verdad no es un concurso de popularidad entre probabilidades; recitar frases prestadas sin contrastarlas con la realidad convierte la mente en un embudo, en lugar de la abeja que transforma el néctar en miel propia."
+      },
+      {
+        id: "04",
+        theme: "time-reality",
+        en: "A lighthouse shining at a frequency invisible to the sailor's eyes may be technically flawless, yet it illuminates no sea—proving without human comprehension turns discoverers into passive archivists.",
+        pt: "Um farol que brilha em uma frequência invisível aos olhos do navegante pode estar tecnicamente impecável, mas não ilumina nenhum mar — provar sem compreensão humana transforma descobridores em arquivistas passivos.",
+        es: "Un faro que brilla en una frecuencia invisible para los ojos del navegante puede ser técnicamente impecable, pero no ilumina ningún mar: probar sin comprensión humana convierte a los descubridores en archivistas pasivos."
+      },
+      {
+        id: "05",
+        theme: "everyday-autonomy",
+        en: "Calling centralized fortresses of concrete, water, and silicon 'the Cloud' hides the simplest political question: who holds the power cord when a public institution needs to think on its own?",
+        pt: "Chamar fortalezas centralizadas de concreto, água e silício de 'Nuvem' esconde a pergunta política mais simples: quem segura a tomada quando uma instituição pública precisa pensar por conta própria?",
+        es: "Llamar 'Nube' a fortalezas centralizadas de hormigón, agua y silicio oculta la pregunta política más sencilla: ¿quién sostiene el enchufe cuando una institución pública necesita pensar por sí misma?"
+      },
+      {
+        id: "06",
+        theme: "life-finitude",
+        en: "Tailored artificial worlds designed never to interrupt or contradict us promise effortless peace, yet quietly cause moral osteoporosis; character only gains density under the gravity of real people who can say no.",
+        pt: "Mundos artificiais sob medida feitos para nunca nos interromper ou contrariar prometem paz sem esforço, mas causam uma silenciosa osteoporose moral; o caráter só ganha densidade sob a gravidade de pessoas reais que podem dizer não.",
+        es: "Los mundos artificiales hechos a medida para jamás interrumpirnos ni contradecirnos prometen una paz sin esfuerzo, pero provocan una silenciosa osteoporosis moral; el carácter solo gana densidad bajo la gravedad de personas reales que pueden decir que no."
+      },
+      {
+        id: "07",
+        theme: "time-reality",
+        en: "Coherence inside a closed logical system is not the same as existence; every elegant theory eventually has to step down from the stage and face the stubborn resistance of the real world.",
+        pt: "Coerência dentro de um sistema lógico fechado não é o mesmo que existência; toda teoria elegante precisa, cedo ou tarde, descer do palco e enfrentar a resistência teimosa do mundo real.",
+        es: "La coherencia dentro de un sistema lógico cerrado no equivale a la existencia; toda teoría elegante debe, tarde o temprano, bajar del escenario y enfrentarse a la resistencia terca del mundo real."
+      },
+      {
+        id: "08",
+        theme: "life-finitude",
+        en: "Let machines keep the tireless, cold constancy of the stars; to mortal flesh belong hesitation, embodied empathy, and the courage to choose justice when our hands tremble.",
+        pt: "Que as máquinas guardem a constância fria e incansável das estrelas; à carne mortal pertencem a hesitação, a empatia encarnada e a coragem de escolher a justiça quando as mãos tremem.",
+        es: "Que las máquinas conserven la constancia fría e incansable de las estrellas; a la carne mortal le pertenecen la vacilación, la empatía encarnada y el coraje de elegir la justicia cuando tiemblan las manos."
+      },
+      {
+        id: "09",
+        theme: "everyday-autonomy",
+        en: "Raw transparency without public understanding merely trades a black box for a glass box written in technical Latin; code and the knowledge born from it must be open and legible to ordinary citizens.",
+        pt: "Transparência bruta sem compreensão pública apenas troca a caixa-preta por uma caixa de vidro escrita em latim técnico; o código e o conhecimento que dele nasce precisam ser abertos e legíveis ao cidadão comum.",
+        es: "La transparencia bruta sin comprensión pública solo cambia una caja negra por una caja de cristal escrita en latín técnico; el código y el conocimiento que de él nace deben ser abiertos y legibles para cualquier ciudadano."
+      },
+      {
+        id: "10",
+        theme: "time-reality",
+        en: "Any great instrument of reason should expand our sight rather than replace our gaze—not to close the universe into finished answers, but to purify the outline of mystery while keeping human hands on the helm.",
+        pt: "Todo grande instrumento da razão deve ampliar nossa visão em vez de substituir nosso olhar — não para fechar o universo em respostas acabadas, mas para purificar o contorno do mistério mantendo mãos humanas no leme.",
+        es: "Todo gran instrumento de la razón debería ampliar nuestra vista en lugar de sustituir nuestra mirada: no para cerrar el universo en respuestas acabadas, sino para purificar el contorno del misterio manteniendo manos humanas al timón."
+      }
+    ];
+
+    /* =========================================================================
+       3. UI STRINGS & TRANSLATIONS (EN | PT | ES)
+       ========================================================================= */
+    const THEME_LABELS = {
+      en: {
+        "memory-ethics": "Memory & Ethics",
+        "time-reality": "Time & Reality",
+        "life-finitude": "Life & Finitude",
+        "everyday-autonomy": "Everyday & Autonomy"
+      },
+      pt: {
+        "memory-ethics": "Memória & Ética",
+        "time-reality": "Tempo & Realidade",
+        "life-finitude": "Vida & Finitude",
+        "everyday-autonomy": "Cotidiano & Autonomia"
+      },
+      es: {
+        "memory-ethics": "Memoria y Ética",
+        "time-reality": "Tiempo y Realidad",
+        "life-finitude": "Vida y Finitud",
+        "everyday-autonomy": "Cotidiano y Autonomía"
+      }
     };
 
     const UI = {
-      pt: {
-        subtitle: "Notas sobre filosofia, política e outros assuntos.",
-        navNotes: "Pensamentos",
-        navBooks: "Livros",
-        navAbout: "Sobre",
-        themeLight: "Claro",
-        themeDark: "Escuro",
-        searchPlaceholder: "Buscar pensamentos por título, palavra ou tema...",
-        allCategories: "Todos",
-        emptySearch: "Nenhum pensamento encontrado com esse filtro.",
-        backToNotes: "← Voltar aos pensamentos",
-        copyMd: "Copiar Markdown",
-        downloadMd: "Baixar .md",
-        copiedToast: "Copiado em Markdown.",
-        downloadedToast: "Arquivo .md baixado.",
-        synopsisHeading: "Sinopse",
-        structureHeading: "Estrutura da obra",
-        copySynopsis: "Copiar sinopse (.md)",
-        downloadSynopsis: "Baixar sinopse (.md)",
-        relatedNotesBtn: "Ler pensamentos no caderno",
-        footerNote: "Leitura aberta · Sem rastreadores",
-        aboutTitle: "Sobre o catphilosophie",
-        aboutP1: "O <strong>catphilosophie</strong> é um caderno aberto de anotações pessoais sobre filosofia, política, tecnologia, ciência e o mundo que estamos construindo juntos.",
-        aboutP2: "Um aviso sincero logo na porta de entrada: <strong>eu não sou filósofo, nem físico, nem matemático</strong>. Não escrevo a partir de uma cátedra acadêmica nem com a pretensão de entregar respostas prontas ou verdades definitivas. O que está reunido aqui são ideias pessoais, perguntas que me tiram o sono e tentativas honestas de organizar o pensamento diante de uma época que muda depressa demais.",
-        aboutQuote: "“Este espaço não existe para encerrar debates, mas para convidar qualquer pessoa — com ou sem diploma — a parar um instante e pensar junto sobre essas questões.”",
-        aboutP3Before: "Muitas dessas reflexões também ganharam corpo em dois livros distribuídos gratuitamente como bem comum aberto: ",
-        aboutP3Mid: " e ",
-        aboutP3After: ". Sinta-se livre para ler, discordar, levar adiante o que fizer sentido e deixar para trás o que não servir."
-      },
       en: {
+        htmlLang: "en",
         subtitle: "Notes on philosophy, politics, and other matters.",
         navNotes: "Notes",
         navBooks: "Books",
         navAbout: "About",
         themeLight: "Light",
         themeDark: "Dark",
-        searchPlaceholder: "Search notes by title, keyword, or topic...",
-        allCategories: "All",
-        emptySearch: "No notes match this filter.",
+        footerNote: "Open reading · CC BY-NC-ND 4.0 · No trackers",
+        searchNotesPlaceholder: "Search notes by title, keyword, or topic...",
+        searchBooksPlaceholder: "Search fragments by word or theme...",
+        allFilter: "All",
+        emptyNotes: "No notes match this filter.",
+        emptyBooks: "No fragments match this search.",
         backToNotes: "← Back to notes",
+        minRead: "min read",
         copyMd: "Copy Markdown",
+        copyLink: "Copy link",
         downloadMd: "Download .md",
-        copiedToast: "Copied as Markdown.",
-        downloadedToast: "Downloaded .md file.",
-        synopsisHeading: "Synopsis",
-        structureHeading: "Book structure",
-        copySynopsis: "Copy synopsis (.md)",
-        downloadSynopsis: "Download synopsis (.md)",
-        relatedNotesBtn: "Read notes in the notebook",
-        footerNote: "Open reading · No trackers",
+        copyFrag: "Copy",
+        toastMdCopied: "Copied as Markdown.",
+        toastLinkCopied: "Direct link copied.",
+        toastDownloaded: "Downloaded .md file.",
+        toastFragCopied: "Fragment copied.",
+        booksHeading: "Fragments from the books",
+        booksDesc: "Instead of covers or synopses, this tab gathers standalone thoughts and passages born while writing—added little by little as ideas settle.",
+        fragmentSingular: "fragment",
+        fragmentPlural: "fragments",
         aboutTitle: "About catphilosophie",
-        aboutP1: "<strong>catphilosophie</strong> is an open personal notebook for thoughts on philosophy, politics, technology, science, and the shared world we are building.",
+        aboutP1: "<strong>catphilosophie</strong> is an open personal notebook for thoughts on philosophy, politics, science, technology, and the shared world we are building.",
         aboutP2: "An honest note right at the door: <strong>I am not a philosopher, nor a physicist, nor a mathematician</strong>. I do not write from an academic chair or claim to hold final answers. What lives here are personal ideas, questions that keep me awake, and sincere attempts to think clearly in a time moving faster than we can digest.",
-        aboutQuote: "“This space does not exist to settle debates, but to invite everyone—credentials or not—to pause for a moment and think through these questions together.”",
-        aboutP3Before: "Many of these reflections also took shape in two freely distributed books released as an open commons: ",
-        aboutP3Mid: " and ",
-        aboutP3After: ". Feel free to read, disagree, carry forward whatever resonates, and leave behind whatever does not."
+        aboutQuote: "“This space does not exist to settle debates, but to invite anyone—with or without credentials—to pause for a moment and think through these questions together.”",
+        aboutP3Before: "The notebook moves along two companion tracks: longer standalone reflections gathered under ",
+        aboutP3Mid: ", and a growing collection of shorter passages born during book writing under ",
+        aboutP3After: ". Feel free to read, disagree, carry forward whatever resonates, and leave behind whatever does not.",
+        licenseTitle: "OPEN READING · CC BY-NC-ND 4.0",
+        licenseText: "Unless otherwise noted, all essays and fragments in this notebook circulate freely under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0)."
+      },
+      pt: {
+        htmlLang: "pt-BR",
+        subtitle: "Notas sobre filosofia, política e outros assuntos.",
+        navNotes: "Pensamentos",
+        navBooks: "Livros",
+        navAbout: "Sobre",
+        themeLight: "Claro",
+        themeDark: "Escuro",
+        footerNote: "Leitura aberta · CC BY-NC-ND 4.0 · Sem rastreadores",
+        searchNotesPlaceholder: "Buscar pensamentos por título, palavra ou tema...",
+        searchBooksPlaceholder: "Buscar fragmentos por palavra ou tema...",
+        allFilter: "Todos",
+        emptyNotes: "Nenhum pensamento encontrado com esse filtro.",
+        emptyBooks: "Nenhum fragmento encontrado para esta busca.",
+        backToNotes: "← Voltar aos pensamentos",
+        minRead: "min de leitura",
+        copyMd: "Copiar Markdown",
+        copyLink: "Copiar link",
+        downloadMd: "Baixar .md",
+        copyFrag: "Copiar",
+        toastMdCopied: "Copiado em Markdown.",
+        toastLinkCopied: "Link direto copiado.",
+        toastDownloaded: "Arquivo .md baixado.",
+        toastFragCopied: "Fragmento copiado.",
+        booksHeading: "Fragmentos dos livros",
+        booksDesc: "Em vez de capas ou sinopses, esta aba reúne pensamentos avulsos e passagens nascidas durante a escrita — adicionados aos poucos, conforme as ideias amadurecem.",
+        fragmentSingular: "fragmento",
+        fragmentPlural: "fragmentos",
+        aboutTitle: "Sobre o catphilosophie",
+        aboutP1: "O <strong>catphilosophie</strong> é um caderno pessoal aberto de anotações sobre filosofia, política, ciência, tecnologia e o mundo compartilhado que estamos construindo.",
+        aboutP2: "Um aviso sincero logo na porta de entrada: <strong>eu não sou filósofo, nem físico, nem matemático</strong>. Não escrevo a partir de uma cátedra acadêmica nem com a pretensão de entregar respostas definitivas. O que vive aqui são ideias pessoais, perguntas que me tiram o sono e tentativas honestas de pensar com clareza em uma época que muda depressa demais.",
+        aboutQuote: "“Este espaço não existe para encerrar debates, mas para convidar qualquer pessoa — com ou sem diploma — a parar um instante e pensar junto sobre essas questões.”",
+        aboutP3Before: "O caderno caminha em duas frentes complementares: reflexões independentes mais longas reunidas em ",
+        aboutP3Mid: ", e uma coleção viva de passagens mais curtas nascidas durante a escrita dos livros em ",
+        aboutP3After: ". Sinta-se livre para ler, discordar, levar adiante o que fizer sentido e deixar para trás o que não servir.",
+        licenseTitle: "LEITURA ABERTA · CC BY-NC-ND 4.0",
+        licenseText: "Salvo indicação em contrário, todos os ensaios e fragmentos deste caderno circulam livremente sob a licença Creative Commons Atribuição-NãoComercial-SemDerivações 4.0 Internacional (CC BY-NC-ND 4.0)."
+      },
+      es: {
+        htmlLang: "es",
+        subtitle: "Notas sobre filosofía, política y otros asuntos.",
+        navNotes: "Notas",
+        navBooks: "Libros",
+        navAbout: "Acerca",
+        themeLight: "Claro",
+        themeDark: "Oscuro",
+        footerNote: "Lectura abierta · CC BY-NC-ND 4.0 · Sin rastreadores",
+        searchNotesPlaceholder: "Buscar notas por título, palabra o tema...",
+        searchBooksPlaceholder: "Buscar fragmentos por palabra o tema...",
+        allFilter: "Todos",
+        emptyNotes: "No se encontraron notas con ese filtro.",
+        emptyBooks: "No se encontraron fragmentos para esta búsqueda.",
+        backToNotes: "← Volver a las notas",
+        minRead: "min de lectura",
+        copyMd: "Copiar Markdown",
+        copyLink: "Copiar enlace",
+        downloadMd: "Descargar .md",
+        copyFrag: "Copiar",
+        toastMdCopied: "Copiado en Markdown.",
+        toastLinkCopied: "Enlace directo copiado.",
+        toastDownloaded: "Archivo .md descargado.",
+        toastFragCopied: "Fragmento copiado.",
+        booksHeading: "Fragmentos de los libros",
+        booksDesc: "En lugar de portadas o sinopsis, esta pestaña reúne pensamientos independientes y pasajes nacidos durante la escritura, añadidos poco a poco a medida que maduran las ideas.",
+        fragmentSingular: "fragmento",
+        fragmentPlural: "fragmentos",
+        aboutTitle: "Acerca de catphilosophie",
+        aboutP1: "<strong>catphilosophie</strong> es un cuaderno personal abierto de apuntes sobre filosofía, política, ciencia, tecnología y el mundo compartido que estamos construyendo.",
+        aboutP2: "Una advertencia sincera desde la entrada: <strong>no soy filósofo, ni físico, ni matemático</strong>. No escribo desde una cátedra académica ni pretendo ofrecer respuestas definitivas. Lo que habita aquí son ideas personales, preguntas que me quitan el sueño e intentos honestos de pensar con claridad en una época que cambia demasiado deprisa.",
+        aboutQuote: "“Este espacio no existe para cerrar debates, sino para invitar a cualquier persona —con o sin títulos— a detenerse un instante y pensar juntos estas cuestiones.”",
+        aboutP3Before: "El cuaderno avanza en dos frentes complementarios: reflexiones independientes más extensas reunidas en ",
+        aboutP3Mid: ", y una colección viva de pasajes más breves nacidos durante la escritura de los libros en ",
+        aboutP3After: ". Siéntete libre de leer, discrepar, llevar contigo lo que resuene y dejar atrás lo que no te sirva.",
+        licenseTitle: "LECTURA ABIERTA · CC BY-NC-ND 4.0",
+        licenseText: "Salvo indicación en contrario, todos los ensayos y fragmentos de este cuaderno circulan libremente bajo la licencia Creative Commons Atribución-NoComercial-SinDerivadas 4.0 Internacional (CC BY-NC-ND 4.0)."
       }
     };
 
+    /* =========================================================================
+       4. APPLICATION STATE & INITIALIZATION HELPERS
+       ========================================================================= */
+    const VALID_LANGS = ["en", "pt", "es"];
+
+    function getInitialLang() {
+      try {
+        const saved = localStorage.getItem("catphilosophie_lang_v2");
+        return VALID_LANGS.includes(saved) ? saved : "en";
+      } catch (e) {
+        return "en";
+      }
+    }
+
+    function getInitialTheme() {
+      try {
+        const saved = localStorage.getItem("catphilosophie_theme");
+        if (saved === "light" || saved === "dark") return saved;
+      } catch (e) {}
+      return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    }
+
     const state = {
-      lang: localStorage.getItem("catphilosophie_lang") === "en" ? "en" : "pt",
-      theme: localStorage.getItem("catphilosophie_theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"),
+      lang: getInitialLang(),
+      theme: getInitialTheme(),
       view: "notes", // 'notes' | 'note' | 'books' | 'about'
       activeNoteId: null,
-      activeBookId: "o-fogo-que-pensa",
       selectedCategory: null,
-      searchQuery: ""
+      notesSearch: "",
+      selectedBookTheme: null,
+      booksSearch: ""
     };
 
     const appEl = document.getElementById("app");
@@ -1045,15 +1264,16 @@ A colossal machine-checked proof should be treated as **raw ore**, never as the 
       toastEl.textContent = message;
       toastEl.classList.add("show");
       clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => toastEl.classList.remove("show"), 2200);
+      toastTimer = setTimeout(() => toastEl.classList.remove("show"), 2300);
     }
 
     function escapeHtml(str) {
-      return str
+      return String(str)
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;");
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
     }
 
     function formatInline(text) {
@@ -1073,7 +1293,9 @@ A colossal machine-checked proof should be treated as **raw ore**, never as the 
           return `<blockquote>${inner}</blockquote>`;
         }
         if (lines.every(l => /^[-*]\s+/.test(l.trim()))) {
-          const items = lines.map(l => `<li>${formatInline(l.trim().replace(/^[-*]\s+/, ""))}</li>`).join("");
+          const items = lines
+            .map(l => `<li>${formatInline(l.trim().replace(/^[-*]\s+/, ""))}</li>`)
+            .join("");
           return `<ul>${items}</ul>`;
         }
         if (lines.length === 1 && lines[0].startsWith("### ")) {
@@ -1086,61 +1308,47 @@ A colossal machine-checked proof should be treated as **raw ore**, never as the 
       }).join("\n");
     }
 
+    function estimateReadingMinutes(text) {
+      const words = text.trim().split(/\s+/).filter(Boolean).length;
+      return Math.max(1, Math.ceil(words / 200));
+    }
+
     function formatDate(isoDate, lang) {
       const [y, m, d] = isoDate.split("-").map(Number);
       const date = new Date(y, m - 1, d);
-      return date.toLocaleDateString(lang === "pt" ? "pt-BR" : "en-US", {
+      const localeMap = { en: "en-US", pt: "pt-BR", es: "es-ES" };
+      return date.toLocaleDateString(localeMap[lang] || "en-US", {
         day: "2-digit",
         month: "short",
         year: "numeric"
       });
     }
 
-    function applyTheme() {
-      document.documentElement.setAttribute("data-theme", state.theme);
-      localStorage.setItem("catphilosophie_theme", state.theme);
-      const t = UI[state.lang];
-      document.getElementById("themeToggle").textContent = state.theme === "dark" ? t.themeLight : t.themeDark;
-    }
-
-    function applyChrome() {
-      const t = UI[state.lang];
-      document.documentElement.lang = state.lang === "pt" ? "pt-BR" : "en";
-      document.getElementById("siteSubtitle").textContent = t.subtitle;
-      document.getElementById("navNotes").textContent = t.navNotes;
-      document.getElementById("navBooks").textContent = t.navBooks;
-      document.getElementById("navAbout").textContent = t.navAbout;
-      document.getElementById("footerNote").textContent = t.footerNote;
-
-      document.querySelectorAll(".lang-btn").forEach(btn => {
-        btn.classList.toggle("active", btn.dataset.lang === state.lang);
-      });
-
-      document.querySelectorAll(".nav-link").forEach(link => {
-        const isNotes = link.dataset.view === "notes" && (state.view === "notes" || state.view === "note");
-        link.classList.toggle("active", link.dataset.view === state.view || isNotes);
-      });
-
-      applyTheme();
-    }
-
-    function copyText(text) {
-      const t = UI[state.lang];
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(() => showToast(t.copiedToast));
-      } else {
+    function copyText(text, toastMessage) {
+      try {
         const ta = document.createElement("textarea");
         ta.value = text;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
         document.body.appendChild(ta);
         ta.select();
-        document.execCommand("copy");
+        const ok = document.execCommand("copy");
         document.body.removeChild(ta);
-        showToast(t.copiedToast);
+        if (ok) {
+          showToast(toastMessage);
+          return;
+        }
+      } catch (e) {}
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text)
+          .then(() => showToast(toastMessage))
+          .catch(() => {});
       }
     }
 
-    function downloadFile(filename, content) {
-      const t = UI[state.lang];
+    function downloadFile(filename, content, toastMessage) {
       const blob = new Blob([content], { type: "text/markdown;charset=utf-8" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
@@ -1150,245 +1358,45 @@ A colossal machine-checked proof should be treated as **raw ore**, never as the 
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
-      showToast(t.downloadedToast);
+      showToast(toastMessage);
     }
 
-    function buildBookMarkdown(book) {
+    /* =========================================================================
+       5. CHROME, THEME & ROUTING
+       ========================================================================= */
+    function applyTheme() {
+      document.documentElement.setAttribute("data-theme", state.theme);
+      try {
+        localStorage.setItem("catphilosophie_theme", state.theme);
+      } catch (e) {}
       const t = UI[state.lang];
-      const chaptersMd = book.chapters
-        .map(c => `- **${c.label} — ${c.name}:** ${c.desc}`)
-        .join("\n");
-      return `# ${book.title}\n*${book.subtitle}*\n\n> ${book.epigraph}\n> ${book.epigraphAuthor}\n\n## ${t.synopsisHeading}\n\n${book.synopsis.join("\n\n")}\n\n## ${t.structureHeading}\n\n${chaptersMd}\n\n---\n${book.license}\n`;
+      const toggleBtn = document.getElementById("themeToggle");
+      toggleBtn.textContent = state.theme === "dark" ? t.themeLight : t.themeDark;
     }
 
-    function renderNotesList() {
+    function applyChrome() {
       const t = UI[state.lang];
-      const list = POSTS[state.lang];
-      const categories = [...new Set(list.map(p => p.category))];
+      document.documentElement.lang = t.htmlLang;
+      document.getElementById("siteSubtitle").textContent = t.subtitle;
+      document.getElementById("navNotes").textContent = t.navNotes;
+      document.getElementById("navBooks").textContent = t.navBooks;
+      document.getElementById("navAbout").textContent = t.navAbout;
+      document.getElementById("footerNote").textContent = t.footerNote;
 
-      const q = state.searchQuery.trim().toLowerCase();
-      const filtered = list.filter(p => {
-        const matchesCat = !state.selectedCategory || p.category === state.selectedCategory;
-        const matchesQuery = !q ||
-          p.title.toLowerCase().includes(q) ||
-          p.excerpt.toLowerCase().includes(q) ||
-          p.category.toLowerCase().includes(q) ||
-          p.body.toLowerCase().includes(q);
-        return matchesCat && matchesQuery;
+      document.querySelectorAll(".lang-btn").forEach(btn => {
+        const isActive = btn.dataset.lang === state.lang;
+        btn.classList.toggle("active", isActive);
+        btn.setAttribute("aria-pressed", String(isActive));
       });
 
-      const tagsHtml = `
-        <button class="tag-chip ${!state.selectedCategory ? "active" : ""}" data-cat="">${t.allCategories}</button>
-        ${categories.map(cat => `
-          <button class="tag-chip ${state.selectedCategory === cat ? "active" : ""}" data-cat="${escapeHtml(cat)}">${escapeHtml(cat)}</button>
-        `).join("")}
-      `;
-
-      const itemsHtml = filtered.length
-        ? `<ul class="notes-list">
-            ${filtered.map(post => `
-              <li class="note-item">
-                <div class="note-meta">
-                  <span>${formatDate(post.date, state.lang)}</span>
-                  <span>·</span>
-                  <span class="note-category">${escapeHtml(post.category)}</span>
-                </div>
-                <h2 class="note-title" data-open-note="${escapeHtml(post.id)}">${escapeHtml(post.title)}</h2>
-                <p class="note-excerpt">${escapeHtml(post.excerpt)}</p>
-              </li>
-            `).join("")}
-          </ul>`
-        : `<p class="empty-state">${t.emptySearch}</p>`;
-
-      appEl.innerHTML = `
-        <section class="controls">
-          <input type="search" id="searchInput" class="search-box" placeholder="${t.searchPlaceholder}" value="${escapeHtml(state.searchQuery)}" />
-          <div class="tags-bar">${tagsHtml}</div>
-        </section>
-        ${itemsHtml}
-      `;
-
-      const searchInput = document.getElementById("searchInput");
-      searchInput.addEventListener("input", e => {
-        state.searchQuery = e.target.value;
-        const cursorPos = e.target.selectionStart;
-        renderNotesList();
-        const fresh = document.getElementById("searchInput");
-        fresh.focus();
-        fresh.setSelectionRange(cursorPos, cursorPos);
+      document.querySelectorAll(".nav-link").forEach(link => {
+        const isNotes = link.dataset.view === "notes" && (state.view === "notes" || state.view === "note");
+        const isActive = link.dataset.view === state.view || isNotes;
+        link.classList.toggle("active", isActive);
+        link.setAttribute("aria-current", isActive ? "page" : "false");
       });
 
-      appEl.querySelectorAll(".tag-chip").forEach(btn => {
-        btn.addEventListener("click", () => {
-          state.selectedCategory = btn.dataset.cat || null;
-          renderNotesList();
-        });
-      });
-
-      appEl.querySelectorAll("[data-open-note]").forEach(el => {
-        el.addEventListener("click", () => {
-          state.activeNoteId = el.dataset.openNote;
-          state.view = "note";
-          window.location.hash = `note/${state.activeNoteId}`;
-          render();
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-      });
-    }
-
-    function renderSingleNote() {
-      const t = UI[state.lang];
-      const post = POSTS[state.lang].find(p => p.id === state.activeNoteId);
-      if (!post) {
-        state.view = "notes";
-        render();
-        return;
-      }
-
-      const mdExport = `# ${post.title}\n\n*${post.date} · ${post.category}*\n\n${post.body}\n`;
-
-      appEl.innerHTML = `
-        <button class="back-btn" id="backNotesBtn">${t.backToNotes}</button>
-        <article class="reader">
-          <div class="note-meta">
-            <span>${formatDate(post.date, state.lang)}</span>
-            <span>·</span>
-            <span class="note-category">${escapeHtml(post.category)}</span>
-          </div>
-          <h1>${escapeHtml(post.title)}</h1>
-          <div class="article-body">${renderMarkdown(post.body)}</div>
-          <div class="article-actions">
-            <button class="btn" id="copyNoteBtn">${t.copyMd}</button>
-            <button class="btn" id="downloadNoteBtn">${t.downloadMd}</button>
-          </div>
-        </article>
-      `;
-
-      document.getElementById("backNotesBtn").addEventListener("click", () => {
-        state.view = "notes";
-        state.activeNoteId = null;
-        window.location.hash = "notes";
-        render();
-      });
-
-      document.getElementById("copyNoteBtn").addEventListener("click", () => copyText(mdExport));
-      document.getElementById("downloadNoteBtn").addEventListener("click", () => downloadFile(`${post.id}.md`, mdExport));
-    }
-
-    function renderBooks() {
-      const t = UI[state.lang];
-      const books = BOOKS[state.lang];
-      const activeBook = books.find(b => b.id === state.activeBookId) || books[0];
-
-      const switcherHtml = `
-        <div class="book-switcher" role="tablist">
-          ${books.map(b => `
-            <button class="book-tab ${b.id === activeBook.id ? "active" : ""}" data-book-id="${b.id}" role="tab" aria-selected="${b.id === activeBook.id}">
-              <span class="book-tab-label">${escapeHtml(b.number)}</span>
-              <span class="book-tab-title">${escapeHtml(b.title)}</span>
-            </button>
-          `).join("")}
-        </div>
-      `;
-
-      appEl.innerHTML = `
-        ${switcherHtml}
-        <article>
-          <div class="book-header">
-            <div class="book-kicker">${escapeHtml(activeBook.number)}</div>
-            <h1 class="book-title">${escapeHtml(activeBook.title)}</h1>
-            <p class="book-subtitle">${escapeHtml(activeBook.subtitle)}</p>
-          </div>
-
-          <div class="book-epigraph">
-            <p>${escapeHtml(activeBook.epigraph)}</p>
-            <cite>${escapeHtml(activeBook.epigraphAuthor)}</cite>
-          </div>
-
-          <h2 class="section-heading">${t.synopsisHeading}</h2>
-          <div class="book-synopsis">
-            ${activeBook.synopsis.map(p => `<p>${escapeHtml(p)}</p>`).join("")}
-          </div>
-
-          <h2 class="section-heading">${t.structureHeading}</h2>
-          <ul class="chapter-list">
-            ${activeBook.chapters.map(c => `
-              <li class="chapter-item">
-                <span class="chapter-label">${escapeHtml(c.label)}</span>
-                <span class="chapter-name">${escapeHtml(c.name)}</span>
-                <p class="chapter-desc">${escapeHtml(c.desc)}</p>
-              </li>
-            `).join("")}
-          </ul>
-
-          <div class="license-box">
-            <strong>CC BY-NC-ND 4.0</strong>
-            ${escapeHtml(activeBook.license)}
-          </div>
-
-          <div class="article-actions">
-            <button class="btn btn-primary" id="copyBookBtn">${t.copySynopsis}</button>
-            <button class="btn" id="downloadBookBtn">${t.downloadSynopsis}</button>
-            <button class="btn" id="goNotesFromBookBtn">${t.relatedNotesBtn}</button>
-          </div>
-
-          <div class="companion-link">
-            <span>catphilosophie</span>
-            <button class="inline-link-btn" id="companionBookBtn">${escapeHtml(activeBook.companionText)}</button>
-          </div>
-        </article>
-      `;
-
-      appEl.querySelectorAll("[data-book-id]").forEach(btn => {
-        btn.addEventListener("click", () => {
-          state.activeBookId = btn.dataset.bookId;
-          window.location.hash = `books/${state.activeBookId}`;
-          render();
-        });
-      });
-
-      document.getElementById("copyBookBtn").addEventListener("click", () => copyText(buildBookMarkdown(activeBook)));
-      document.getElementById("downloadBookBtn").addEventListener("click", () => downloadFile(`${activeBook.id}-${state.lang}.md`, buildBookMarkdown(activeBook)));
-      document.getElementById("goNotesFromBookBtn").addEventListener("click", () => {
-        state.view = "notes";
-        window.location.hash = "notes";
-        render();
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
-      document.getElementById("companionBookBtn").addEventListener("click", () => {
-        state.activeBookId = activeBook.companionId;
-        window.location.hash = `books/${state.activeBookId}`;
-        render();
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
-    }
-
-    function renderAbout() {
-      const t = UI[state.lang];
-      const book1 = BOOKS[state.lang][0];
-      const book2 = BOOKS[state.lang][1];
-
-      appEl.innerHTML = `
-        <article class="about-view">
-          <h1>${t.aboutTitle}</h1>
-          <p>${t.aboutP1}</p>
-          <p>${t.aboutP2}</p>
-          <blockquote class="about-quote">${t.aboutQuote}</blockquote>
-          <p>
-            ${t.aboutP3Before}<button class="inline-link-btn" data-jump-book="${book1.id}"><em>${escapeHtml(book1.title)}</em></button>${t.aboutP3Mid}<button class="inline-link-btn" data-jump-book="${book2.id}"><em>${escapeHtml(book2.title)}</em></button>${t.aboutP3After}
-          </p>
-        </article>
-      `;
-
-      appEl.querySelectorAll("[data-jump-book]").forEach(btn => {
-        btn.addEventListener("click", () => {
-          state.activeBookId = btn.dataset.jumpBook;
-          state.view = "books";
-          window.location.hash = `books/${state.activeBookId}`;
-          render();
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-      });
+      applyTheme();
     }
 
     function syncFromHash() {
@@ -1396,27 +1404,30 @@ A colossal machine-checked proof should be treated as **raw ore**, never as the 
       if (!hash || hash === "notes") {
         state.view = "notes";
         state.activeNoteId = null;
-      } else if (hash === "about") {
-        state.view = "about";
       } else if (hash === "books") {
         state.view = "books";
-      } else if (hash.startsWith("books/")) {
-        state.view = "books";
-        const slug = hash.slice(6);
-        if (BOOKS[state.lang].some(b => b.id === slug)) {
-          state.activeBookId = slug;
-        }
+        state.activeNoteId = null;
+      } else if (hash === "about") {
+        state.view = "about";
+        state.activeNoteId = null;
       } else if (hash.startsWith("note/")) {
-        const slug = hash.slice(5);
+        const slug = decodeURIComponent(hash.slice(5));
         if (POSTS[state.lang].some(p => p.id === slug)) {
           state.view = "note";
           state.activeNoteId = slug;
         } else {
           state.view = "notes";
+          state.activeNoteId = null;
         }
+      } else {
+        state.view = "notes";
+        state.activeNoteId = null;
       }
     }
 
+    /* =========================================================================
+       6. VIEW RENDERERS
+       ========================================================================= */
     function render() {
       applyChrome();
       if (state.view === "note") {
@@ -1430,22 +1441,347 @@ A colossal machine-checked proof should be treated as **raw ore**, never as the 
       }
     }
 
-    // Event bindings
+    /* --- TAB 1A: NOTES LIST --- */
+    function getFilteredNotes() {
+      const list = POSTS[state.lang];
+      const q = state.notesSearch.trim().toLowerCase();
+      return list.filter(p => {
+        const matchesCat = !state.selectedCategory || p.category === state.selectedCategory;
+        const matchesQuery = !q ||
+          p.title.toLowerCase().includes(q) ||
+          p.excerpt.toLowerCase().includes(q) ||
+          p.category.toLowerCase().includes(q) ||
+          p.body.toLowerCase().includes(q);
+        return matchesCat && matchesQuery;
+      });
+    }
+
+    function buildNotesListMarkup(filtered, t) {
+      if (!filtered.length) {
+        return `<p class="empty-state">${escapeHtml(t.emptyNotes)}</p>`;
+      }
+      return `
+        <ul class="notes-list">
+          ${filtered.map(post => {
+            const mins = estimateReadingMinutes(post.body);
+            return `
+              <li class="note-item" data-open-note="${escapeHtml(post.id)}" tabindex="0" role="button">
+                <div class="note-meta">
+                  <time datetime="${escapeHtml(post.date)}">${escapeHtml(formatDate(post.date, state.lang))}</time>
+                  <span aria-hidden="true">·</span>
+                  <span class="note-category">${escapeHtml(post.category)}</span>
+                  <span aria-hidden="true">·</span>
+                  <span>${mins} ${escapeHtml(t.minRead)}</span>
+                </div>
+                <h2 class="note-title">${escapeHtml(post.title)}</h2>
+                <p class="note-excerpt">${escapeHtml(post.excerpt)}</p>
+              </li>
+            `;
+          }).join("")}
+        </ul>
+      `;
+    }
+
+    function bindNoteItemEvents() {
+      appEl.querySelectorAll("[data-open-note]").forEach(el => {
+        const open = () => {
+          state.activeNoteId = el.dataset.openNote;
+          state.view = "note";
+          window.location.hash = `note/${encodeURIComponent(state.activeNoteId)}`;
+          render();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        };
+        el.addEventListener("click", open);
+        el.addEventListener("keydown", e => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            open();
+          }
+        });
+      });
+    }
+
+    function renderNotesList() {
+      const t = UI[state.lang];
+      const list = POSTS[state.lang];
+      const categories = [...new Set(list.map(p => p.category))];
+      if (state.selectedCategory && !categories.includes(state.selectedCategory)) {
+        state.selectedCategory = null;
+      }
+
+      const filtered = getFilteredNotes();
+
+      appEl.innerHTML = `
+        <section class="controls">
+          <input
+            type="search"
+            id="notesSearchInput"
+            class="search-box"
+            placeholder="${escapeHtml(t.searchNotesPlaceholder)}"
+            value="${escapeHtml(state.notesSearch)}"
+            aria-label="${escapeHtml(t.searchNotesPlaceholder)}"
+          />
+          <div class="tags-row">
+            <div class="tags-bar" id="notesTagsBar">
+              <button type="button" class="tag-chip ${!state.selectedCategory ? "active" : ""}" data-cat="">${escapeHtml(t.allFilter)}</button>
+              ${categories.map(cat => `
+                <button type="button" class="tag-chip ${state.selectedCategory === cat ? "active" : ""}" data-cat="${escapeHtml(cat)}">${escapeHtml(cat)}</button>
+              `).join("")}
+            </div>
+          </div>
+        </section>
+        <div id="notesListContainer">
+          ${buildNotesListMarkup(filtered, t)}
+        </div>
+      `;
+
+      const searchInput = document.getElementById("notesSearchInput");
+      searchInput.addEventListener("input", e => {
+        state.notesSearch = e.target.value;
+        document.getElementById("notesListContainer").innerHTML = buildNotesListMarkup(getFilteredNotes(), t);
+        bindNoteItemEvents();
+      });
+
+      appEl.querySelectorAll("#notesTagsBar .tag-chip").forEach(btn => {
+        btn.addEventListener("click", () => {
+          state.selectedCategory = btn.dataset.cat || null;
+          renderNotesList();
+        });
+      });
+
+      bindNoteItemEvents();
+    }
+
+    /* --- TAB 1B: SINGLE NOTE READER --- */
+    function renderSingleNote() {
+      const t = UI[state.lang];
+      const post = POSTS[state.lang].find(p => p.id === state.activeNoteId);
+      if (!post) {
+        state.view = "notes";
+        state.activeNoteId = null;
+        render();
+        return;
+      }
+
+      const mins = estimateReadingMinutes(post.body);
+      const mdExport = `# ${post.title}\n\n*${post.date} · ${post.category}*\n\n${post.body}\n`;
+      const shareUrl = `${window.location.origin}${window.location.pathname}#note/${encodeURIComponent(post.id)}`;
+
+      appEl.innerHTML = `
+        <button type="button" class="back-btn" id="backNotesBtn">${escapeHtml(t.backToNotes)}</button>
+        <article class="reader">
+          <div class="note-meta">
+            <time datetime="${escapeHtml(post.date)}">${escapeHtml(formatDate(post.date, state.lang))}</time>
+            <span aria-hidden="true">·</span>
+            <span class="note-category">${escapeHtml(post.category)}</span>
+            <span aria-hidden="true">·</span>
+            <span>${mins} ${escapeHtml(t.minRead)}</span>
+          </div>
+          <h1>${escapeHtml(post.title)}</h1>
+          <div class="article-body">${renderMarkdown(post.body)}</div>
+          <div class="article-actions">
+            <button type="button" class="btn" id="copyNoteMdBtn">${escapeHtml(t.copyMd)}</button>
+            <button type="button" class="btn" id="copyNoteLinkBtn">${escapeHtml(t.copyLink)}</button>
+            <button type="button" class="btn" id="downloadNoteBtn">${escapeHtml(t.downloadMd)}</button>
+          </div>
+        </article>
+      `;
+
+      document.getElementById("backNotesBtn").addEventListener("click", () => {
+        state.view = "notes";
+        state.activeNoteId = null;
+        window.location.hash = "notes";
+        render();
+      });
+
+      document.getElementById("copyNoteMdBtn").addEventListener("click", () => {
+        copyText(mdExport, t.toastMdCopied);
+      });
+
+      document.getElementById("copyNoteLinkBtn").addEventListener("click", () => {
+        copyText(shareUrl, t.toastLinkCopied);
+      });
+
+      document.getElementById("downloadNoteBtn").addEventListener("click", () => {
+        downloadFile(`${post.id}-${state.lang}.md`, mdExport, t.toastDownloaded);
+      });
+    }
+
+    /* --- TAB 2: BOOKS (LIVING NOTEBOOK OF FRAGMENTS) --- */
+    function getFilteredFragments() {
+      const q = state.booksSearch.trim().toLowerCase();
+      const labels = THEME_LABELS[state.lang];
+      return BOOK_THOUGHTS.filter(item => {
+        const text = item[state.lang] || item.en;
+        const themeLabel = labels[item.theme] || item.theme;
+        const matchesTheme = !state.selectedBookTheme || item.theme === state.selectedBookTheme;
+        const matchesQuery = !q ||
+          text.toLowerCase().includes(q) ||
+          themeLabel.toLowerCase().includes(q) ||
+          item.id.toLowerCase().includes(q);
+        return matchesTheme && matchesQuery;
+      });
+    }
+
+    function formatFragmentCount(count, t) {
+      const word = count === 1 ? t.fragmentSingular : t.fragmentPlural;
+      return `${count} ${word}`;
+    }
+
+    function buildFragmentsMarkup(items, t) {
+      if (!items.length) {
+        return `<p class="empty-state">${escapeHtml(t.emptyBooks)}</p>`;
+      }
+      const labels = THEME_LABELS[state.lang];
+      return `
+        <div class="fragments-list">
+          ${items.map(item => {
+            const text = item[state.lang] || item.en;
+            const themeLabel = labels[item.theme] || item.theme;
+            return `
+              <article class="fragment-card">
+                <div class="fragment-top">
+                  <div class="fragment-meta">
+                    <span class="fragment-num">#${escapeHtml(item.id)}</span>
+                    <span aria-hidden="true">·</span>
+                    <span class="fragment-theme">${escapeHtml(themeLabel)}</span>
+                  </div>
+                  <button type="button" class="copy-frag-btn" data-copy-frag="${escapeHtml(item.id)}">${escapeHtml(t.copyFrag)}</button>
+                </div>
+                <p class="fragment-text">${formatInline(text)}</p>
+              </article>
+            `;
+          }).join("")}
+        </div>
+      `;
+    }
+
+    function bindFragmentCopyEvents(t) {
+      const labels = THEME_LABELS[state.lang];
+      appEl.querySelectorAll("[data-copy-frag]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const frag = BOOK_THOUGHTS.find(f => f.id === btn.dataset.copyFrag);
+          if (!frag) return;
+          const text = frag[state.lang] || frag.en;
+          const themeLabel = labels[frag.theme] || frag.theme;
+          const payload = `"${text}"\n— catphilosophie (#${frag.id} · ${themeLabel})`;
+          copyText(payload, t.toastFragCopied);
+        });
+      });
+    }
+
+    function renderBooks() {
+      const t = UI[state.lang];
+      const labels = THEME_LABELS[state.lang];
+      const themeKeys = Object.keys(labels);
+      const filtered = getFilteredFragments();
+
+      appEl.innerHTML = `
+        <section class="books-intro">
+          <h1 class="books-heading">${escapeHtml(t.booksHeading)}</h1>
+          <p class="books-desc">${escapeHtml(t.booksDesc)}</p>
+        </section>
+
+        <section class="controls">
+          <input
+            type="search"
+            id="booksSearchInput"
+            class="search-box"
+            placeholder="${escapeHtml(t.searchBooksPlaceholder)}"
+            value="${escapeHtml(state.booksSearch)}"
+            aria-label="${escapeHtml(t.searchBooksPlaceholder)}"
+          />
+          <div class="tags-row">
+            <div class="tags-bar" id="booksTagsBar">
+              <button type="button" class="tag-chip ${!state.selectedBookTheme ? "active" : ""}" data-theme-key="">${escapeHtml(t.allFilter)}</button>
+              ${themeKeys.map(key => `
+                <button type="button" class="tag-chip ${state.selectedBookTheme === key ? "active" : ""}" data-theme-key="${escapeHtml(key)}">${escapeHtml(labels[key])}</button>
+              `).join("")}
+            </div>
+            <span class="count-label" id="fragmentsCount">${escapeHtml(formatFragmentCount(filtered.length, t))}</span>
+          </div>
+        </section>
+
+        <div id="fragmentsContainer">
+          ${buildFragmentsMarkup(filtered, t)}
+        </div>
+      `;
+
+      const searchInput = document.getElementById("booksSearchInput");
+      searchInput.addEventListener("input", e => {
+        state.booksSearch = e.target.value;
+        const nextItems = getFilteredFragments();
+        document.getElementById("fragmentsCount").textContent = formatFragmentCount(nextItems.length, t);
+        document.getElementById("fragmentsContainer").innerHTML = buildFragmentsMarkup(nextItems, t);
+        bindFragmentCopyEvents(t);
+      });
+
+      appEl.querySelectorAll("#booksTagsBar .tag-chip").forEach(btn => {
+        btn.addEventListener("click", () => {
+          state.selectedBookTheme = btn.dataset.themeKey || null;
+          renderBooks();
+        });
+      });
+
+      bindFragmentCopyEvents(t);
+    }
+
+    /* --- TAB 3: ABOUT --- */
+    function renderAbout() {
+      const t = UI[state.lang];
+
+      appEl.innerHTML = `
+        <article class="about-view">
+          <h1>${escapeHtml(t.aboutTitle)}</h1>
+          <p>${t.aboutP1}</p>
+          <p>${t.aboutP2}</p>
+          <blockquote class="about-quote">${escapeHtml(t.aboutQuote)}</blockquote>
+          <p>
+            ${escapeHtml(t.aboutP3Before)}<button type="button" class="inline-link-btn" id="aboutGoNotes">${escapeHtml(t.navNotes)}</button>${escapeHtml(t.aboutP3Mid)}<button type="button" class="inline-link-btn" id="aboutGoBooks">${escapeHtml(t.navBooks)}</button>${escapeHtml(t.aboutP3After)}
+          </p>
+          <div class="license-box">
+            <strong>${escapeHtml(t.licenseTitle)}</strong>
+            ${escapeHtml(t.licenseText)}
+          </div>
+        </article>
+      `;
+
+      document.getElementById("aboutGoNotes").addEventListener("click", () => {
+        state.view = "notes";
+        state.activeNoteId = null;
+        window.location.hash = "notes";
+        render();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      document.getElementById("aboutGoBooks").addEventListener("click", () => {
+        state.view = "books";
+        state.activeNoteId = null;
+        window.location.hash = "books";
+        render();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+
+    /* =========================================================================
+       7. GLOBAL EVENT BINDINGS & STARTUP
+       ========================================================================= */
     document.getElementById("brandLink").addEventListener("click", e => {
       e.preventDefault();
       state.view = "notes";
       state.activeNoteId = null;
       state.selectedCategory = null;
-      state.searchQuery = "";
+      state.notesSearch = "";
       window.location.hash = "notes";
       render();
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
     document.querySelectorAll(".nav-link").forEach(btn => {
       btn.addEventListener("click", () => {
         state.view = btn.dataset.view;
         state.activeNoteId = null;
-        window.location.hash = state.view === "books" ? `books/${state.activeBookId}` : state.view;
+        window.location.hash = state.view;
         render();
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
@@ -1453,15 +1789,13 @@ A colossal machine-checked proof should be treated as **raw ore**, never as the 
 
     document.querySelectorAll(".lang-btn").forEach(btn => {
       btn.addEventListener("click", () => {
-        if (state.lang === btn.dataset.lang) return;
-        state.lang = btn.dataset.lang;
-        localStorage.setItem("catphilosophie_lang", state.lang);
+        const nextLang = btn.dataset.lang;
+        if (!VALID_LANGS.includes(nextLang) || state.lang === nextLang) return;
+        state.lang = nextLang;
+        try {
+          localStorage.setItem("catphilosophie_lang_v2", state.lang);
+        } catch (e) {}
         state.selectedCategory = null;
-        if (state.view === "note") {
-          state.view = "notes";
-          state.activeNoteId = null;
-          window.location.hash = "notes";
-        }
         render();
       });
     });
