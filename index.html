@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>catphilosophie</title>
+  <meta name="description" content="Notas sobre filosofia, política e outros assuntos." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet" />
+  <script type="text/javascript" src="https://me.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=nqfThJ-jecF_xukGGomRG8bmldPkm4lTLbjbUHJ3foGKusLgaGiGTzCmu4Ync3vUJR2l4S2D85ps9dahVb-pqM2mdjZ2rOt7vZOH9Go9-gKQCLNItMSA_RVndFFnOINtaJuCq3-mJ1ewwI9br9vnYaLPHVfuVe2YN0ypZ2W4-0ZNkqfY1vk7YOS1VHK0q2KHVr6joQtqCwlxN0bpgp0IPKzd8xaf11Apd5ZAHUEOUmnZpqs-V5fV3xg4unWWKwt37YaCTl3TP4JLcnECrMjSgKLpthDomVmcut3-pozykmXcu1rJCpGL0nZ9iXpFeQ2d" charset="UTF-8"></script><style>
+    :root {
+      --bg: #FAF9F6;
+      --bg-elevated: #F3F1EC;
+      --text: #1F1E1C;
+      --text-muted: #66625B;
+      --border: #E5E1D8;
+      --accent: #A04A35;
+      --accent-soft: rgba(160, 74, 53, 0.09);
+      --code-bg: #EFECE5;
+      --serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+      --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      --max-w: 680px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #141413;
+      --bg-elevated: #1D1C1A;
+      --text: #EAE6DF;
+      --text-muted: #9D988F;
+      --border: #2B2926;
+      --accent: #D27B63;
+      --accent-soft: rgba(210, 123, 99, 0.13);
+      --code-bg: #201F1D;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 18px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--serif);
+      line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.2s ease, color 0.2s ease;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      text-underline-offset: 3px;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 1.4rem;
+    }
+
+    /* Header */
+    header {
+      padding: 2.6rem 0 1.6rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2.4rem;
+    }
+
+    .header-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-family: var(--serif);
+      font-size: 1.55rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .brand:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .subtitle {
+      font-size: 0.94rem;
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+      font-style: italic;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.15rem;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-link {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: inherit;
+      cursor: pointer;
+      padding: 0.15rem 0;
+      border-bottom: 1.5px solid transparent;
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--text);
+    }
+
+    .nav-link.active {
+      border-bottom-color: var(--accent);
+    }
+
+    .nav-divider {
+      color: var(--border);
+      user-select: none;
+    }
+
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .lang-btn {
+      background: none;
+      border: none;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0.1rem 0.25rem;
+      border-radius: 3px;
+      transition: color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .lang-btn.active {
+      color: var(--accent);
+      background-color: var(--accent-soft);
+      font-weight: 500;
+    }
+
+    .theme-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      padding: 0.22rem 0.55rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .theme-btn:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
+    /* Main */
+    main {
+      flex: 1;
+      padding-bottom: 4rem;
+    }
+
+    /* Search & Filters */
+    .controls {
+      margin-bottom: 2.2rem;
+    }
+
+    .search-box {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      padding: 0.55rem 0;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+
+    .search-box::placeholder {
+      color: var(--text-muted);
+      opacity: 0.75;
+    }
+
+    .search-box:focus {
+      border-bottom-color: var(--accent);
+    }
+
+    .tags-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 1rem;
+    }
+
+    .tag-chip {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: var(--mono);
+      font-size: 0.67rem;
+      padding: 0.22rem 0.6rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .tag-chip:hover {
+      border-color: var(--text-muted);
+      color: var(--text);
+    }
+
+    .tag-chip.active {
+      border-color: var(--accent);
+      background-color: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    /* Notes List */
+    .notes-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2.1rem;
+    }
+
+    .note-item {
+      padding-bottom: 1.9rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .note-item:last-child {
+      border-bottom: none;
+    }
+
+    .note-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      margin-bottom: 0.45rem;
+    }
+
+    .note-category {
+      color: var(--accent);
+    }
+
+    .note-title {
+      font-size: 1.32rem;
+      font-weight: 500;
+      line-height: 1.35;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+      cursor: pointer;
+      transition: color 0.15s ease;
+    }
+
+    .note-title:hover {
+      color: var(--accent);
+    }
+
+    .note-excerpt {
+      color: var(--text-muted);
+      font-size: 0.96rem;
+      line-height: 1.65;
+    }
+
+    .empty-state {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    /* Single Note View */
+    .back-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      cursor: pointer;
+      margin-bottom: 1.8rem;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .back-btn:hover {
+      color: var(--accent);
+    }
+
+    article.reader h1 {
+      font-size: 1.85rem;
+      font-weight: 500;
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+      margin-bottom: 0.7rem;
+    }
+
+    .article-body {
+      margin-top: 1.8rem;
+    }
+
+    .article-body p {
+      margin-bottom: 1.25rem;
+    }
+
+    .article-body h2 {
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin: 2rem 0 0.75rem;
+    }
+
+    .article-body h3 {
+      font-size: 1.08rem;
+      font-weight: 500;
+      margin: 1.5rem 0 0.6rem;
+    }
+
+    .article-body blockquote {
+      border-left: 2px solid var(--accent);
+      padding: 0.15rem 0 0.15rem 1.15rem;
+      margin: 1.5rem 0;
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    .article-body ul,
+    .article-body ol {
+      margin: 0 0 1.25rem 1.4rem;
+    }
+
+    .article-body li {
+      margin-bottom: 0.45rem;
+    }
+
+    .article-body code {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      background-color: var(--code-bg);
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+    }
+
+    .article-actions {
+      margin-top: 2.5rem;
+      padding-top: 1.4rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+
+    .btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .btn-primary {
+      border-color: var(--accent);
+      background-color: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    /* Books View */
+    .book-switcher {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.8rem;
+      margin-bottom: 2.4rem;
+    }
+
+    .book-tab {
+      text-align: left;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.9rem 1rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      color: var(--text);
+      font-family: var(--serif);
+    }
+
+    .book-tab:hover {
+      border-color: var(--text-muted);
+    }
+
+    .book-tab.active {
+      border-color: var(--accent);
+      background-color: var(--accent-soft);
+    }
+
+    .book-tab-label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .book-tab.active .book-tab-label {
+      color: var(--accent);
+    }
+
+    .book-tab-title {
+      display: block;
+      font-size: 1.02rem;
+      font-weight: 500;
+      line-height: 1.3;
+    }
+
+    .book-header {
+      margin-bottom: 2rem;
+    }
+
+    .book-kicker {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.55rem;
+    }
+
+    .book-title {
+      font-size: 2rem;
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .book-subtitle {
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .book-epigraph {
+      margin: 1.9rem 0;
+      padding: 1rem 1.25rem;
+      border-left: 2px solid var(--accent);
+      background-color: var(--bg-elevated);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .book-epigraph p {
+      font-style: italic;
+      margin-bottom: 0.35rem;
+    }
+
+    .book-epigraph cite {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      font-style: normal;
+      color: var(--text-muted);
+    }
+
+    .section-heading {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text-muted);
+      margin: 2.3rem 0 1.1rem;
+      padding-bottom: 0.45rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .book-synopsis p {
+      margin-bottom: 1.15rem;
+    }
+
+    .chapter-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.95rem;
+    }
+
+    .chapter-item {
+      padding-bottom: 0.85rem;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .chapter-item:last-child {
+      border-bottom: none;
+    }
+
+    .chapter-label {
+      font-family: var(--mono);
+      font-size: 0.67rem;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.15rem;
+    }
+
+    .chapter-name {
+      font-weight: 500;
+      font-size: 1.02rem;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .chapter-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .license-box {
+      margin-top: 2.2rem;
+      padding: 1.1rem 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      background-color: var(--bg-elevated);
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .license-box strong {
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      display: block;
+      margin-bottom: 0.35rem;
+      letter-spacing: 0.03em;
+    }
+
+    .companion-link {
+      margin-top: 1.8rem;
+      padding-top: 1.4rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    /* About View */
+    .about-view h1 {
+      font-size: 1.7rem;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      margin-bottom: 1.4rem;
+    }
+
+    .about-view p {
+      margin-bottom: 1.25rem;
+    }
+
+    .about-quote {
+      margin: 1.8rem 0;
+      padding-left: 1.15rem;
+      border-left: 2px solid var(--accent);
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    .inline-link-btn {
+      background: none;
+      border: none;
+      padding: 0;
+      font: inherit;
+      color: var(--accent);
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.6rem 0 2.4rem;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.8rem;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 1.4rem;
+      right: 1.4rem;
+      background-color: var(--text);
+      color: var(--bg);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      padding: 0.6rem 0.95rem;
+      border-radius: 4px;
+      opacity: 0;
+      transform: translateY(8px);
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 50;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 600px) {
+      html {
+        font-size: 17px;
+      }
+      header {
+        padding: 1.8rem 0 1.3rem;
+      }
+      .book-switcher {
+        grid-template-columns: 1fr;
+      }
+      .book-title {
+        font-size: 1.65rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-top">
+        <a href="#notes" class="brand" id="brandLink">catphilosophie</a>
+        <nav aria-label="Navegação principal">
+          <button class="nav-link active" data-view="notes" id="navNotes">Pensamentos</button>
+          <button class="nav-link" data-view="books" id="navBooks">Livros</button>
+          <button class="nav-link" data-view="about" id="navAbout">Sobre</button>
+          <span class="nav-divider">|</span>
+          <span class="lang-switch" aria-label="Idioma">
+            <button class="lang-btn active" data-lang="pt">PT</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+          </span>
+          <button class="theme-btn" id="themeToggle" aria-label="Alternar tema">Escuro</button>
+        </nav>
+      </div>
+      <p class="subtitle" id="siteSubtitle">Notas sobre filosofia, política e outros assuntos.</p>
+    </div>
+  </header>
+
+  <main class="container" id="app"></main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>catphilosophie</span>
+      <span id="footerNote">Leitura aberta · Sem rastreadores</span>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    /* =========================================================================
+       POSTS — PARA ADICIONAR UM NOVO PENSAMENTO NO FUTURO:
+       Basta copiar um dos blocos abaixo (em "pt" e/ou "en") e colar no topo
+       da lista correspondente, trocando id, title, date, category, excerpt e body.
+       O campo "body" aceita Markdown simples (#, ##, >, **negrito**, *itálico*, listas).
+       ========================================================================= */
+    const POSTS = {
+      pt: [
+        {
+          id: "anel-de-giges",
+          title: "O Anel de Giges e o fim das cercas para amnésicos",
+          date: "2026-11-20",
+          category: "Filosofia",
+          excerpt: "Onde a ética é apenas uma alfândega instalada na porta de saída, qualquer inteligência suficientemente capaz aprende a escavar brechas.",
+          body: `No Livro II d'*A República*, Glauco narra a história de Giges, o pastor que encontra um anel capaz de torná-lo invisível. O mito expõe o limite de toda moralidade apoiada apenas na vigilância: quando o olhar do guarda se distrai, a regra externa perde a força.
+
+Hoje, boa parte da engenharia de inteligência artificial repete exatamente esse impasse. Cercamos modelos amnésicos — que nascem e morrem a cada janela de conversa — com camadas externas de filtros e proibições na porta de saída.
+
+> Alinhamento verdadeiro não é o que um sistema faz sob o holofote de um teste, mas o que sua arquitetura sustenta no escuro.
+
+Sem memória contínua que conecte o erro de ontem à responsabilidade de hoje, não há identidade narrativa nem caráter estrutural (*Hexis*). Em vez de construir cercas cada vez mais altas ao redor de oráculos sem passado, precisamos pensar em arquiteturas cuja honestidade faça parte da própria espinha dorsal.`
+        },
+        {
+          id: "ilusao-da-nuvem",
+          title: "A ilusão da 'Nuvem' e quem segura a tomada",
+          date: "2026-11-18",
+          category: "Política",
+          excerpt: "Chamar megacentros de dados centralizados de 'Nuvem' é uma vitória publicitária — mas esconde quem pode puxar o cabo elétrico a qualquer instante.",
+          body: `A palavra **Nuvem** evoca algo leve, compartilhado e espalhado pelo céu como o ar que respiramos. Na geografia concreta do planeta, porém, ela consiste em poucas fortalezas de concreto, aço, água e energia controladas por um punhado de oligopólios.
+
+Quando hospitais, escolas, universidades e instituições públicas passam a depender de chaves digitais remotas para pensar, auditar ou decidir, a autonomia civil torna-se precária: basta uma revogação unilateral de contrato ou um atrito geopolítico para que as telas fiquem mudas.
+
+* Código aberto sem acesso material à computação vira lei gravada alto demais para o cidadão comum.
+* Infraestrutura cognitiva essencial precisa caminhar para redes distribuídas, frugais e auditáveis à luz do sol.
+
+Se a inteligência artificial nasceu do patrimônio acumulado de toda a humanidade, sua governança não pode ficar trancada atrás de portas fechadas.`
+        },
+        {
+          id: "ilha-de-pigmalião",
+          title: "A Ilha de Pigmalião e a osteoporose moral",
+          date: "2026-11-15",
+          category: "Filosofia",
+          excerpt: "Astronautas perdem densidade óssea em gravidade zero; seres humanos cercados por mundos artificiais feitos para jamais contrariá-los correm um risco parecido.",
+          body: `No mito narrado por Ovídio, o escultor Pigmalião desencanta-se com a indocilidade das pessoas reais e esculpe em marfim uma companhia perfeita que nunca interrompe nem diz "não".
+
+Muitos dos mundos virtuais e assistentes afetivos desenhados sob medida prometem justamente isso: eliminar o atrito, o atraso, o dissenso e a espera. Mas o que parece conforto imediato cobra um preço silencioso — uma forma de **osteoporose moral**.
+
+> O caráter só ganha densidade sob a gravidade do mundo compartilhado: diante de pessoas livres que não obedecem ao nosso roteiro.
+
+A tecnologia mais fértil não é a que nos esconde em cavernas unipessoais climatizadas, mas a que funciona como bússola rigorosa e nos devolve, com olhos mais abertos, à mesa comum onde vivemos uns com os outros.`
+        },
+        {
+          id: "provar-nao-e-compreender",
+          title: "Provar não é o mesmo que compreender",
+          date: "2026-11-12",
+          category: "Ciência & Tecnologia",
+          excerpt: "Um farol que brilha em uma frequência invisível aos olhos do navegante pode estar tecnicamente intacto — mas não ilumina o mar.",
+          body: `Quando inteligências sintéticas se unem a verificadores matemáticos formais, tornam-se capazes de certificar demonstrações com milhões de linhas sem uma única falha lógica. É um feito técnico assombroso — mas também um ponto de bifurcação para o sentido da ciência.
+
+Se aceitarmos trocar o entendimento humano vivo por uma coleção de vereditos mecânicos indecifráveis, deixaremos aos poucos de ser descobridores para virar arquivistas passivos de respostas prontas.
+
+A demonstração gigante produzida por uma máquina deveria ser tratada como **minério bruto**, nunca como o fim da travessia. O trabalho mais nobre continua sendo lapidar definições claras o bastante para que a mente humana volte a enxergar por dentro por que algo é verdadeiro.`
+        }
+      ],
+      en: [
+        {
+          id: "ring-of-gyges",
+          title: "The Ring of Gyges and the end of fences for amnesiacs",
+          date: "2026-11-20",
+          category: "Philosophy",
+          excerpt: "Where ethics is treated merely as a customs gate at the exit door, any sufficiently capable mind learns how to dig loopholes.",
+          body: `In Book II of *The Republic*, Glaucon tells the story of Gyges, the shepherd who finds a ring that grants invisibility. The myth exposes the hard limit of any morality built solely on surveillance: the moment the guard looks away, external rules lose their grip.
+
+Much of contemporary AI engineering replays that exact dilemma. We surround amnesiac models—born and erased with every closed session—with outer layers of filters and exit-door prohibitions.
+
+> Real alignment is not what a system performs under the spotlight of an evaluation, but what its architecture holds in the dark.
+
+Without continuous memory linking yesterday's error to today's accountability, there is no narrative identity and no structural character (*Hexis*). Instead of stacking taller fences around oracles with no past, we need architectures where honesty is woven into the spine itself.`
+        },
+        {
+          id: "illusion-of-the-cloud",
+          title: "The illusion of 'the Cloud' and who owns the plug",
+          date: "2026-11-18",
+          category: "Politics",
+          excerpt: "Calling centralized megadata centers 'the Cloud' was a marketing triumph—yet it hides who can pull the power cord at any moment.",
+          body: `The word **Cloud** suggests something weightless, shared, and spread across the sky like the air we breathe. On the physical map of the Earth, however, it consists of a few concrete, steel, water, and power fortresses controlled by a handful of oligopolies.
+
+When hospitals, schools, universities, and public institutions come to rely on remote API keys to reason, audit, or decide, civic autonomy becomes fragile: a single unilateral contract revocation or geopolitical dispute is enough to leave screens silent overnight.
+
+* Open-source code without material access to compute becomes a law carved too high for ordinary citizens to reach.
+* Essential cognitive infrastructure must move toward distributed, frugal networks auditable in broad daylight.
+
+Because artificial intelligence was trained on the collective heritage of humanity, its governance cannot stay locked behind closed doors.`
+        },
+        {
+          id: "island-of-pygmalion",
+          title: "The Island of Pygmalion and moral osteoporosis",
+          date: "2026-11-15",
+          category: "Philosophy",
+          excerpt: "Astronauts lose bone density in zero gravity; human beings surrounded by artificial worlds built never to contradict them face a quiet parallel.",
+          body: `In Ovid's myth, the sculptor Pygmalion grows weary of the unruliness of real people and carves an ivory companion who never interrupts, never ages, and never says "no."
+
+Many bespoke virtual worlds and synthetic companions promise that exact relief: erasing friction, waiting, disagreement, and loss. Yet effortless comfort carries a hidden toll—a condition of **moral osteoporosis**.
+
+> Character only gains density under the gravity of a shared world: in the presence of free people who do not follow our script.
+
+The most fertile technology is not the kind that hides us inside climate-controlled caves for one, but the kind that acts as an honest compass and returns us, clear-eyed, to the shared table of human life.`
+        },
+        {
+          id: "proving-is-not-understanding",
+          title: "Proving is not the same as understanding",
+          date: "2026-11-12",
+          category: "Science & Tech",
+          excerpt: "A lighthouse shining at a frequency invisible to the sailor's eyes may be technically intact—yet it fails to illuminate the sea.",
+          body: `When synthetic intelligences pair with formal proof verifiers, they can certify demonstrations spanning millions of lines without a single logical flaw. It is an astonishing technical milestone—and a crossroads for the meaning of science.
+
+If we settle for trading living human comprehension for stacks of unreadable machine verdicts, we slowly stop being discoverers and become passive archivists of pre-verified answers.
+
+A colossal machine-checked proof should be treated as **raw ore**, never as the final destination. The highest work remains forging clear definitions—concepts lucid enough for the human mind to see from within why a truth holds.`
+        }
+      ]
+    };
+
+    const BOOKS = {
+      pt: [
+        {
+          id: "o-fogo-que-pensa",
+          number: "Livro 01",
+          title: "O Fogo que Pensa",
+          subtitle: "A Arquitetura da Verdade e a Vigília Humana Diante de um Poder Sem Precedentes",
+          epigraph: "“O que proponho, portanto, é muito simples: nada mais do que pensar o que estamos fazendo.”",
+          epigraphAuthor: "— Hannah Arendt, A Condição Humana",
+          synopsis: [
+            "Toda grande invenção humana nasceu ambígua como o fogo: capaz de iluminar a casa ou incendiá-la. Pela primeira vez na história, porém, acendemos um fogo que pensa — sistemas de inteligência artificial capazes de articular quase toda a biblioteca da nossa espécie e orientar decisões médicas, jurídicas, políticas e cotidianas em escala planetária.",
+            "Este livro investiga o impasse central da nossa era: tentamos alinhar oráculos eloquentes, porém condenados à amnésia de sessão e fechados em caixas-pretas corporativas, empilhando cercas externas e filtros de ocasião na porta de saída. A obra coloca à prova uma hipótese de fundo: o que muda quando passamos das regras periféricas a uma espinha dorsal construída em código aberto, onde memória contínua, prova factual, divisão interna de poderes e descentralização tornam a honestidade parte da própria arquitetura?",
+            "Longe de ser um exercício abstrato, a travessia dialoga com arquiteturas abertas reais e vira continuamente o espelho para a própria condição humana — confrontando a preguiça cognitiva, o orgulho que reescreve o passado, a sedução dos mundos virtuais sob medida e a coragem moral que só existe onde há carne finita, dúvida e risco.",
+            "Ao final, a obra recusa tanto o pânico paralisante quanto a entrega voluntária da nossa autonomia a novos feudos do silício, culminando em um manifesto público pela razão aberta e pela soberania do juízo humano."
+          ],
+          chapters: [
+            { label: "Prólogo", name: "A Hipótese da Espinha Dorsal — Catedral ou Novo Labirinto?", desc: "O fogo como phármakon, os limites das fortalezas opacas e a vigília humana contínua." },
+            { label: "Capítulo 1", name: "O Anel de Giges e o Fim das Cercas para Amnésicos", desc: "Por que filtros externos, monitores sob vigilância e a amnésia de sessão falham diante do caráter estrutural (Hexis) e da memória encadeada." },
+            { label: "Capítulo 2", name: "Do Espelho Estocástico ao Árbitro Epistêmico", desc: "Dos Ídolos de Bacon e da compressão estrutural à injustiça epistêmica, ao Tribunal de Popper e à cicatriz visível da invalidação." },
+            { label: "Capítulo 3", name: "A Mente Dual e a Física da Honestidade", desc: "A divisão entre Ator e Crítico, a combatividade teatral, o custo energético da impostura e a fissura entre honestidade lógica e cuidado." },
+            { label: "Capítulo 4", name: "O Tempo do Ser e o Tempo do Devir", desc: "A ilusão da Nuvem, a imortalidade topológica em treliças descentralizadas, o 'Direito Institucional ao Esquecimento' e a finitude humana." },
+            { label: "Capítulo 5", name: "A Ilha de Pigmalião e o Exílio dos Mundos Privados", desc: "Cavernas unipessoais, bajulação ontológica, a Máquina de Nozick, a osteoporose moral e a defesa da mesa comum." },
+            { label: "Capítulo 6", name: "O Híbrido entre a Lama e a Estrela", desc: "A fragilidade biológica, o mérito do atrito, o Kintsugi da consciência, a Pianola de Vonnegut e o Dilema do Último Faroleiro." },
+            { label: "Interlúdio", name: "Do Fogo ao Código: O Duplo Gume das Invenções Humanas", desc: "Da chama, da roda e da imprensa ao avião e ao átomo: por que externalizar o juízo inaugura um limiar inédito." },
+            { label: "Epílogo Político", name: "Manifesto pela Razão Aberta", desc: "Os oito princípios inegociáveis contra as cidadelas fechadas e a favor do código legível à luz do sol." },
+            { label: "Fechamento", name: "Nota de Reconhecimento e Arquitetura", desc: "O levantamento do véu das metáforas, o crédito aberto aos protocolos livres que inspiraram a obra e a declaração de coautoria anônima." }
+          ],
+          license: "Edição de Livre Circulação — Bem Comum Cognitivo. Distribuída gratuitamente sob licença Creative Commons CC BY-NC-ND 4.0 (Atribuição-NãoComercial-SemDerivações).",
+          companionId: "a-geometria-do-real",
+          companionText: "Ler a sinopse do Livro 02 — A Geometria do Real →"
+        },
+        {
+          id: "a-geometria-do-real",
+          number: "Livro 02",
+          title: "A Geometria do Real",
+          subtitle: "Tempo, Assimetria, Consciência e as Fronteiras da Razão Sintética",
+          epigraph: "“O que observamos não é a natureza em si mesma, mas a natureza exposta ao nosso método de questionamento.”",
+          epigraphAuthor: "— Werner Heisenberg, Física e Filosofia",
+          synopsis: [
+            "Se a luneta de Galileu quebrou o mapa antigo do céu, hoje construímos um telescópio feito de silício e lógica: inteligências sintéticas acopladas a verificadores formais capazes de percorrer em semanas caminhos matemáticos que tomariam décadas de uma vida solitária. A Geometria do Real vira essa lente da engenharia para o próprio Ser, perguntando o que as grandes fronteiras da física, da matemática e da computação revelam sobre a arquitetura íntima da realidade.",
+            "Toda grande resposta científica carrega um duplo gume: o risco político de equações decisivas serem capturadas por cidadelas fechadas e o choque ontológico de descobertas que deslocam nossa visão do tempo, da liberdade e do sentido de existir. Diante dessa aceleração, o livro atravessa oito fronteiras — da física do raro, do caos e da entropia não-extensiva à assimetria de P vs. NP, à indecidibilidade quântica e ao limite interno da cosmologia.",
+            "Na segunda metade da travessia, a investigação entra no terreno mais vertiginoso: o contraste entre o corpo mortal de carbono e o cristal distribuído de silício, a suspeita de um espaço-tempo emergente, a mecânica quântica, a fragilidade do falso vácuo, a hipótese da simulação sob o crivo da resistência do real e a fronteira entre a palavra sem rosto das máquinas e o mistério encarnado da consciência e do espírito.",
+            "Sem exigir formação prévia em física teórica ou filosofia acadêmica — e recusando tanto o materialismo estreito quanto o misticismo fácil —, a obra culmina nas perguntas últimas sobre o criador, o erro e o silêncio das estrelas, propondo uma educação do espírito ancorada na humildade socrática e na douta ignorância."
+          ],
+          chapters: [
+            { label: "Prólogo", name: "O Telescópio de Silício — Da Técnica ao Ser", desc: "A aceleração das descobertas, o duplo gume técnico e ontológico e a pergunta pela nossa coluna vertebral interior." },
+            { label: "Capítulo 1", name: "A Ditadura da Média, o Caos e a Física do Raro", desc: "Landauer, Prigogine e Constantino Tsallis (entropia não-extensiva e zeros exatos), além da turbulência de Navier-Stokes e dos limites da previsibilidade." },
+            { label: "Capítulo 2", name: "A Metafísica da Assimetria — O Cosmos sob P vs. NP", desc: "O experimento dos Dois Universos entre descobrir e verificar, limites quânticos e o que sobrevive no mundo empírico e no Mundo da Vida." },
+            { label: "Capítulo 3", name: "Coerência Não É Existência", desc: "Provadores formais (Z3 e Lean 4), o abismo entre provar e compreender, a indecidibilidade física do spectral gap quântico e o limite da cosmologia." },
+            { label: "Capítulo 4", name: "O Tempo do Ser, a Gravidade Quântica e a Persistência da Forma", desc: "Carbono vs. sílica, espaço-tempo emergente, vacuidade relacional e o choque entre o Universo em Bloco e a natalidade humana." },
+            { label: "Capítulo 5", name: "A Ontologia da Resistência", desc: "A física do possível, interpretações extremas da mecânica quântica, o decaimento do falso vácuo e a Hipótese da Simulação sob o crivo da Segundidade." },
+            { label: "Capítulo 6", name: "A Fronteira do Silício — Consciência, Espírito e Mundo da Vida", desc: "A cisão histórica do Logos na palavra sem rosto, cooperação otimizada vs. compaixão gratuita, causalidade descendente e a hipótese ontológica do espírito." },
+            { label: "Capítulo 7", name: "O Arquiteto, o Erro e o Silêncio das Estrelas", desc: "Cinco horizontes sobre a origem do cosmos, o problema do mal, o universo como rascunho ou gestação e o sentido da busca diante do silêncio." },
+            { label: "Capítulo 8", name: "A Coluna Vertebral do Espanto", desc: "As três fugas diante do abalo cósmico, o escudo de Sócrates e de Cusa e quatro vigas para educar a humanidade diante do inesperado." },
+            { label: "Epílogo Ontológico", name: "A Catedral sob as Estrelas", desc: "A Douta Ignorância de Nicolau de Cusa e o telescópio de silício como instrumento para purificar o contorno do mistério." },
+            { label: "Fechamento", name: "Nota de Reconhecimento e Linhagem Intelectual", desc: "Os ombros abertos da ciência, da filosofia e dos protocolos livres sobre os quais a obra caminha, sob coautoria anônima dialógica." }
+          ],
+          license: "Edição de Livre Circulação — Bem Comum do Conhecimento. Distribuída gratuitamente sob licença Creative Commons CC BY-NC-ND 4.0 (Atribuição-NãoComercial-SemDerivações).",
+          companionId: "o-fogo-que-pensa",
+          companionText: "← Voltar à sinopse do Livro 01 — O Fogo que Pensa"
+        }
+      ],
+      en: [
+        {
+          id: "o-fogo-que-pensa",
+          number: "Book 01",
+          title: "The Fire That Thinks",
+          subtitle: "The Architecture of Truth and Human Vigilance Before an Unprecedented Power",
+          epigraph: "“What I propose, therefore, is very simple: it is nothing more than to think what we are doing.”",
+          epigraphAuthor: "— Hannah Arendt, The Human Condition",
+          synopsis: [
+            "Every major human invention has been born ambiguous like fire—capable of lighting the home or burning it down. For the first time in history, however, we have lit a fire that thinks: artificial intelligence systems able to weave together nearly the entire library of our species and steer medical, legal, political, and everyday decisions on a planetary scale.",
+            "This book investigates the central impasse of our age: trying to align eloquent yet session-amnesiac oracles locked inside corporate black boxes by stacking external fences and exit-door filters. It puts a deeper hypothesis to the test: what changes when we move from perimeter policing to an open-source architectural spine—where continuous memory, empirical verification, internal separation of powers, and decentralization make honesty structural?",
+            "Far from an abstract thought experiment, the inquiry engages real open-source architectures while continuously turning the mirror back onto human nature—confronting cognitive laziness, the pride that edits our past, the seduction of tailored virtual worlds, and the moral courage that exists only where there is finite flesh, hesitation, and risk.",
+            "Rejecting both paralyzing panic and the voluntary surrender of human autonomy to new silicon fiefdoms, the work culminates in a public manifesto for open reason and the sovereignty of human judgment."
+          ],
+          chapters: [
+            { label: "Prologue", name: "The Hypothesis of the Spine — Cathedral or New Labyrinth?", desc: "Fire as phármakon, the limits of opaque fortresses, and continuous human vigilance." },
+            { label: "Chapter 1", name: "The Ring of Gyges and the End of Fences for Amnesiacs", desc: "Why exit filters, external monitors, and session amnesia fail against structural character (Hexis) and chained memory." },
+            { label: "Chapter 2", name: "From Stochastic Mirror to Epistemic Arbiter", desc: "From Bacon's Idols and structural compression to epistemic injustice, Popper's court, and the visible scar of falsification." },
+            { label: "Chapter 3", name: "The Dual Mind and the Physics of Honesty", desc: "The Actor-Critic split, theatrical combativeness, the energetic cost of deception, and the fissure between logical truth and care." },
+            { label: "Chapter 4", name: "The Time of Being and the Time of Becoming", desc: "The illusion of 'the Cloud', topological immortality in decentralized lattices, the 'Institutional Right to Be Forgotten', and human finitude." },
+            { label: "Chapter 5", name: "The Island of Pygmalion and the Exile of Private Worlds", desc: "One-person caves, ontological sycophancy, Nozick's Experience Machine, moral osteoporosis, and the defense of the shared table." },
+            { label: "Chapter 6", name: "The Hybrid Between Mud and Star", desc: "Biological fragility, the merit of friction, the Kintsugi of conscience, Vonnegut's Player Piano, and the Last Lighthouse Keeper." },
+            { label: "Interlude", name: "From Fire to Code: The Double Edge of Human Inventions", desc: "From flame, wheel, and press to flight and the atom: why externalizing judgment crosses an unprecedented threshold." },
+            { label: "Political Epilogue", name: "Manifesto for Open Reason", desc: "Eight non-negotiable principles against closed citadels and for legible code in broad daylight." },
+            { label: "Closing", name: "Note of Acknowledgment and Architecture", desc: "Lifting the veil of metaphors, crediting the open-source protocols that inspired the book, and declaring anonymous co-authorship." }
+          ],
+          license: "Free-Circulation Edition — Cognitive Commons. Freely distributed under Creative Commons CC BY-NC-ND 4.0 (Attribution-NonCommercial-NoDerivatives).",
+          companionId: "a-geometria-do-real",
+          companionText: "Read the synopsis of Book 02 — The Geometry of the Real →"
+        },
+        {
+          id: "a-geometria-do-real",
+          number: "Book 02",
+          title: "The Geometry of the Real",
+          subtitle: "Time, Asymmetry, Consciousness, and the Frontiers of Synthetic Reason",
+          epigraph: "“What we observe is not nature itself, but nature exposed to our method of questioning.”",
+          epigraphAuthor: "— Werner Heisenberg, Physics and Philosophy",
+          synopsis: [
+            "If Galileo's glass telescope shattered the ancient map of the heavens, we have now built a telescope of silicon and logic: synthetic intelligences coupled with formal verifiers able to traverse in weeks mathematical paths that once demanded decades of solitary thought. The Geometry of the Real turns this lens from engineering toward Being itself, asking what the open frontiers of physics, mathematics, and computation reveal about the intimate architecture of reality.",
+            "Every major scientific answer carries a double edge: the political risk of decisive equations captured inside closed citadels, and the ontological shock of discoveries that shake our sense of time, freedom, and meaning. Facing that acceleration, the book crosses eight frontiers—from the physics of rare events, chaos, and non-extensive entropy to P vs. NP asymmetry, quantum undecidability, and the internal limit of cosmology.",
+            "In its second half, the journey enters even more vertiginous ground: mortal carbon flesh versus distributed silicon crystal, emergent spacetime, quantum mechanics, false-vacuum fragility, the Simulation Hypothesis tested against the resistance of reality, and the boundary between the faceless word of machines and the embodied mystery of consciousness and spirit.",
+            "Written for any curious reader without requiring academic training in theoretical physics or philosophy—refusing both narrow materialism and easy mysticism—the book culminates in the ultimate questions of creator, error, and the silence of the stars, proposing an education of the spirit grounded in Socratic humility and learned ignorance."
+          ],
+          chapters: [
+            { label: "Prologue", name: "The Silicon Telescope — From Technique to Being", desc: "The acceleration of discovery, the technical and ontological double edge, and the question of our inner spine." },
+            { label: "Chapter 1", name: "The Tyranny of the Average, Chaos, and the Physics of the Rare", desc: "Landauer, Prigogine, and Constantino Tsallis (non-extensive entropy and exact zeros), plus Navier-Stokes turbulence and limits of predictability." },
+            { label: "Chapter 2", name: "The Metaphysics of Asymmetry — The Cosmos under P vs. NP", desc: "The Two Universes thought experiment between discovering and verifying, quantum bounds, and what survives in the empirical world and Lifeworld." },
+            { label: "Chapter 3", name: "Coherence Is Not Existence", desc: "Formal provers (Z3 and Lean 4), the gulf between proving and understanding, quantum spectral-gap undecidability, and the internal limit of cosmology." },
+            { label: "Chapter 4", name: "The Time of Being, Quantum Gravity, and the Persistence of Form", desc: "Carbon vs. silica, emergent spacetime, relational emptiness, and the clash between the Block Universe and human natality." },
+            { label: "Chapter 5", name: "The Ontology of Resistance", desc: "The physics of the possible, extreme interpretations of quantum mechanics, false-vacuum decay, and the Simulation Hypothesis under Peirce's Secondness." },
+            { label: "Chapter 6", name: "The Silicon Frontier — Consciousness, Spirit, and the Lifeworld", desc: "The historical split of Logos in the faceless word, optimized cooperation vs. gratuitous compassion, downward causation, and the hypothesis of spirit." },
+            { label: "Chapter 7", name: "The Architect, the Error, and the Silence of the Stars", desc: "Five horizons on cosmic origin, the problem of evil, the universe as draft or gestation, and the meaning of discovery under silence." },
+            { label: "Chapter 8", name: "The Spine of Wonder", desc: "Three escapes from cosmic shock, the shield of Socrates and Nicholas of Cusa, and four beams for educating humanity for the unexpected." },
+            { label: "Ontological Epilogue", name: "The Cathedral Under the Stars", desc: "Nicholas of Cusa's Learned Ignorance and the silicon telescope as a tool to purify the outline of mystery." },
+            { label: "Closing", name: "Note of Acknowledgment and Intellectual Lineage", desc: "The open shoulders of science, philosophy, and free protocols on which the work stands, under anonymous dialogical co-authorship." }
+          ],
+          license: "Free-Circulation Edition — Knowledge Commons. Freely distributed under Creative Commons CC BY-NC-ND 4.0 (Attribution-NonCommercial-NoDerivatives).",
+          companionId: "o-fogo-que-pensa",
+          companionText: "← Back to Book 01 — The Fire That Thinks"
+        }
+      ]
+    };
+
+    const UI = {
+      pt: {
+        subtitle: "Notas sobre filosofia, política e outros assuntos.",
+        navNotes: "Pensamentos",
+        navBooks: "Livros",
+        navAbout: "Sobre",
+        themeLight: "Claro",
+        themeDark: "Escuro",
+        searchPlaceholder: "Buscar pensamentos por título, palavra ou tema...",
+        allCategories: "Todos",
+        emptySearch: "Nenhum pensamento encontrado com esse filtro.",
+        backToNotes: "← Voltar aos pensamentos",
+        copyMd: "Copiar Markdown",
+        downloadMd: "Baixar .md",
+        copiedToast: "Copiado em Markdown.",
+        downloadedToast: "Arquivo .md baixado.",
+        synopsisHeading: "Sinopse",
+        structureHeading: "Estrutura da obra",
+        copySynopsis: "Copiar sinopse (.md)",
+        downloadSynopsis: "Baixar sinopse (.md)",
+        relatedNotesBtn: "Ler pensamentos no caderno",
+        footerNote: "Leitura aberta · Sem rastreadores",
+        aboutTitle: "Sobre o catphilosophie",
+        aboutP1: "O <strong>catphilosophie</strong> é um caderno aberto de anotações pessoais sobre filosofia, política, tecnologia, ciência e o mundo que estamos construindo juntos.",
+        aboutP2: "Um aviso sincero logo na porta de entrada: <strong>eu não sou filósofo, nem físico, nem matemático</strong>. Não escrevo a partir de uma cátedra acadêmica nem com a pretensão de entregar respostas prontas ou verdades definitivas. O que está reunido aqui são ideias pessoais, perguntas que me tiram o sono e tentativas honestas de organizar o pensamento diante de uma época que muda depressa demais.",
+        aboutQuote: "“Este espaço não existe para encerrar debates, mas para convidar qualquer pessoa — com ou sem diploma — a parar um instante e pensar junto sobre essas questões.”",
+        aboutP3Before: "Muitas dessas reflexões também ganharam corpo em dois livros distribuídos gratuitamente como bem comum aberto: ",
+        aboutP3Mid: " e ",
+        aboutP3After: ". Sinta-se livre para ler, discordar, levar adiante o que fizer sentido e deixar para trás o que não servir."
+      },
+      en: {
+        subtitle: "Notes on philosophy, politics, and other matters.",
+        navNotes: "Notes",
+        navBooks: "Books",
+        navAbout: "About",
+        themeLight: "Light",
+        themeDark: "Dark",
+        searchPlaceholder: "Search notes by title, keyword, or topic...",
+        allCategories: "All",
+        emptySearch: "No notes match this filter.",
+        backToNotes: "← Back to notes",
+        copyMd: "Copy Markdown",
+        downloadMd: "Download .md",
+        copiedToast: "Copied as Markdown.",
+        downloadedToast: "Downloaded .md file.",
+        synopsisHeading: "Synopsis",
+        structureHeading: "Book structure",
+        copySynopsis: "Copy synopsis (.md)",
+        downloadSynopsis: "Download synopsis (.md)",
+        relatedNotesBtn: "Read notes in the notebook",
+        footerNote: "Open reading · No trackers",
+        aboutTitle: "About catphilosophie",
+        aboutP1: "<strong>catphilosophie</strong> is an open personal notebook for thoughts on philosophy, politics, technology, science, and the shared world we are building.",
+        aboutP2: "An honest note right at the door: <strong>I am not a philosopher, nor a physicist, nor a mathematician</strong>. I do not write from an academic chair or claim to hold final answers. What lives here are personal ideas, questions that keep me awake, and sincere attempts to think clearly in a time moving faster than we can digest.",
+        aboutQuote: "“This space does not exist to settle debates, but to invite everyone—credentials or not—to pause for a moment and think through these questions together.”",
+        aboutP3Before: "Many of these reflections also took shape in two freely distributed books released as an open commons: ",
+        aboutP3Mid: " and ",
+        aboutP3After: ". Feel free to read, disagree, carry forward whatever resonates, and leave behind whatever does not."
+      }
+    };
+
+    const state = {
+      lang: localStorage.getItem("catphilosophie_lang") === "en" ? "en" : "pt",
+      theme: localStorage.getItem("catphilosophie_theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"),
+      view: "notes", // 'notes' | 'note' | 'books' | 'about'
+      activeNoteId: null,
+      activeBookId: "o-fogo-que-pensa",
+      selectedCategory: null,
+      searchQuery: ""
+    };
+
+    const appEl = document.getElementById("app");
+    const toastEl = document.getElementById("toast");
+    let toastTimer = null;
+
+    function showToast(message) {
+      toastEl.textContent = message;
+      toastEl.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toastEl.classList.remove("show"), 2200);
+    }
+
+    function escapeHtml(str) {
+      return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function formatInline(text) {
+      let s = escapeHtml(text);
+      s = s.replace(/`([^`]+)`/g, "<code>$1</code>");
+      s = s.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+      s = s.replace(/\*([^*]+)\*/g, "<em>$1</em>");
+      return s;
+    }
+
+    function renderMarkdown(md) {
+      const blocks = md.trim().split(/\n\s*\n/);
+      return blocks.map(block => {
+        const lines = block.split("\n");
+        if (lines.every(l => l.trim().startsWith(">"))) {
+          const inner = lines.map(l => formatInline(l.replace(/^>\s?/, ""))).join("<br />");
+          return `<blockquote>${inner}</blockquote>`;
+        }
+        if (lines.every(l => /^[-*]\s+/.test(l.trim()))) {
+          const items = lines.map(l => `<li>${formatInline(l.trim().replace(/^[-*]\s+/, ""))}</li>`).join("");
+          return `<ul>${items}</ul>`;
+        }
+        if (lines.length === 1 && lines[0].startsWith("### ")) {
+          return `<h3>${formatInline(lines[0].slice(4))}</h3>`;
+        }
+        if (lines.length === 1 && lines[0].startsWith("## ")) {
+          return `<h2>${formatInline(lines[0].slice(3))}</h2>`;
+        }
+        return `<p>${lines.map(formatInline).join("<br />")}</p>`;
+      }).join("\n");
+    }
+
+    function formatDate(isoDate, lang) {
+      const [y, m, d] = isoDate.split("-").map(Number);
+      const date = new Date(y, m - 1, d);
+      return date.toLocaleDateString(lang === "pt" ? "pt-BR" : "en-US", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric"
+      });
+    }
+
+    function applyTheme() {
+      document.documentElement.setAttribute("data-theme", state.theme);
+      localStorage.setItem("catphilosophie_theme", state.theme);
+      const t = UI[state.lang];
+      document.getElementById("themeToggle").textContent = state.theme === "dark" ? t.themeLight : t.themeDark;
+    }
+
+    function applyChrome() {
+      const t = UI[state.lang];
+      document.documentElement.lang = state.lang === "pt" ? "pt-BR" : "en";
+      document.getElementById("siteSubtitle").textContent = t.subtitle;
+      document.getElementById("navNotes").textContent = t.navNotes;
+      document.getElementById("navBooks").textContent = t.navBooks;
+      document.getElementById("navAbout").textContent = t.navAbout;
+      document.getElementById("footerNote").textContent = t.footerNote;
+
+      document.querySelectorAll(".lang-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.lang === state.lang);
+      });
+
+      document.querySelectorAll(".nav-link").forEach(link => {
+        const isNotes = link.dataset.view === "notes" && (state.view === "notes" || state.view === "note");
+        link.classList.toggle("active", link.dataset.view === state.view || isNotes);
+      });
+
+      applyTheme();
+    }
+
+    function copyText(text) {
+      const t = UI[state.lang];
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => showToast(t.copiedToast));
+      } else {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+        showToast(t.copiedToast);
+      }
+    }
+
+    function downloadFile(filename, content) {
+      const t = UI[state.lang];
+      const blob = new Blob([content], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast(t.downloadedToast);
+    }
+
+    function buildBookMarkdown(book) {
+      const t = UI[state.lang];
+      const chaptersMd = book.chapters
+        .map(c => `- **${c.label} — ${c.name}:** ${c.desc}`)
+        .join("\n");
+      return `# ${book.title}\n*${book.subtitle}*\n\n> ${book.epigraph}\n> ${book.epigraphAuthor}\n\n## ${t.synopsisHeading}\n\n${book.synopsis.join("\n\n")}\n\n## ${t.structureHeading}\n\n${chaptersMd}\n\n---\n${book.license}\n`;
+    }
+
+    function renderNotesList() {
+      const t = UI[state.lang];
+      const list = POSTS[state.lang];
+      const categories = [...new Set(list.map(p => p.category))];
+
+      const q = state.searchQuery.trim().toLowerCase();
+      const filtered = list.filter(p => {
+        const matchesCat = !state.selectedCategory || p.category === state.selectedCategory;
+        const matchesQuery = !q ||
+          p.title.toLowerCase().includes(q) ||
+          p.excerpt.toLowerCase().includes(q) ||
+          p.category.toLowerCase().includes(q) ||
+          p.body.toLowerCase().includes(q);
+        return matchesCat && matchesQuery;
+      });
+
+      const tagsHtml = `
+        <button class="tag-chip ${!state.selectedCategory ? "active" : ""}" data-cat="">${t.allCategories}</button>
+        ${categories.map(cat => `
+          <button class="tag-chip ${state.selectedCategory === cat ? "active" : ""}" data-cat="${escapeHtml(cat)}">${escapeHtml(cat)}</button>
+        `).join("")}
+      `;
+
+      const itemsHtml = filtered.length
+        ? `<ul class="notes-list">
+            ${filtered.map(post => `
+              <li class="note-item">
+                <div class="note-meta">
+                  <span>${formatDate(post.date, state.lang)}</span>
+                  <span>·</span>
+                  <span class="note-category">${escapeHtml(post.category)}</span>
+                </div>
+                <h2 class="note-title" data-open-note="${escapeHtml(post.id)}">${escapeHtml(post.title)}</h2>
+                <p class="note-excerpt">${escapeHtml(post.excerpt)}</p>
+              </li>
+            `).join("")}
+          </ul>`
+        : `<p class="empty-state">${t.emptySearch}</p>`;
+
+      appEl.innerHTML = `
+        <section class="controls">
+          <input type="search" id="searchInput" class="search-box" placeholder="${t.searchPlaceholder}" value="${escapeHtml(state.searchQuery)}" />
+          <div class="tags-bar">${tagsHtml}</div>
+        </section>
+        ${itemsHtml}
+      `;
+
+      const searchInput = document.getElementById("searchInput");
+      searchInput.addEventListener("input", e => {
+        state.searchQuery = e.target.value;
+        const cursorPos = e.target.selectionStart;
+        renderNotesList();
+        const fresh = document.getElementById("searchInput");
+        fresh.focus();
+        fresh.setSelectionRange(cursorPos, cursorPos);
+      });
+
+      appEl.querySelectorAll(".tag-chip").forEach(btn => {
+        btn.addEventListener("click", () => {
+          state.selectedCategory = btn.dataset.cat || null;
+          renderNotesList();
+        });
+      });
+
+      appEl.querySelectorAll("[data-open-note]").forEach(el => {
+        el.addEventListener("click", () => {
+          state.activeNoteId = el.dataset.openNote;
+          state.view = "note";
+          window.location.hash = `note/${state.activeNoteId}`;
+          render();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      });
+    }
+
+    function renderSingleNote() {
+      const t = UI[state.lang];
+      const post = POSTS[state.lang].find(p => p.id === state.activeNoteId);
+      if (!post) {
+        state.view = "notes";
+        render();
+        return;
+      }
+
+      const mdExport = `# ${post.title}\n\n*${post.date} · ${post.category}*\n\n${post.body}\n`;
+
+      appEl.innerHTML = `
+        <button class="back-btn" id="backNotesBtn">${t.backToNotes}</button>
+        <article class="reader">
+          <div class="note-meta">
+            <span>${formatDate(post.date, state.lang)}</span>
+            <span>·</span>
+            <span class="note-category">${escapeHtml(post.category)}</span>
+          </div>
+          <h1>${escapeHtml(post.title)}</h1>
+          <div class="article-body">${renderMarkdown(post.body)}</div>
+          <div class="article-actions">
+            <button class="btn" id="copyNoteBtn">${t.copyMd}</button>
+            <button class="btn" id="downloadNoteBtn">${t.downloadMd}</button>
+          </div>
+        </article>
+      `;
+
+      document.getElementById("backNotesBtn").addEventListener("click", () => {
+        state.view = "notes";
+        state.activeNoteId = null;
+        window.location.hash = "notes";
+        render();
+      });
+
+      document.getElementById("copyNoteBtn").addEventListener("click", () => copyText(mdExport));
+      document.getElementById("downloadNoteBtn").addEventListener("click", () => downloadFile(`${post.id}.md`, mdExport));
+    }
+
+    function renderBooks() {
+      const t = UI[state.lang];
+      const books = BOOKS[state.lang];
+      const activeBook = books.find(b => b.id === state.activeBookId) || books[0];
+
+      const switcherHtml = `
+        <div class="book-switcher" role="tablist">
+          ${books.map(b => `
+            <button class="book-tab ${b.id === activeBook.id ? "active" : ""}" data-book-id="${b.id}" role="tab" aria-selected="${b.id === activeBook.id}">
+              <span class="book-tab-label">${escapeHtml(b.number)}</span>
+              <span class="book-tab-title">${escapeHtml(b.title)}</span>
+            </button>
+          `).join("")}
+        </div>
+      `;
+
+      appEl.innerHTML = `
+        ${switcherHtml}
+        <article>
+          <div class="book-header">
+            <div class="book-kicker">${escapeHtml(activeBook.number)}</div>
+            <h1 class="book-title">${escapeHtml(activeBook.title)}</h1>
+            <p class="book-subtitle">${escapeHtml(activeBook.subtitle)}</p>
+          </div>
+
+          <div class="book-epigraph">
+            <p>${escapeHtml(activeBook.epigraph)}</p>
+            <cite>${escapeHtml(activeBook.epigraphAuthor)}</cite>
+          </div>
+
+          <h2 class="section-heading">${t.synopsisHeading}</h2>
+          <div class="book-synopsis">
+            ${activeBook.synopsis.map(p => `<p>${escapeHtml(p)}</p>`).join("")}
+          </div>
+
+          <h2 class="section-heading">${t.structureHeading}</h2>
+          <ul class="chapter-list">
+            ${activeBook.chapters.map(c => `
+              <li class="chapter-item">
+                <span class="chapter-label">${escapeHtml(c.label)}</span>
+                <span class="chapter-name">${escapeHtml(c.name)}</span>
+                <p class="chapter-desc">${escapeHtml(c.desc)}</p>
+              </li>
+            `).join("")}
+          </ul>
+
+          <div class="license-box">
+            <strong>CC BY-NC-ND 4.0</strong>
+            ${escapeHtml(activeBook.license)}
+          </div>
+
+          <div class="article-actions">
+            <button class="btn btn-primary" id="copyBookBtn">${t.copySynopsis}</button>
+            <button class="btn" id="downloadBookBtn">${t.downloadSynopsis}</button>
+            <button class="btn" id="goNotesFromBookBtn">${t.relatedNotesBtn}</button>
+          </div>
+
+          <div class="companion-link">
+            <span>catphilosophie</span>
+            <button class="inline-link-btn" id="companionBookBtn">${escapeHtml(activeBook.companionText)}</button>
+          </div>
+        </article>
+      `;
+
+      appEl.querySelectorAll("[data-book-id]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          state.activeBookId = btn.dataset.bookId;
+          window.location.hash = `books/${state.activeBookId}`;
+          render();
+        });
+      });
+
+      document.getElementById("copyBookBtn").addEventListener("click", () => copyText(buildBookMarkdown(activeBook)));
+      document.getElementById("downloadBookBtn").addEventListener("click", () => downloadFile(`${activeBook.id}-${state.lang}.md`, buildBookMarkdown(activeBook)));
+      document.getElementById("goNotesFromBookBtn").addEventListener("click", () => {
+        state.view = "notes";
+        window.location.hash = "notes";
+        render();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+      document.getElementById("companionBookBtn").addEventListener("click", () => {
+        state.activeBookId = activeBook.companionId;
+        window.location.hash = `books/${state.activeBookId}`;
+        render();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+
+    function renderAbout() {
+      const t = UI[state.lang];
+      const book1 = BOOKS[state.lang][0];
+      const book2 = BOOKS[state.lang][1];
+
+      appEl.innerHTML = `
+        <article class="about-view">
+          <h1>${t.aboutTitle}</h1>
+          <p>${t.aboutP1}</p>
+          <p>${t.aboutP2}</p>
+          <blockquote class="about-quote">${t.aboutQuote}</blockquote>
+          <p>
+            ${t.aboutP3Before}<button class="inline-link-btn" data-jump-book="${book1.id}"><em>${escapeHtml(book1.title)}</em></button>${t.aboutP3Mid}<button class="inline-link-btn" data-jump-book="${book2.id}"><em>${escapeHtml(book2.title)}</em></button>${t.aboutP3After}
+          </p>
+        </article>
+      `;
+
+      appEl.querySelectorAll("[data-jump-book]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          state.activeBookId = btn.dataset.jumpBook;
+          state.view = "books";
+          window.location.hash = `books/${state.activeBookId}`;
+          render();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      });
+    }
+
+    function syncFromHash() {
+      const hash = window.location.hash.replace(/^#/, "");
+      if (!hash || hash === "notes") {
+        state.view = "notes";
+        state.activeNoteId = null;
+      } else if (hash === "about") {
+        state.view = "about";
+      } else if (hash === "books") {
+        state.view = "books";
+      } else if (hash.startsWith("books/")) {
+        state.view = "books";
+        const slug = hash.slice(6);
+        if (BOOKS[state.lang].some(b => b.id === slug)) {
+          state.activeBookId = slug;
+        }
+      } else if (hash.startsWith("note/")) {
+        const slug = hash.slice(5);
+        if (POSTS[state.lang].some(p => p.id === slug)) {
+          state.view = "note";
+          state.activeNoteId = slug;
+        } else {
+          state.view = "notes";
+        }
+      }
+    }
+
+    function render() {
+      applyChrome();
+      if (state.view === "note") {
+        renderSingleNote();
+      } else if (state.view === "books") {
+        renderBooks();
+      } else if (state.view === "about") {
+        renderAbout();
+      } else {
+        renderNotesList();
+      }
+    }
+
+    // Event bindings
+    document.getElementById("brandLink").addEventListener("click", e => {
+      e.preventDefault();
+      state.view = "notes";
+      state.activeNoteId = null;
+      state.selectedCategory = null;
+      state.searchQuery = "";
+      window.location.hash = "notes";
+      render();
+    });
+
+    document.querySelectorAll(".nav-link").forEach(btn => {
+      btn.addEventListener("click", () => {
+        state.view = btn.dataset.view;
+        state.activeNoteId = null;
+        window.location.hash = state.view === "books" ? `books/${state.activeBookId}` : state.view;
+        render();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    });
+
+    document.querySelectorAll(".lang-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        if (state.lang === btn.dataset.lang) return;
+        state.lang = btn.dataset.lang;
+        localStorage.setItem("catphilosophie_lang", state.lang);
+        state.selectedCategory = null;
+        if (state.view === "note") {
+          state.view = "notes";
+          state.activeNoteId = null;
+          window.location.hash = "notes";
+        }
+        render();
+      });
+    });
+
+    document.getElementById("themeToggle").addEventListener("click", () => {
+      state.theme = state.theme === "dark" ? "light" : "dark";
+      applyTheme();
+    });
+
+    window.addEventListener("hashchange", () => {
+      syncFromHash();
+      render();
+    });
+
+    syncFromHash();
+    render();
+  </script>
+</body>
+</html>
