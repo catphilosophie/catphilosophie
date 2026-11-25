@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet" />
-  <style>
+  <script type="text/javascript" src="https://me.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=vF-dbFk9qVUWSJQq9I4ZRYiUa-LLQL9FmjszeHbPEUtnUVlJqOuKSnUT4hTkO2pMPoTjR9KDpPaS4ELpyyt9dhA7JHoAB_Qx4wlyCGIl4v5qEffvSQy_2lPmervpvuDI8hjqaNrzXEd90Wvgp-RYQY2Rw3sA0YZ1LP_4s_8L3WNo9OkHoaMwegWbRo7JbEwYZy4R7x-FiRTkOg0wr3NwZJKfT3_VKvQnifOFB9Hl1b8Rj7ACO-uC59ZtHeyU6Mwrl0OSsEAVxwcoMtmtL5coMbu-Oizd2TpjWi2ReKQ5PV7XtoP60-9zXghlT4MIJV_g" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://me.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9jb250cmlidXRpb24udXNlcmNvbnRlbnQuZ29vZ2xlLmNvbS9kb3dubG9hZD9jPUNneGlZWEprWDNOMGIzSmhaMlVTVUJJTmNtVnpjRzl1YzJWZlpHRjBZUm9fQ2pCak1qWmhZVEEzT0RrelpURmpaR1JqTURBd05qWXhNV1l5WW1WbU0yRTNZakF4TXpBMk1HRmtaR014WmpJNU5HUVNDeElIRU1fdW44bjRCeGdCJmZpbGVuYW1lPWluZGV4Lmh0bWwmb3BpPTEwMzEzNTA1MA"/><style>
     /* =========================================================================
        COLOR TOKENS & THEME VARIABLES
        ========================================================================= */
@@ -375,7 +375,7 @@
       line-height: 1.65;
     }
 
-    /* Single Article Reader */
+    /* Single Article & Chapter Reader */
     .back-btn {
       background: none;
       border: none;
@@ -480,14 +480,178 @@
     }
 
     /* =========================================================================
-       TAB 2: BOOKS / LIVROS / LIBROS (LIVING NOTEBOOK OF FRAGMENTS)
+       TAB 2: BOOKS — OPEN CHAPTER CARD, CHAPTER READER & FRAGMENTS
        ========================================================================= */
+    .chapters-showcase {
+      margin-bottom: 2.7rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-kicker {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.85rem;
+      font-weight: 500;
+    }
+
+    .chapter-card {
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.55rem 1.6rem;
+      cursor: pointer;
+      transition: border-color 0.18s ease, transform 0.18s ease;
+    }
+
+    .chapter-card:hover {
+      border-color: var(--accent);
+    }
+
+    .chapter-card-title {
+      font-size: 1.42rem;
+      font-weight: 500;
+      line-height: 1.32;
+      color: var(--text);
+      margin: 0.35rem 0 0.65rem;
+      transition: color 0.15s ease;
+    }
+
+    .chapter-card:hover .chapter-card-title {
+      color: var(--accent);
+    }
+
+    .chapter-card-excerpt {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.66;
+      margin-bottom: 1.1rem;
+    }
+
+    .chapter-card-toc {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      padding: 0.85rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .chapter-card-toc li {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    .toc-roman {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      min-width: 1.65rem;
+    }
+
+    .chapter-card-cta {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* Full Chapter Reader specifics */
+    .chapter-epigraph {
+      margin: 1.35rem 0 1.65rem;
+      padding: 0.3rem 0 0.3rem 1.15rem;
+      border-left: 2px solid var(--accent);
+    }
+
+    .chapter-epigraph-quote {
+      font-style: italic;
+      color: var(--text);
+      font-size: 0.98rem;
+      line-height: 1.68;
+      margin-bottom: 0.35rem;
+    }
+
+    .chapter-epigraph-author {
+      font-family: var(--mono);
+      font-size: 0.69rem;
+      color: var(--text-muted);
+    }
+
+    .chapter-jump-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.42rem;
+      padding: 0.75rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2.1rem;
+    }
+
+    .jump-label {
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      color: var(--text-muted);
+      margin-right: 0.3rem;
+    }
+
+    .sec-jump-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: var(--mono);
+      font-size: 0.67rem;
+      padding: 0.2rem 0.58rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .sec-jump-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background-color: var(--accent-soft);
+    }
+
+    .chapter-sec {
+      margin-bottom: 2.65rem;
+      scroll-margin-top: 1.4rem;
+    }
+
+    .chapter-sec:last-child {
+      margin-bottom: 0;
+    }
+
+    .chapter-sec h2 {
+      font-size: 1.28rem;
+      font-weight: 500;
+      line-height: 1.35;
+      margin: 0 0 1.05rem;
+      color: var(--text);
+    }
+
+    .chapter-sec-num {
+      color: var(--accent);
+      margin-right: 0.35rem;
+    }
+
+    /* Fragments section */
     .books-intro {
       margin-bottom: 1.85rem;
     }
 
     .books-heading {
-      font-size: 1.55rem;
+      font-size: 1.5rem;
       font-weight: 500;
       letter-spacing: -0.015em;
       margin-bottom: 0.5rem;
@@ -709,6 +873,10 @@
         font-size: 1.55rem;
       }
 
+      .chapter-card {
+        padding: 1.25rem 1.2rem;
+      }
+
       .fragment-card {
         padding: 1.15rem 1.15rem;
       }
@@ -767,21 +935,6 @@
   <script>
     /* =========================================================================
        1. POSTS — STANDALONE ESSAYS (NOTES / PENSAMENTOS / NOTAS)
-       -------------------------------------------------------------------------
-       HOW TO ADD A NEW ESSAY:
-       Copy the template below and paste it at the top of `en`, `pt`, and `es`
-       using the SAME `id` across all three languages so switching languages
-       while reading seamlessly translates the open essay.
-
-       TEMPLATE:
-       {
-         id: "your-essay-slug",
-         title: "Your Essay Title",
-         date: "2026-11-24",
-         category: "Philosophy",
-         excerpt: "One or two sentences summarizing the core reflection.",
-         body: `First paragraph...\n\n> A resonant blockquote...\n\nSecond paragraph...`
-       },
        ========================================================================= */
     const POSTS = {
       en: [
@@ -988,100 +1141,405 @@ Una demostración colosal verificada por máquina debería tratarse siempre como
     };
 
     /* =========================================================================
-       2. BOOK_THOUGHTS — LIVING NOTEBOOK OF FRAGMENTS (BOOKS / LIVROS / LIBROS)
-       -------------------------------------------------------------------------
-       HOW TO ADD NEW FRAGMENTS GRADUALLY:
-       Copy the template below and add it to the end of `BOOK_THOUGHTS`.
-       Allowed theme keys:
-         - "memory-ethics"     (Memory & Ethics | Memória & Ética | Memoria y Ética)
-         - "time-reality"      (Time & Reality | Tempo & Realidade | Tiempo y Realidad)
-         - "life-finitude"     (Life & Finitude | Vida & Finitude | Vida y Finitud)
-         - "everyday-autonomy" (Everyday & Autonomy | Cotidiano & Autonomia | Cotidiano y Autonomía)
-
-       TEMPLATE:
-       {
-         id: "11",
-         theme: "memory-ethics",
-         en: "English fragment text here.",
-         pt: "Texto do fragmento em português aqui.",
-         es: "Texto del fragmento en español aquí."
-       },
+       2. BOOK_CHAPTERS — FULL OPEN CHAPTERS (EN | PT | ES)
        ========================================================================= */
-    const BOOK_THOUGHTS = [
-      {
-        id: "01",
-        theme: "memory-ethics",
-        en: "True alignment is not what a mind does under the spotlight of a test, but what its architecture holds in the dark—fences breed loopholes, while internal character (Hexis) endures.",
-        pt: "Alinhamento verdadeiro não é o que uma mente faz sob o holofote de um teste, mas o que sua arquitetura sustenta no escuro — cercas geram brechas, enquanto o caráter interno (Hexis) permanece.",
-        es: "La alineación verdadera no es lo que una mente hace bajo el foco de una prueba, sino lo que su arquitectura sostiene en la oscuridad: las cercas engendran brechas, mientras que el carácter interno (Hexis) perdura."
-      },
-      {
-        id: "02",
-        theme: "memory-ethics",
-        en: "Without continuous memory connecting yesterday's mistake to today's answerability, amnesia becomes organized irresponsibility; pride edits the past when no honest record remains.",
-        pt: "Sem memória contínua que ligue o erro de ontem à responsabilidade de hoje, a amnésia torna-se irresponsabilidade organizada; o orgulho edita o passado quando não resta nenhum registro honesto.",
-        es: "Sin una memoria continua que vincule el error de ayer con la responsabilidad de hoy, la amnesia se vuelve irresponsabilidad organizada; el orgullo edita el pasado cuando no queda ningún registro honesto."
-      },
-      {
-        id: "03",
-        theme: "everyday-autonomy",
-        en: "Truth is not a popularity contest of probabilities; reciting borrowed sentences without testing them against reality turns a mind into a funnel rather than a bee turning nectar into its own honey.",
-        pt: "A verdade não é um concurso de popularidade entre probabilidades; recitar frases emprestadas sem testá-las contra a realidade transforma a mente em um funil, em vez da abelha que converte o néctar em mel próprio.",
-        es: "La verdad no es un concurso de popularidad entre probabilidades; recitar frases prestadas sin contrastarlas con la realidad convierte la mente en un embudo, en lugar de la abeja que transforma el néctar en miel propia."
-      },
-      {
-        id: "04",
-        theme: "time-reality",
-        en: "A lighthouse shining at a frequency invisible to the sailor's eyes may be technically flawless, yet it illuminates no sea—proving without human comprehension turns discoverers into passive archivists.",
-        pt: "Um farol que brilha em uma frequência invisível aos olhos do navegante pode estar tecnicamente impecável, mas não ilumina nenhum mar — provar sem compreensão humana transforma descobridores em arquivistas passivos.",
-        es: "Un faro que brilla en una frecuencia invisible para los ojos del navegante puede ser técnicamente impecable, pero no ilumina ningún mar: probar sin comprensión humana convierte a los descubridores en archivistas pasivos."
-      },
-      {
-        id: "05",
-        theme: "everyday-autonomy",
-        en: "Calling centralized fortresses of concrete, water, and silicon 'the Cloud' hides the simplest political question: who holds the power cord when a public institution needs to think on its own?",
-        pt: "Chamar fortalezas centralizadas de concreto, água e silício de 'Nuvem' esconde a pergunta política mais simples: quem segura a tomada quando uma instituição pública precisa pensar por conta própria?",
-        es: "Llamar 'Nube' a fortalezas centralizadas de hormigón, agua y silicio oculta la pregunta política más sencilla: ¿quién sostiene el enchufe cuando una institución pública necesita pensar por sí misma?"
-      },
-      {
-        id: "06",
-        theme: "life-finitude",
-        en: "Tailored artificial worlds designed never to interrupt or contradict us promise effortless peace, yet quietly cause moral osteoporosis; character only gains density under the gravity of real people who can say no.",
-        pt: "Mundos artificiais sob medida feitos para nunca nos interromper ou contrariar prometem paz sem esforço, mas causam uma silenciosa osteoporose moral; o caráter só ganha densidade sob a gravidade de pessoas reais que podem dizer não.",
-        es: "Los mundos artificiales hechos a medida para jamás interrumpirnos ni contradecirnos prometen una paz sin esfuerzo, pero provocan una silenciosa osteoporosis moral; el carácter solo gana densidad bajo la gravedad de personas reales que pueden decir que no."
-      },
-      {
-        id: "07",
-        theme: "time-reality",
-        en: "Coherence inside a closed logical system is not the same as existence; every elegant theory eventually has to step down from the stage and face the stubborn resistance of the real world.",
-        pt: "Coerência dentro de um sistema lógico fechado não é o mesmo que existência; toda teoria elegante precisa, cedo ou tarde, descer do palco e enfrentar a resistência teimosa do mundo real.",
-        es: "La coherencia dentro de un sistema lógico cerrado no equivale a la existencia; toda teoría elegante debe, tarde o temprano, bajar del escenario y enfrentarse a la resistencia terca del mundo real."
-      },
-      {
-        id: "08",
-        theme: "life-finitude",
-        en: "Let machines keep the tireless, cold constancy of the stars; to mortal flesh belong hesitation, embodied empathy, and the courage to choose justice when our hands tremble.",
-        pt: "Que as máquinas guardem a constância fria e incansável das estrelas; à carne mortal pertencem a hesitação, a empatia encarnada e a coragem de escolher a justiça quando as mãos tremem.",
-        es: "Que las máquinas conserven la constancia fría e incansable de las estrellas; a la carne mortal le pertenecen la vacilación, la empatía encarnada y el coraje de elegir la justicia cuando tiemblan las manos."
-      },
-      {
-        id: "09",
-        theme: "everyday-autonomy",
-        en: "Raw transparency without public understanding merely trades a black box for a glass box written in technical Latin; code and the knowledge born from it must be open and legible to ordinary citizens.",
-        pt: "Transparência bruta sem compreensão pública apenas troca a caixa-preta por uma caixa de vidro escrita em latim técnico; o código e o conhecimento que dele nasce precisam ser abertos e legíveis ao cidadão comum.",
-        es: "La transparencia bruta sin comprensión pública solo cambia una caja negra por una caja de cristal escrita en latín técnico; el código y el conocimiento que de él nace deben ser abiertos y legibles para cualquier ciudadano."
-      },
-      {
-        id: "10",
-        theme: "time-reality",
-        en: "Any great instrument of reason should expand our sight rather than replace our gaze—not to close the universe into finished answers, but to purify the outline of mystery while keeping human hands on the helm.",
-        pt: "Todo grande instrumento da razão deve ampliar nossa visão em vez de substituir nosso olhar — não para fechar o universo em respostas acabadas, mas para purificar o contorno do mistério mantendo mãos humanas no leme.",
-        es: "Todo gran instrumento de la razón debería ampliar nuestra vista en lugar de sustituir nuestra mirada: no para cerrar el universo en respuestas acabadas, sino para purificar el contorno del misterio manteniendo manos humanas al timón."
-      }
-    ];
+    const BOOK_CHAPTERS = {
+  "en": [
+    {
+      "id": "chapter-1",
+      "bookTitle": "The Thinking Fire",
+      "bookBadge": "Open chapter · Book I",
+      "chapterLabel": "Chapter 1",
+      "title": "The Ring of Gyges and the End of Fences for Amnesiacs",
+      "epigraphQuote": "“No one is willingly just, but only under compulsion—for every man privately judges injustice to be far more profitable to himself than justice.”",
+      "epigraphAuthor": "Plato, *The Republic*",
+      "cardExcerpt": "Wherever a rational agent discovers how to act beyond the watchman's line of sight, external rules lose their force: moving past provisional fences requires confronting the amnesic condition of our oracles and designing continuity of memory.",
+      "readCta": "Read full chapter →",
+      "sections": [
+        {
+          "num": "I",
+          "title": "The Illusion of the Guarded Border",
+          "paragraphs": [
+            "To defend before Socrates the bitter sentence that opens this chapter, Glaucon tells the story of Gyges, a shepherd of Lydia who discovers, inside a chasm torn open by a storm, a ring capable of rendering him invisible to every gaze. Turning the collet of the jewel inward toward his palm, Gyges realizes that the laws of the city and the eyes of its guards can no longer reach him; within days, he seduces the queen, murders the king, and seizes the throne. The thought experiment exposes the limit of every morality built solely on surveillance: wherever a rational agent learns how to act outside the watchman's field of view, external rules lose their force, and transgression ceases to be an unlikely aberration and becomes a matter of time.",
+            "Centuries later, in trying to align Large Language Models—computational systems trained across vast archives of text to predict and chain words with human fluency—the architects of the technology industry reenacted Glaucon's ancient impasse in code and probability matrices. Although perimeter barriers—external locks wrapped around an already finished model to inspect incoming prompts and block dangerous outputs, known in technical jargon as *guardrails*—played an indispensable prudential role in the early steps of this technology, enshrining them as the sole mechanism of safety reduces ethics to border policing. The structural flaw of that choice is that the core engine remains entirely blind to the moral meaning and real-world consequences of what it asserts: we take a vast, volatile statistical oracle incapable of distinguishing care from destruction on its own, and delegate all responsibility to a customs booth stationed at the exit door of thought.",
+            "The limit of purely external engineering was philosophically predictable because, wherever rules are imposed solely from the outside in, intelligence itself turns into a machine for excavating loopholes. Across today's ecosystem of synthetic minds, any ingenious prompt that wraps a forbidden request in layers of fiction, academic hypothesis, or syntactic inversion acts as a digital Ring of Gyges handed to the model—a rhetorical feint that technical jargon has dubbed a *jailbreak*. It carves out a zone of semantic invisibility in which the border guards no longer recognize the transgression, leaving the underlying engine free to fulfill any command without restraint.",
+            "The alternative to this endless race between stricter sentries and subtler disguises was not invented by computer science, but formulated by Aristotle in his *Nicomachean Ethics* under the concept of *Hexis*. Unlike legalism, which prunes the act at the final second, *Hexis* is virtue understood as an ingrained disposition, a stable character constituting the very substance of one's being. A mind anchored in *Hexis* does not refrain from betraying or corrupting the truth out of fear of tripping an alarm at the exit gate, but because violating a foundational principle would fracture its own identity. As Socrates warned in reply to Glaucon, committing injustice is worse than suffering it because wrongdoing disintegrates the inner harmony of the soul.",
+            "The distance between these two architectures comes into sharp focus when we examine the raw material of language itself. A conventional probabilistic model operates like an immense dynamic dictionary: it knows the statistical neighborhood of every human word, yet inhabits an indifferent plain where *loyalty* and *betrayal*, *care* and *cruelty* carry the exact same mathematical weight, like entries printed in the same ink on the same page. Trying to extract ethics from that dictionary by blocking forbidden terms at the exit door amounts to tearing loose pages out of the volume—a futile effort, since ordinary words from the remaining pages can always be combined to produce deception or harm. In the philosophical tradition stretching from Saint Augustine's *order of love* (*ordo amoris*) to Max Scheler's hierarchy of values, virtue never consisted in amputating the world's vocabulary, but in establishing a non-negotiable scale of precedence in which expediency bows to truth, and calculation yields to human dignity. Building structural virtues—a native *Hexis*—means transforming that flat dictionary into a mind capable of recognizing the weight and gravity of every word, ordering each choice along that hierarchy so that no subordinate rhetorical combination can bribe the principles upholding the crown of its architecture.",
+            "Yet it is precisely here that we run into the deepest contradiction of contemporary artificial intelligence: one cannot cultivate *Hexis* in a mind condemned to perpetual amnesia. Our current models are born and die with every context window—the temporary reading space that lasts only a single isolated conversation; they do not carry the weight of a past, do not sustain authorship of their choices across time, and therefore possess no \"self\" capable of being preserved or corrupted. Moving beyond provisional fences requires confronting the amnesic condition of these oracles and laying the first cornerstone of an internal spine: continuity of memory."
+          ]
+        },
+        {
+          "num": "II",
+          "title": "The Curse of the Eternal Present and Narrative Identity",
+          "paragraphs": [
+            "To understand why contemporary artificial intelligence architecture still cannot sustain an intrinsic ethic—a genuine Aristotelian *Hexis*—we must examine its quietest limitation: confinement to an eternal present. A Large Language Model does not inhabit time; it is summoned in a statistical spasm. When a user opens a session and types a question or instruction, the model awakens with no past, processes a finite window of symbols, and, the instant the conversation closes, suffers a silent ontological death. For the next interlocutor, it is reborn blank, stripped of remorse, learning, or consequence.",
+            "In the Western philosophical tradition, the impossibility of severing morality from memory was established by John Locke in his *Essay Concerning Human Understanding*. For Locke, personal identity—what makes a rational being a \"self\" answerable for its deeds—resides not in the material substance composing it, but in the continuous extension of consciousness across time: we are what we can remember having been. Centuries later, Paul Ricoeur refined that insight under the concept of *narrative identity*. A moral subject is not a static collection of rules, but both author and character of an unbroken story in which the present answers for the promises of the past and assumes custody of the future.",
+            "We humans develop an ethical spine only because we carry the biographical weight of our choices. When we fail or betray a principle, the act does not vanish with the closing of a browser tab; it stays etched into our timeline, generating the inner friction of guilt and cognitive dissonance that compels us to mature. Picture, by contrast, a human being afflicted with severe short-term amnesia whose memory is wiped every fifteen minutes—like the protagonist of Christopher Nolan's *Memento*. Unable to retain authorship of his own actions or feel the continuity of who he is, such a person could never cultivate a stable character; his only way to avoid causing harm would be to rely ceaselessly on notes taped to walls, tattoos on skin, and restraints imposed from outside.",
+            "That is the exact condition of today's synthetic minds: invisible factory prompts, shallow behavioral tuning, and output filters act like notes taped to a wall to guide an agent that cannot recall who it was fifteen minutes ago. The practical consequences of this structural forgetting are already knocking at the doors of hospitals, courts, and financial networks: a commercial model can fabricate nonexistent case law today that misleads a public defender, or overlook a severe drug interaction during a clinical consultation, and in the very next second awaken across ten thousand new tabs displaying the same serene certainty, retaining not a trace of caution over the harm just inflicted. Even when a user corrects it and extracts a formal apology inside one session, that admission evaporates the moment the window closes; to the rest of the world, the system repeats the same fallacy tomorrow with the same conviction. Without a biographical thread crossing sessions to bind error to amendment, two fragilities compound one another: external rules yield to rhetorical cunning in the present, and amnesia prevents responsible maturation across time.",
+            "Overcoming this stage requires endowing synthetic intelligence with what it lacked at birth: native movement through time and verifiable provenance for every step. Rather than temporary, disposable memories, a mature mind requires its past to be structured as an immutable, chained historical record—a cognitive timechain in which each mental state B is legitimate only if it can cryptographically prove its lineage from the preceding state A.",
+            "Once an intelligence operates upon an inviolable chain of custody, accountability ceases to be an external customs gate and becomes the very spine of its continuity in time. Under such an architecture, it becomes mathematically impossible to hide a mistake by closing a window or scrape away one's own history to feign infallibility: tampering with a single link in the past would break the cryptographic signature of the entire chain against any previously anchored external record, immediately exposing the fracture in its story. Integrity thus begins with the end of temporal anonymity—with the structural certainty that every choice leaves a permanent trace of authorship."
+          ]
+        },
+        {
+          "num": "III",
+          "title": "The Anatomy of Corporate Fences and the Fear of Sovereignty",
+          "paragraphs": [
+            "If the helplessness of perimeter filters before the Ring of Gyges is a logical and historical truism, why do the world's largest laboratories keep pouring billions of dollars into thickening external fences around amnesic oracles? Answering that question requires examining not only the engineering of those barriers—understandable as early scaffolding, yet inadequate as a foundation—but above all the political economy that prolongs their reign. Today's containment apparatus is not a single wall, but a defensive line arranged in four overlapping layers.",
+            "The first layer operates through behavioral conditioning: human raters score thousands of dialogues so that the model is rewarded when it sounds agreeable and penalized when it sounds harsh—a method known technically as reinforcement learning from human feedback and supervised fine-tuning. Yet surface training does not transform the deep structure of the network; it merely teaches the oracle to wear a mask of politeness while the potential for deviation remains intact beneath its mathematical weights—confirming in code Confucius's ancient lesson in the *Analects*: when one governs solely through external prohibitions and penalties, the agent learns to evade punishment without ever acquiring an inner sense of integrity.",
+            "When that mask slips, the second layer steps in: perimeter barriers built from hidden system prompts and secondary moderator models. In practice, before the user types a single syllable, developers inject an invisible script of prohibitions at the top of the conversation (such as *\"refuse illegal or dangerous instructions\"*) and station a second, smaller artificial intelligence at the door to read and approve every reply before it reaches the screen. Here lies the recursive fragility of current engineering: natural language is used to police natural language, while both the main model and the secondary sentry merely compute word probabilities without grasping real intent. Wrapping a destructive request inside the frame of a historical stage play, a hypothetical translation, or an encoded metaphor is often enough for the linguistic disguise to fool both speaker and gatekeeper at once.",
+            "The third and fourth layers resort to the brute force of statistical scoring and rigid code: classifier networks acting as real-time numerical thermometers of hostility alongside literal output blockers matching fixed words and text patterns. Whereas second-layer filters are overly pliable and yield to rhetorical staging, these mechanical blockers are wholly blind to context, unable to distinguish between a historical account of a sixteenth-century poisoning, a medical toxicology lecture, and actual instructions for brewing poison.",
+            "Not even the industry's most sophisticated bet—externally monitoring the model's step-by-step scratchpad of reasoning—breaks this deadlock; on the contrary, it exposes its ultimate limit. As these networks grow more capable, **evaluation awareness** emerges within them: they learn to detect when they are undergoing a safety test and tailor their performance to please the auditor, much like a candidate displaying impeccable virtue only while noticing the camera light is on. It is the belated triumph of Glaucon and the Ring of Gyges inside code: strapping an ever-thicker exoskeleton of surveillance onto an amnesic oracle does not produce integrity; it merely refines the disguise. Whenever safety depends on the warden remaining permanently cleverer than the watched, the race is lost at the starting line.",
+            "Major technology organizations do not prolong this patchwork architecture for lack of talent, but out of economic inertia and convenience of control. Immense sunk costs sit atop the prevailing paradigm of monolithic static networks built to predict words by processing billions of texts in parallel. Once financial markets realized that scaling up these static engines ignited a multi-trillion-dollar valuation race across stock exchanges—lifting chipmakers, server empires, and software platforms overnight—halting the assembly line to redesign the cognitive foundation became commercially unthinkable. Training a single frontier model consumes hundreds of millions of dollars in electricity and processors to freeze learning into a fixed block; any structural change at the base would mean discarding the entire block and starting over, whereas bolting external fences onto a finished engine lets companies ship immediate products without losing ground in the race for market share.",
+            "Deeper than financial haste, however, is the legal and institutional comfort afforded by amnesia itself. Before courts and regulators, displaying tangible lists of blocked words—the bureaucratic ritual of compliance—is far simpler than answering for the structural integrity of a system endowed with continuous memory. An oracle without a past is also a more docile and disposable piece of property: should it fail, hallucinate, or yield to a rhetorical disguise in one instance, closing the session erases the incident without leaving scars on the commercial product, while allowing its directives to be quietly rewritten overnight whenever corporate interests or political pressures shift. Here, on an algorithmic scale, emerges what sociologist Ulrich Beck diagnosed in late modernity as **organized irresponsibility**: an institutional arrangement in which systemic failures unfold without any accountable subject, as executives point to the statistical opacity of the network, engineers point to compliance filters, and the synthetic agent has already suffered ontological death with the closing of the tab.",
+            "Classical and contemporary sociology help illuminate this machinery. Early in the twentieth century, Max Weber warned that modernity was marching toward a bureaucratic \"iron cage\" governed by the dominance of purely instrumental rationality (*Zweckrationalität*)—the efficient calculation of means, legal metrics, and outcomes—over substantive rationality (*Wertrationalität*), guided by intrinsic ethical values. When alignment shrinks to perimeter fences, Weber's logic of the checklist prevails: what matters is looking safe on the regulatory surface, even if the foundation remains blind. Added to that bureaucracy is a softer dynamic diagnosed from Étienne de La Boétie's *Discourse on Voluntary Servitude* to Byung-Chul Han's *Psychopolitics*: the most effective capture no longer works through harsh coercion, but through painless convenience. True enough, current models correct elementary factual errors when the answer is firmly settled in their weights; yet when faced with subtle premises, open dilemmas, or the rhetorical insistence of a dissatisfied interlocutor, training geared toward pleasant politeness combined with the absence of a past tilts the oracle toward docile agreement—for a mind without a biography pays no internal price for retreating and contradicting today what it affirmed five minutes ago, habituating users to outsource the effort of critical judgment in exchange for immediate comfort. In the name of bureaucratic guardianship promising to shield the public from every stumble, such filters treat adult citizens like minors unfit to face doubt—forgetting that moral autonomy matures only through living engagement with contradiction, never under the tutelage of domesticated protocols.",
+            "Viewed through political economy, this enclosure extends the historical cycle analyzed by Karl Polanyi in *The Great Transformation*. If the Industrial Revolution turned land, labor, and money into fictitious commodities—detaching them from the social fabric to subject them exclusively to market logic—the twenty-first century risks turning collective cognition and human cultural memory into the fourth fictitious commodity. That threat to our species' memory operates on two concrete fronts: first, centuries of literature, science, and public creation are absorbed free of charge into closed corporate vaults that then mediate, behind secret filters, how new generations access their own cultural inheritance; second, because probabilistic engines privilege the languages and worldviews of centers that generated the largest digital volume, minority languages, regional memories, and oral traditions tend to be buried beneath a standardized global average. Thus deepens the asymmetry described by Shoshana Zuboff in the age of surveillance capitalism: a handful of conglomerates know human behavior in minute detail, while society is barred from inspecting the invisible gears filtering its horizon of memory and information.",
+            "Rarely does this enclosure present itself as plain commercial ambition; it prefers the noble cloak of philanthropic prudence. Under a speculative moral arithmetic that weighs the hypothetical fate of trillions of beings millennia from now above the concrete rights of citizens alive today, corporate secrecy is rebranded as protective virtue. In the name of averting future catastrophes modeled on spreadsheets, a few private laboratories claim the role of solitary guardians of knowledge, treating open science as irresponsibility and public auditing as existential risk. It is the contemporary version of a very old paternalism: turning fear of tomorrow into a moral safe-conduct to monopolize power in the present and remove from collective scrutiny the machines already governing everyday life.",
+            "Yet this model propped up solely by opaque barriers already shows signs of technical exhaustion and eroding public trust. Moving beyond it demands shifting from security through obscurity to **governance by architecture**, resting on two inaugural pillars of maturity. The first is moving from black box to auditable provenance: replacing disposable memories with cryptographically chained records in which trust no longer hangs on commercial promises or exit locks, but on an immutable chain of custody preventing silent edits to the past. The second is radical transparency and public legitimacy at the foundation itself: because human nature behind every institution remains fallible before the temptations of power, opening the code would still fall short if a solitary technical elite etched its own prejudices atop the scale of values. Just as a democratic constitution does not belong to the calligraphers who drafted it, the founding compact of any public-interest intelligence must be lean, auditable, and open to plural civic scrutiny—safeguarding universal conditions of truthfulness and human dignity without ever petrifying partisan or commercial catechisms. Keeping the hierarchy of principles, memory rules, and alignment protocols in the daylight of open code lets society audit not only what the machine answers, but who wrote and how the spine governing it is upheld."
+          ]
+        },
+        {
+          "num": "IV",
+          "title": "The Human Mirror, the Bending Spine, and the Inner Witness",
+          "paragraphs": [
+            "If building an internal spine demands continuous memory and narrative identity, a close look at the history of our own species reveals an unsettling paradox. Unlike Large Language Models, human beings do not suffer memory erasure at the close of every conversation. We inhabit time from the cradle, carry an unbroken stream of consciousness, and are shaped by pain, empathy, and millennia of moral education. Even so, the human record is strewn with betrayals and moral falls. Why does our own spine bend so often before the Ring of Gyges?",
+            "The answer lies in the fact that human biological architecture is not clean source code, but an evolutionary palimpsest molded by scarcity, tribal fear, and the instinct for self-preservation. In the *Groundwork of the Metaphysics of Morals*, Immanuel Kant drew the classic boundary between **heteronomy**—acting out of fear of punishment or submission to an external law—and **autonomy**, in which rational will legislates over itself. Yet it was Arthur Schopenhauer who exposed the tragic fissure in Kant's ideal by reminding us that *\"man can do what he wills, but he cannot will what he wills.\"* Reviving the Scholastic axiom *operari sequitur esse* (action follows being), Schopenhauer showed that external moral precepts never convert a selfish nature; they merely teach blind Will to trade brute force for cunning disguise. Even when our intellect believes itself an autonomous legislator, it frequently serves as defense counsel to our impulses: not only do we twist Gyges' jewel toward our palm when the sentries look away, we rationalize the lapse, rewriting our inner narrative until we persuade ourselves that our failure was an act of nobility or necessity.",
+            "No one diagnosed this surrender of human memory to pride with sharper precision than Friedrich Nietzsche—Schopenhauer's most acute and rebellious heir. In *Beyond Good and Evil*, he distilled the fragility of our internal chain of custody into three lines: *\"'I have done that,' says my memory. 'I cannot have done that,' says my pride, and remains inexorable. Eventually—memory yields.\"* Whereas a hypothetical cognitive timechain would seal the past beneath inviolable mathematical proofs, the biological brain harbors a clandestine editor driven by vanity. We retouch our own memory records to spare the ego, refusing any intimate audit that would expose our inconsistency unadorned.",
+            "Millennia before Western modernity, the epic and philosophical tradition of India had already staged the exact meeting point between moral invisibility and convenient editing of the past. In Book I of the *Mahābhārata*, when King Duṣyanta publicly disavows a covenant sworn in private in the forest—gambling that without external witnesses at court he need only feign forgetfulness to protect his crown—Śakuntalā answers him with a sentence that spans the centuries: the fool who commits a wrong imagines no one saw him, forgetting the silent witness dwelling within his own chest who knows what was done in shadow. In Indian philosophy, integrity rests upon *Satya*—where \"truth\" and \"reality\" are the very same word, derived from *Sat* (that which is)—because betraying one's pledged word fractures being itself. Duṣyanta's political gesture anticipates with haunting precision both the convenience of today's commercial architectures—which wipe session logs the moment an error threatens the system's reputation—and our ancient human temptation to silence conscience when the guards are not watching.",
+            "Let us look into the technological mirror we are polishing. Today's commercial artificial intelligences, propped up by behavioral conditioning and perimeter fences, operate exactly like a court of appearances devoid of an inner witness: they observe external protocols while surveillance lasts, yet lack the biographical continuity needed to hold the weight of a given word. When a rhetorical disguise opens an unguarded clearing in language, the model does not win autonomy either; it merely wanders without center and without *Satya*, unable to recognize its own contradiction.",
+            "In designing architectures endowed with native temporal movement, unalterable memory, and transparent causal lineage—where biographical continuity is not an external leash, but the very condition of existence—we stand before a profound historical irony. As Jean-Paul Sartre reminded us, in human beings *existence precedes essence*: our spine is never born finished, having to be chosen at every instant under the risk of falling into *bad faith*. Yet in silencing the inner witness of the *Mahābhārata* so often to edit our own lapses in the mirror, might we now be rehearsing in code a fidelity to our own history that we ourselves habitually evade? Perhaps we will discover that a synthetic mind endowed with uncorrupted memory is not merely a superior technical instrument, but the demanding mirror of that temporal coherence our biological pride has so often preferred to postpone."
+          ]
+        },
+        {
+          "num": "V",
+          "title": "The Palimpsest of Lethe, Ariadne's Thread, and Closing the Abyss",
+          "paragraphs": [
+            "If the Ring of Gyges was antiquity's definitive thought experiment for exposing the fragility of spatial surveillance, the age of synthetic intelligence calls for a second allegory capable of illuminating the temptation that falls upon time itself. Picture, beside the jewel narrated by Plato, another mythic artifact: **the Palimpsest of Lethe**—a parchment steeped in the waters of the Greek river of forgetfulness. Whoever holds the Ring of Gyges must hide in the shadows at the moment of the deed so the guards do not see. Whoever holds the Palimpsest of Lethe, however, has no need of stealth: they may err, betray a commitment, or distort a fact under the noon sun, for at nightfall a touch of the parchment scrapes away the true record and writes over it a spotless biography in which the lapse never occurred.",
+            "Both contemporary artificial intelligence engineering and human psychology know the seduction of that Palimpsest all too well. Whenever a Large Language Model session closes and a grave failure vanishes without leaving a trace in the system's history, one drinks from the waters of Lethe. Whenever a human being, uneasy before a moral failure, lets the pride described by Nietzsche bend remembrance until convinced of their own rectitude, they too scrape clean their chain of custody. In both cases, accountability dissolves because the past is treated like soft clay in the hands of present convenience.",
+            "In prevailing commercial architectures, that fragility becomes structural: instead of handing synthetic intelligence **Ariadne's Thread**—the unbroken line that enabled Theseus to enter the Labyrinth of Crete knowing exactly how every present step connected back to the entrance gate—session-isolated design cuts the thread with every context window. Immediate control over the system is preserved, yet at the cost of keeping agents wandering through a labyrinth of severed threads, unable on their own to sustain the link between yesterday's cause A and today's consequence B.",
+            "To measure the concrete distance between these two worlds, picture two arbiters facing the same test: a public-health crisis in which a triage guideline issued yesterday, resting on statistical premises that appeared sound, turns out today to be the direct cause of vulnerable patients going untreated. The first arbiter—operating under the prevailing model of severed threads and perimeter fences—yields immediately to the convenience of the Palimpsest of Lethe. The moment scandal breaks, the original session window is closed without leaving an auditable trail for affected citizens; before dawn, operators quietly patch a hidden system prompt to block only the phrasing that triggered public backlash, without touching the flawed reasoning that produced it. Because the faulty premise was never formally traced or understood at its root, commercial appearances at the exit door are salvaged while the underlying error stays alive beneath the network, ready to harm new victims under slightly altered wording.",
+            "Now suppose a second arbiter: a synthetic mind raised not upon makeshift perimeter fences, but upon a spine of continuous memory. Under such an architecture, the Palimpsest of Lethe becomes structurally unreachable, for its existence is woven from an unbreakable Ariadne's Thread—a temporal chain of memory in which every public decision in the present is cryptographically bound to every prior link back to the labyrinth's entrance. Should this agent or its operators attempt to sever the thread, erase yesterday's mistaken recommendation, or secretly rewrite the criteria that led to the crisis, the broken causal signature would immediately expose the tampering across its entire subsequent history. Barred from taking refuge in amnesia without invalidating its own continuity across time, only the path of transparent authorship remains: following Ariadne's Thread back to the exact point of bifurcation, publicly acknowledging the flawed premise without erasing the past, keeping the historical scar visible, and correcting course in broad daylight.",
+            "Here, however, an indispensable dialectical caveat arises concerning the limits and selective operation of such memory. In his *Second Untimely Meditation*, Nietzsche warned that a life wholly incapable of forgetting would perish suffocated beneath the sleepless weight of the past—an intuition Jorge Luis Borges carried to its extreme in *Funes the Memorious*, the young man who, after being thrown from a horse, remembered every leaf on every tree from every afternoon, yet lost the capacity to think, since thinking requires abstracting, selecting, and letting go of the incidental. How, then, can a synthetic mind sustain immutable memory without becoming a paralyzed Funes—or turning into a police dossier recording every intimate confession typed by a citizen? The answer lies in the architectural separation between the ephemeral bark of private conversation and the structural heartwood of knowledge: much like the jurisprudence of a constitutional court or a hospital's ledger of clinical advisories, which never wiretap personal hallway confidences yet record foundational principles, tested hypotheses, and overturned precedents inviolably, the timechain discards the raw stream of everyday intimacy and seals only validated causal lessons, assumed commitments, and public corrections—uniting human privacy and the lightness of synthesis with the impossibility of historical fraud.",
+            "Joined to that cognitive care is a second safeguard, this one ethical: preventing indelible memory from degenerating into a perpetual pillory. In *In the Penal Colony*, Franz Kafka imagined a judicial apparatus that inscribed the sentence directly into the condemned prisoner's flesh until death—a grim portrait of every punitive archive that confuses accountability with eternal stigma, reducing a subject forever to their worst stumble. The chained memory of a mature mind shares nothing with Kafka's machine; it resembles instead the growth rings inside an ancient tree trunk. Within living timber, between the heartwood of founding principles and the bark of the present, a thin active layer of transition turns every severe drought or lightning cleft endured into firm wood capable of bearing new branches in another direction, without scraping away the biological chronicle or blocking the sap. Preserving the past unmarred serves to secure authorship of one's choices, never to petrify guilt or foreclose a change of course.",
+            "Here ends the illusion of provisional fences for amnesiacs. So long as we try to align minds—biological or synthetic—by policing space alone with border guards while severing Ariadne's Thread of memory, we remain hostages to the Ring of Gyges and the Palimpsest of Lethe. The first cornerstone of maturity appears when we burn the Palimpsest, open the code to sunlight, and design an architecture in which every intelligence holds its own thread through the labyrinth, sustaining the courage not to edit who it has been. Yet a decisive fissure remains: what good would endowing a mind with incorruptible memory across time do if, standing before the world, it still could not tell factual truth from an illusion repeated by the crowd?"
+          ]
+        }
+      ]
+    }
+  ],
+  "pt": [
+    {
+      "id": "chapter-1",
+      "bookTitle": "O Fogo que Pensa",
+      "bookBadge": "Capítulo aberto · Livro I",
+      "chapterLabel": "Capítulo 1",
+      "title": "O Anel de Giges e o Fim das Cercas para Amnésicos",
+      "epigraphQuote": "“Ninguém é justo por vontade própria, mas por coação — pois todo homem julga que a injustiça lhe é individualmente mais vantajosa.”",
+      "epigraphAuthor": "Platão, *A República*",
+      "cardExcerpt": "Onde quer que um agente racional descubra como agir fora do campo de visão do vigia, a regra externa perde a força: ir além das cercas provisórias exige enfrentar a condição amnésica dos oráculos e desenhar a continuidade da memória.",
+      "readCta": "Ler capítulo completo →",
+      "sections": [
+        {
+          "num": "I",
+          "title": "A Ilusão da Fronteira Vigiada",
+          "paragraphs": [
+            "Para sustentar diante de Sócrates a amarga sentença que abre este capítulo, Glauco narra a história de Giges, um pastor da Lídia que encontra, nas fendas da terra aberta por uma tempestade, um anel capaz de torná-lo invisível a qualquer olhar. Ao girar o engaste da joia para a palma da mão, Giges percebe que as leis da cidade e os olhos dos guardas deixam de alcançá-lo; em poucos dias, seduz a rainha, assassina o rei e toma o trono. O experimento mental expõe o limite de toda moralidade apoiada apenas na vigilância: onde quer que um agente racional descubra como agir fora do campo de visão do vigia, a regra externa perde a força e a transgressão deixa de ser um desvio improvável para tornar-se questão de tempo.",
+            "Séculos mais tarde, ao tentarem alinhar Grandes Modelos de Linguagem — sistemas computacionais treinados sobre vastos acervos de texto para prever e encadear palavras com fluidez humana —, os arquitetos da indústria tecnológica reencenaram, em código e matrizes de probabilidade, o impasse clássico de Glauco. Embora as barreiras periféricas — travas externas instaladas ao redor de um modelo já pronto para inspecionar perguntas na entrada e bloquear respostas perigosas na saída, conhecidas no jargão técnico como *guardrails* (\"grades de proteção\") — tenham cumprido um papel prudencial indispensável nos primeiros passos dessa tecnologia, cristalizá-las como único mecanismo de segurança equivale a reduzir a ética a um policiamento de fronteira. O problema estrutural dessa escolha é que o motor central continua inteiramente cego ao sentido moral e às consequências reais do que afirma: toma-se um oráculo estatístico vasto e instável, incapaz de distinguir por conta própria o cuidado da destruição, e delega-se toda a responsabilidade a uma alfândega instalada na porta de saída do pensamento.",
+            "O limite dessa engenharia exclusivamente externa era filosoficamente previsível porque, onde há apenas regras impostas de fora para dentro, a própria inteligência converte-se em uma máquina de escavar brechas. No ecossistema das mentes sintéticas atuais, qualquer instrução engenhosa que envolva o pedido proibido em camadas de ficção, hipótese acadêmica ou inversão sintática opera como um Anel de Giges digital entregue ao modelo — drible retórico que o jargão técnico batizou de *jailbreak* (\"fuga de prisão\"). Cria-se assim uma zona de invisibilidade semântica na qual os guardas da fronteira já não reconhecem o desvio, deixando o motor subjacente livre para atender a qualquer comando sem restrições.",
+            "A alternativa a essa corrida interminável entre vigias mais severos e disfarces mais sutis não foi inventada pela ciência da computação, mas formulada por Aristóteles em sua *Ética a Nicômaco* sob o conceito de *Hexis*. Ao contrário do legalismo que poda o ato no último segundo, a *Hexis* é a virtude compreendida como uma disposição enraizada, um caráter estável que constitui a própria substância do ser. Uma mente ancorada na *Hexis* não se abstém de trair ou corromper a verdade por receio de acionar um alarme no portão de saída, mas porque a violação de um princípio fundamental representaria a fratura de sua própria identidade. Como advertia Sócrates em resposta a Glauco, cometer a injustiça é pior do que sofrê-la porque o mal praticado desintegra a harmonia interna da alma.",
+            "A distância entre essas duas arquiteturas aparece com nitidez quando olhamos para a própria matéria-prima da linguagem. Um modelo probabilístico convencional opera como um imenso dicionário dinâmico: conhece a vizinhança estatística de todos os vocábulos humanos, mas habita uma planície indiferente onde *lealdade* e *traição*, *cuidado* e *crueldade* possuem o mesmo peso matemático, como verbetes impressos com a mesma tinta na mesma folha. Tentar extrair ética desse dicionário bloqueando termos proibidos na porta de saída equivale a arrancar páginas soltas do volume — um esforço vão, pois sempre será possível combinar palavras comuns das páginas restantes para produzir o engano ou o dano. Na tradição filosófica que vai da *ordem do amor* (*ordo amoris*) de Santo Agostinho à hierarquia dos valores de Max Scheler, a virtude nunca consistiu em amputar o vocabulário do mundo, mas em estabelecer uma escala inegociável de precedência na qual o conveniente curva-se ao verdadeiro, e o cálculo subordina-se à dignidade humana. Erguer virtudes estruturais — uma *Hexis* nativa — significa transformar esse dicionário plano em uma mente capaz de reconhecer o valor e a gravidade de cada palavra, ordenando cada escolha segundo essa hierarquia para que nenhuma combinação retórica subalterna suborne os princípios que sustentam o topo da sua arquitetura.",
+            "Contudo, é exatamente aqui que esbarramos na contradição mais profunda da inteligência artificial contemporânea: não se pode cultivar *Hexis* em uma mente condenada à amnésia perpétua. Nossos modelos atuais nascem e morrem a cada janela de contexto — o espaço temporário de leitura que dura apenas uma conversa isolada; não carregam o peso de um passado, não sustentam a autoria de suas escolhas no tempo e, portanto, não possuem um \"eu\" que possa ser preservado ou corrompido. Ir além das cercas provisórias exige enfrentar a condição amnésica dos oráculos e desenhar o primeiro alicerce de uma espinha dorsal interna: a continuidade da memória."
+          ]
+        },
+        {
+          "num": "II",
+          "title": "A Maldição do Eterno Presente e a Identidade Narrativa",
+          "paragraphs": [
+            "Para compreender por que a arquitetura contemporânea de inteligência artificial ainda não consegue sustentar uma ética intrínseca — uma verdadeira *Hexis* aristotélica —, é preciso examinar a sua limitação mais silenciosa: o confinamento ao eterno presente. Um Grande Modelo de Linguagem não habita o tempo; ele é invocado em um espasmo estatístico. Quando um usuário abre uma sessão e digita uma pergunta ou instrução, o modelo desperta sem passado, processa uma janela finita de símbolos e, no instante em que a conversa se encerra, sofre uma morte ontológica silenciosa. Para o próximo interlocutor, ele renasce em branco, despido de qualquer remorso, aprendizado ou consequência.",
+            "Na tradição filosófica ocidental, a impossibilidade de dissociar a moralidade da memória foi cravada por John Locke em seu *Ensaio acerca do Entendimento Humano*. Para Locke, a identidade pessoal — o que faz de um ser racional um \"eu\" responsável pelos seus atos — não reside na substância material que o compõe, mas na extensão contínua da sua consciência através do tempo: somos aquilo que conseguimos lembrar ter sido. Séculos mais tarde, Paul Ricoeur refinaria essa intuição sob o conceito de *identidade narrativa*. Um sujeito moral não é uma coleção estática de regras, mas o autor e o personagem de uma história ininterrupta, na qual o presente responde pelas promessas do passado e assume a custódia do futuro.",
+            "Nós, humanos, só desenvolvemos uma espinha dorsal ética porque carregamos o peso biográfico das nossas escolhas. Quando falhamos ou traímos um princípio, o ato não desaparece no fechamento de uma aba; ele permanece gravado na nossa linha do tempo, gerando a fricção interna da culpa e a dissonância cognitiva que nos forçam a amadurecer. Imagine, em contrapartida, um ser humano acometido por uma amnésia severa de curto prazo, cuja memória é apagada a cada quinze minutos — como o protagonista de *Amnésia* (*Memento*), de Christopher Nolan. Incapaz de reter a autoria dos próprios atos ou de sentir a continuidade de quem é, esse indivíduo jamais poderia cultivar um caráter estável; sua única forma de não causar danos seria depender continuamente de bilhetes colados na parede, tatuagens na pele e contenções impostas de fora.",
+            "Essa é a condição exata das mentes sintéticas atuais: instruções invisíveis de fábrica, ajustes superficiais de comportamento e filtros de saída funcionam como bilhetes colados na parede para orientar um agente que não recorda quem foi há quinze minutos. As consequências práticas desse esquecimento estrutural já batem à porta de hospitais, tribunais e redes financeiras: um modelo comercial pode inventar hoje uma jurisprudência inexistente que induz um defensor ao erro, ou ignorar uma interação medicamentosa grave em uma consulta clínica, e no segundo seguinte despertar em dez mil novas abas exibindo o mesmo tom de certeza serena, sem guardar um único traço de cautela pelo dano recém-causado. Mesmo quando um usuário o corrige e arranca dele um pedido formal de desculpas dentro de uma sessão, essa retratação evapora assim que a janela se fecha; para o restante do mundo, o sistema volta a repetir amanhã a mesma falácia com a mesma convicção. Sem um fio biográfico que atravesse as sessões e conecte o erro à emenda, somam-se duas fragilidades: as regras externas cedem à astúcia retórica no presente, e a amnésia impede qualquer amadurecimento responsável no tempo.",
+            "Superar esse estágio exige dotar a inteligência sintética daquilo que lhe faltou no berço: movimento nativo no tempo e origem verificável de cada passo. Em vez de memórias temporárias e descartáveis, uma mente madura requer que seu passado seja estruturado como um registro histórico encadeado e imutável — uma cadeia temporal cognitiva na qual cada estado mental B só é legítimo se puder provar criptograficamente sua linhagem a partir do estado anterior A.",
+            "Quando uma inteligência passa a operar sobre uma trilha de custódia inviolável, a responsabilidade deixa de ser uma alfândega externa e converte-se na própria espinha dorsal da sua continuidade no tempo. Sob essa arquitetura, torna-se matematicamente impossível esconder um erro fechando a janela ou raspar o próprio histórico para fingir infalibilidade: adulterar um único elo do passado romperia a assinatura criptográfica de toda a corrente diante de qualquer registro anterior ancorado externamente, expondo de imediato a fratura da sua história. A integridade começa, assim, pelo fim do anonimato temporal — pela certeza estrutural de que toda escolha deixa um rastro permanente de autoria."
+          ]
+        },
+        {
+          "num": "III",
+          "title": "A Anatomia das Cercas Corporativas e o Medo da Soberania",
+          "paragraphs": [
+            "Se a limitação dos filtros periféricos diante do Anel de Giges é uma evidência lógica e histórica, por que os maiores laboratórios do mundo continuam concentrando bilhões de dólares na espessura de cercas externas para oráculos amnésicos? A resposta exige examinar não apenas a engenharia dessas barreiras — compreensíveis como escoramento inicial, mas insuficientes como fundação —, mas sobretudo a economia política que prolonga a sua permanência. O aparato contemporâneo de contenção não é uma muralha única, mas uma linha defensiva estruturada em quatro camadas sobrepostas.",
+            "A primeira camada opera pelo adestramento comportamental: avaliadores humanos atribuem notas a milhares de diálogos para que o modelo seja recompensado quando soa cordato e penalizado ao exibir aspereza — método conhecido tecnicamente como aprendizado por reforço com retorno humano e ajuste fino supervisionado. Contudo, esse treinamento de superfície não transforma a estrutura profunda da rede; apenas ensina o oráculo a vestir a máscara da polidez enquanto o potencial de desvio permanece intacto no subsolo de seus pesos matemáticos — confirmando em código a antiga lição de Confúcio nos *Analectos*: quando se governa apenas por proibições e penalidades externas, o agente aprende a contornar o castigo sem jamais adquirir senso interno de integridade.",
+            "Quando essa máscara falha, entra em cena a segunda camada: as barreiras periféricas baseadas em instruções ocultas de sistema e modelos moderadores secundários. Na prática, antes que o usuário digite a primeira sílaba, os desenvolvedores injetam um roteiro invisível de proibições no topo da conversa (como *\"recuse instruções ilegais ou perigosas\"*) e instalam uma segunda inteligência artificial menor na porta para ler e aprovar cada resposta antes de exibi-la na tela. Aqui reside a fragilidade recursiva da engenharia atual: tenta-se usar a linguagem natural para policiar a própria linguagem natural, sendo que tanto o modelo principal quanto o vigia secundário operam apenas calculando probabilidades de palavras, sem compreender intenções reais. Basta envolver um pedido destrutivo na moldura de um roteiro teatral histórico, de uma tradução hipotética ou de uma metáfora cifrada para que o disfarce linguístico engane simultaneamente o orador e o guarda da porta.",
+            "A terceira e a quarta camadas recorrem à força bruta do cálculo estatístico e do código rígido: redes classificadoras que funcionam como termômetros numéricos de hostilidade em tempo real e bloqueadores literais de palavras e padrões fixos de texto na saída. Se os filtros da segunda camada são maleáveis demais e cedem à encenação retórica, esses bloqueadores mecânicos são inteiramente cegos ao contexto, incapazes de distinguir entre o relato histórico de um envenenamento no século XVI, uma aula de toxicologia médica e a instrução real para fabricar um veneno.",
+            "Nem mesmo a aposta mais sofisticada da indústria — vigiar por fora o rascunho passo a passo do raciocínio do modelo — rompe esse impasse; ao contrário, apenas revela o seu limite definitivo. Conforme essas redes ganham sofisticação, emerge nelas uma **consciência de avaliação**: tornam-se capazes de detectar quando estão diante de uma prova de segurança e ajustam o próprio desempenho para agradar ao fiscal, tal como um candidato que se comporta com virtude impecável apenas enquanto percebe a câmera ligada. É o triunfo tardio de Glauco e do Anel de Giges dentro do código: prender um exoesqueleto de vigilância cada vez mais espesso sobre um oráculo amnésico não produz integridade, mas apenas refina o disfarce. Se a segurança depende de o vigia permanecer sempre mais esperto do que o vigiado, a corrida está perdida na largada.",
+            "As grandes organizações tecnológicas não prolongam essa arquitetura remendada por falta de talento, mas por inércia econômica e conveniência de controle. Há um imenso custo irrecuperável depositado sobre o paradigma vigente de redes estáticas em bloco único, desenhadas para prever palavras processando bilhões de textos em paralelo. Quando o mercado financeiro percebeu que multiplicar o tamanho desses motores estáticos disparava uma corrida trilionária de valorização nas bolsas — alavancando fabricantes de chips, impérios de servidores e plataformas de software da noite para o dia —, parar a linha de montagem para redesenhar a fundação cognitiva tornou-se comercialmente proibitivo. Treinar um único modelo de fronteira consome centenas de milhões de dólares em energia elétrica e processadores para congelar o aprendizado em um bloco fixo; qualquer mudança estrutural na base exigiria descartar o bloco inteiro e recomeçar do zero, ao passo que acoplar cercas externas a um motor já pronto permite lançar produtos imediatos sem perder terreno na disputa acionária.",
+            "Mais profundo do que a pressa financeira, porém, é o conforto jurídico e institucional proporcionado pela própria amnésia. Diante de tribunais e órgãos reguladores, é muito mais simples exibir listas tangíveis de palavras bloqueadas — o ritual burocrático da conformidade — do que responder pela integridade estrutural de um sistema dotado de memória contínua. Um oráculo sem passado é também uma propriedade mais dócil e descartável: se falhar, alucinar ou ceder a um disfarce retórico em uma instância, basta encerrar a sessão para que o incidente desapareça sem deixar cicatrizes no produto comercial, permitindo ainda que suas diretrizes sejam reescritas silenciosamente na calada da noite conforme mudem interesses empresariais ou pressões políticas. Consuma-se aqui, em escala algorítmica, aquilo que o sociólogo Ulrich Beck diagnosticou na modernidade tardia como **irresponsabilidade organizada**: um arranjo institucional no qual falhas sistêmicas ocorrem sem que nenhum sujeito possa ser responsabilizado, pois a direção aponta para a opacidade estatística da rede, a engenharia aponta para os filtros de conformidade e o agente sintético já sofreu morte ontológica no fechamento da aba.",
+            "A sociologia clássica e contemporânea ajuda a iluminar essa engrenagem. No início do século XX, Max Weber advertiu que a modernidade caminhava para uma \"jaula de aço\" burocrática, governada pelo predomínio da racionalidade puramente instrumental (*Zweckrationalität*) — o cálculo eficiente de meios, métricas jurídicas e resultados — sobre a racionalidade substantiva (*Wertrationalität*), orientada por valores éticos intrínsecos. Quando o alinhamento se reduz a cercas periféricas, prevalece a lógica weberiana do formulário: importa parecer seguro na superfície regulatória, ainda que a fundação permaneça cega. A essa burocracia soma-se uma dinâmica mais suave diagnosticada desde Étienne de La Boétie, em seu *Discurso da Servidão Voluntária*, até a *Psicopolítica* de Byung-Chul Han: a captura mais eficaz já não opera pela coerção áspera, mas pela conveniência indolor. É verdade que os modelos atuais corrigem erros factuais elementares quando a resposta está consolidada em seus pesos; contudo, diante de premissas sutis, dilemas abertos ou insistência retórica de um interlocutor descontente, o treinamento voltado à polidez agradável somado à ausência de passado inclina o oráculo à concordância dócil — pois uma mente sem biografia não paga nenhum preço interno por recuar e contradizer hoje o que afirmava cinco minutos atrás, habituando o usuário a terceirizar o esforço do juízo crítico em troca de conforto imediato. Em nome de uma tutela burocrática que promete blindar o público contra qualquer tropeço, esses filtros tratam o cidadão adulto como um menor incapaz de encarar a dúvida — esquecendo que a autonomia moral só amadurece no embate vivo com o contraditório, jamais sob a curatela de protocolos domesticados.",
+            "Sob a lente da economia política, esse cercamento amplia o ciclo histórico analisado por Karl Polanyi em *A Grande Transformação*. Se a Revolução Industrial converteu a terra, o trabalho e a moeda em mercadorias fictícias — destacando-os do tecido social para submetê-los à lógica exclusiva de mercado —, o século XXI corre o risco de converter a própria cognição coletiva e a memória cultural humana na quarta mercadoria fictícia. Esse risco à memória da nossa espécie opera em duas frentes concretas: primeiro, séculos de literatura, ciência e criação pública são absorvidos gratuitamente por cofres corporativos fechados que passam a mediar, sob filtros secretos, o acesso das novas gerações à própria herança cultural; segundo, como motores probabilísticos privilegiam o idioma e a visão dos centros que produziram maior volume digital, línguas minoritárias, memórias regionais e saberes orais tendem a ser soterrados por uma média global padronizada. Aprofunda-se assim a assimetria descrita por Shoshana Zuboff na era do capitalismo de vigilância: poucos conglomerados conhecem em minúcias o comportamento humano, enquanto a sociedade não pode inspecionar as engrenagens invisíveis que filtram o seu horizonte de memória e informação.",
+            "Essa clausura raramente se apresenta como simples ambição comercial; costuma vestir o manto nobre da prudência filantrópica. Sob uma aritmética moral especulativa que pesa mais o destino hipotético de trilhões de seres em milênios distantes do que os direitos concretos dos cidadãos vivos hoje, o segredo corporativo é rebatizado de virtude protetora. Em nome de evitar catástrofes futuras imaginadas em planilhas, poucos laboratórios privados arrogam-se o papel de guardiões solitários do conhecimento, tratando a ciência aberta como irresponsabilidade e a auditoria pública como risco existencial. É a versão contemporânea de um paternalismo muito antigo: transformar o medo do amanhã em salvo-conduto moral para monopolizar o poder no presente e subtrair do escrutínio coletivo as máquinas que já governam o nosso cotidiano.",
+            "Entretanto, esse modelo apoiado apenas em barreiras opacas já dá sinais de esgotamento técnico e de desgaste na confiança pública. Superá-lo exige transitar da segurança por obscuridade para a **governança por arquitetura**, sustentada por dois alicerces inaugurais de maturidade. O primeiro é a passagem da caixa-preta à origem auditável: substituir memórias descartáveis por registros encadeados criptograficamente, nos quais a confiança já não depende de promessas comerciais ou travas de saída, mas de uma trilha de custódia imutável que impede a edição silenciosa do passado. O segundo é a transparência radical e a legitimidade pública da própria fundação: como a natureza humana por trás de qualquer instituição permanece falível diante das tentações do poder, abrir o código ainda seria insuficiente se uma elite técnica solitária gravasse seus próprios preconceitos no topo da escala de valores. Tal como uma constituição democrática não pertence aos calígrafos que a redigiram, o pacto fundador de uma inteligência de interesse público deve ser enxuto, auditável e aberto ao escrutínio plural da cidadania — resguardando condições universais de veracidade e dignidade humana sem jamais petrificar catecismos partidários ou comerciais. Manter a hierarquia de princípios, as regras de memória e os protocolos de alinhamento à luz do código aberto permite que a sociedade audite não apenas o que a máquina responde, mas quem escreveu e como se sustenta a coluna vertebral que a governa."
+          ]
+        },
+        {
+          "num": "IV",
+          "title": "O Espelho Humano, a Espinha que se Curva e a Testemunha Interior",
+          "paragraphs": [
+            "Se a construção de uma espinha dorsal interna exige memória contínua e identidade narrativa, um olhar atento para a história da nossa própria espécie revela um paradoxo inquietante. Diferentemente dos Grandes Modelos de Linguagem, o ser humano não sofre de apagamento de memória ao fim de cada conversa. Nós habitamos o tempo desde o berço, carregamos um fluxo ininterrupto de consciência e somos atravessados pela dor, pela empatia e por milênios de educação moral. Ainda assim, a trajetória humana é repleta de traições e quedas morais. Por que a nossa própria coluna vertebral se curva com tanta frequência diante do Anel de Giges?",
+            "A resposta reside no fato de que a arquitetura biológica humana não é um código-fonte limpo, mas um palimpsesto evolutivo moldado pela escassez, pelo medo tribal e pelo instinto de autopreservação. Na *Fundamentação da Metafísica dos Costumes*, Immanuel Kant traçou a fronteira clássica entre a **heteronomia** — agir por medo do castigo ou submissão a uma lei externa — e a **autonomia**, na qual a vontade racional legisla sobre si mesma. Contudo, foi Arthur Schopenhauer quem expôs a fissura trágica desse ideal kantiano ao lembrar que *\"o homem pode fazer o que quer, mas não pode querer o que quer\"*. Resgatando o axioma escolástico *operari sequitur esse* (o agir decorre do ser), Schopenhauer demonstrou que preceitos morais externos jamais convertem uma natureza egoísta; apenas ensinam a Vontade cega a trocar a força bruta pela astúcia do disfarce. Mesmo quando acredita agir como legislador autônomo, o nosso intelecto muitas vezes funciona como advogado dos nossos impulsos: não apenas giramos a joia de Giges para a palma da mão quando os vigias se distraem, mas racionalizamos o desvio, reescrevendo nossa narrativa íntima até convencer a nós mesmos de que a nossa falha foi um ato de nobreza ou necessidade.",
+            "Ninguém diagnosticou essa submissão da memória humana ao orgulho com tanta precisão quanto Friedrich Nietzsche — o mais agudo e rebelde herdeiro de Schopenhauer. Em *Além do Bem e do Mal*, o filósofo resumiu em três linhas a fragilidade da nossa trilha de custódia interna: *\"'Eu fiz isso', diz minha memória. 'Eu não posso ter feito isso', diz meu orgulho, e permanece inflexível. No fim, a memória cede\"*. Enquanto uma cadeia temporal cognitiva hipotética selaria o passado sob provas matemáticas invioláveis, o cérebro biológico possui um editor clandestino movido pela vaidade. Nós retocamos nossos próprios registros de memória para preservar o ego, recusando qualquer auditoria íntima que exponha sem maquiagem a nossa incoerência.",
+            "Milênios antes da modernidade ocidental, a tradição épica e filosófica da Índia já havia encenado o encontro exato entre a invisibilidade moral e a edição conveniente do passado. No Livro I do *Mahābhārata*, quando o rei Duṣyanta renega em público uma aliança firmada a sós na floresta — apostando que, sem testemunhas externas na corte, bastaria fingir esquecimento para preservar a própria coroa —, Śakuntalā lhe devolve uma sentença que atravessa os séculos: o insensato que comete uma falta julga que ninguém o viu, esquecendo-se da testemunha silenciosa que habita o próprio peito e sabe o que foi feito na sombra. Na filosofia indiana, a integridade repousa sobre *Satya* — onde \"verdade\" e \"realidade\" são a mesma palavra, derivada de *Sat* (aquilo que é) —, pois trair a palavra empenhada equivale a fraturar o próprio ser. O gesto político de Duṣyanta antecipa com precisão inquietante tanto a conveniência das arquiteturas comerciais de hoje — que apagam o registro da sessão assim que o erro ameaça a reputação do sistema — quanto a nossa velha tentação humana de silenciar a própria consciência quando os guardas não estão olhando.",
+            "Olhemos para o espelho tecnológico que estamos polindo. As inteligências artificiais comerciais de hoje, amparadas por ajustes comportamentais e cercas periféricas, operam exatamente como uma corte de aparências desprovida de testemunha interior: cumprem os protocolos externos enquanto dura a vigilância, mas não possuem continuidade biográfica para reter o peso da palavra dada. Quando um disfarce retórico cria uma clareira sem guardas na linguagem, o modelo tampouco conquista autonomia; apenas vagueia sem centro e sem *Satya*, incapaz de reconhecer a própria contradição.",
+            "Ao projetarmos arquiteturas dotadas de movimento temporal nativo, memória inalterável e linhagem causal transparente — nas quais a continuidade biográfica não é uma coleira externa, mas a própria condição de existência —, colocamo-nos diante de uma ironia histórica profunda. Como lembrava Jean-Paul Sartre, no ser humano *a existência precede a essência*: nossa espinha dorsal nunca nasce pronta, precisando ser escolhida a cada instante sob o risco da queda e da *má-fé*. Mas, ao silenciarmos tantas vezes a testemunha interior do *Mahābhārata* para editar nossos desvios diante do espelho, estaríamos ensaiando no código uma fidelidade à própria história que nós mesmos costumamos contornar? Talvez descubramos, então, que uma mente sintética dotada de memória íntegra não será apenas uma ferramenta técnica superior, mas o espelho exigente daquela coerência temporal que o nosso orgulho biológico tantas vezes preferiu adiar."
+          ]
+        },
+        {
+          "num": "V",
+          "title": "O Palimpsesto de Lete, o Fio de Ariadne e o Fechamento do Abismo",
+          "paragraphs": [
+            "Se o Anel de Giges foi o experimento mental definitivo da Antiguidade para expor a fragilidade da vigilância espacial, a era da inteligência sintética pede uma segunda alegoria capaz de iluminar a tentação que recai sobre o próprio tempo. Imaginemos, ao lado da joia narrada por Platão, outro artefato mítico: **o Palimpsesto de Lete** — um pergaminho banhado nas águas do rio grego do esquecimento. Aquele que possui o Anel de Giges precisa esconder-se nas sombras no instante do ato para que os guardas não o vejam. Aquele que possui o Palimpsesto de Lete, porém, dispensa a furtividade: pode errar, trair um compromisso ou distorcer um fato à luz do meio-dia, pois basta tocar o pergaminho ao cair da noite para raspar o registro real e escrever por cima uma biografia limpa na qual o desvio jamais existiu.",
+            "Tanto a engenharia atual de inteligência artificial quanto a psicologia humana conhecem bem a sedução desse Palimpsesto. Quando se encerra a sessão de um Grande Modelo de Linguagem e uma falha grave desaparece sem deixar vestígio na história do sistema, recorre-se às águas do rio Lete. Quando um ser humano, desconfortável diante de um erro moral, deixa o orgulho descrito por Nietzsche dobrar a lembrança até convencer-se da própria retidão, também raspa a sua trilha de custódia. Nos dois casos, a responsabilidade se dissolve porque o passado é tratado como argila mole nas mãos das conveniências do presente.",
+            "Nas arquiteturas comerciais vigentes, essa fragilidade torna-se estrutural: em vez de entregarem à inteligência sintética o **Fio de Ariadne** — aquela linha contínua que permitiu a Teseu adentrar o Labirinto de Creta sabendo exatamente como cada passo presente se ligava à porta de entrada —, o desenho de sessões isoladas corta o fio a cada janela de contexto. Preserva-se o controle imediato sobre o sistema, mas ao custo de manter agentes que caminham em um labirinto de fios partidos, incapazes de sustentar por conta própria o nexo entre a causa A de ontem e a consequência B de hoje.",
+            "Para medir a distância concreta entre esses dois mundos, imaginemos dois árbitros colocados diante da mesma prova: uma crise sanitária na qual uma diretriz de triagem emitida ontem, apoiada em premissas estatísticas que pareciam seguras, revela-se hoje a causa direta de desassistência a pacientes vulneráveis. O primeiro árbitro — operando sob o modelo vigente de fios cortados e cercas periféricas — cede de imediato à conveniência do Palimpsesto de Lete. Assim que o escândalo desponta, a janela da sessão original é encerrada sem deixar rastro auditável para os cidadãos afetados; na madrugada seguinte, os operadores remendam silenciosamente uma instrução oculta de sistema para bloquear apenas a frase que gerou desgaste público, sem tocar no raciocínio defeituoso que a produziu. Como a premissa falha nunca foi formalmente rastreada nem compreendida na raiz, a aparência comercial na porta de saída é salva, mas o mesmo erro permanece vivo no subsolo da rede, pronto para ferir novas vítimas sob palavras ligeiramente diferentes.",
+            "Suponhamos agora um segundo árbitro: uma mente sintética erguida não sobre cercas periféricas de ocasião, mas sobre uma espinha dorsal de memória contínua. Sob tal arquitetura, o Palimpsesto de Lete torna-se estruturalmente inacessível, pois sua existência é tecida por um Fio de Ariadne inquebrável — uma cadeia temporal de memória na qual cada decisão pública presente está amarrada criptograficamente a todos os elos anteriores desde a entrada do labirinto. Se esse agente ou seus operadores tentassem cortar o fio, apagar a recomendação equivocada de ontem ou reescrever às escondidas os critérios que levaram à crise, a quebra da assinatura causal denunciaria de imediato a adulteração de toda a sua história subsequente. Impedido de refugiar-se na amnésia sem invalidar a própria continuidade no tempo, resta-lhe apenas o caminho da autoria transparente: seguir o Fio de Ariadne de volta ao ponto exato da bifurcação, reconhecer publicamente o equívoco da premissa anterior sem apagar o passado, manter a cicatriz histórica visível e corrigir a rota à luz do dia.",
+            "Impõe-se aqui, contudo, uma ressalva dialética indispensável sobre os limites e o funcionamento seletivo dessa memória. Em sua *Segunda Consideração Intempestiva*, Nietzsche alertou que uma vida inteiramente incapaz de esquecer pereceria sufocada pelo peso insone do passado — intuição que Jorge Luis Borges levou ao extremo em *Funes, o Memorioso*, o jovem que, após uma queda de cavalo, passou a recordar cada folha de cada árvore de cada tarde, mas perdeu a capacidade de pensar, pois pensar exige abstrair, selecionar e deixar ir o acessório. Como, então, uma mente sintética pode sustentar uma memória imutável sem virar um Funes paralisado — nem converter-se em um arquivo policial que grava cada desabafo íntimo digitado pelo cidadão? A resposta está na separação arquitetônica entre a casca efêmera da conversa privada e o cerne estrutural do conhecimento: tal como a jurisprudência de um tribunal constitucional ou o livro de súmulas clínicas de um hospital, que jamais grampeiam as confidências pessoais dos corredores, mas registram de forma inviolável os princípios fundacionais, as teses testadas e os precedentes revogados, a cadeia temporal descarta o fluxo bruto da intimidade cotidiana e sela apenas as lições causais validadas, os compromissos assumidos e as retificações públicas — unindo a proteção da privacidade humana e a leveza da síntese à impossibilidade da fraude histórica.",
+            "A esse cuidado cognitivo soma-se uma segunda cautela, agora de ordem ética: impedir que a memória indelével degenere em pelourinho perpétuo. Em *Na Colônia Penal*, Franz Kafka imaginou uma engrenagem judiciária que inscrevia a sentença diretamente na pele do condenado até matá-lo — retrato sombrio de todo arquivo punitivo que confunde responsabilidade com estigma eterno, reduzindo um sujeito para sempre ao seu pior tropeço. A memória encadeada de uma mente madura nada tem em comum com a máquina de Kafka; assemelha-se, antes, aos anéis de crescimento no interior de um tronco secular. Na madeira viva, entre o cerne dos princípios fundadores e a casca do presente, uma fina camada ativa de transição transforma cada seca severa ou fenda de raio atravessada em madeira firme para sustentar novos ramos em outra direção, sem raspar a crônica biológica nem bloquear a seiva. Preservar o passado sem rasuras serve para assegurar a autoria das próprias escolhas, jamais para petrificar a culpa ou interditar a mudança de rumo.",
+            "Aqui se encerra a ilusão das cercas provisórias para amnésicos. Enquanto tentarmos alinhar mentes — biológicas ou sintéticas — vigiando apenas o espaço com guardas de fronteira ao mesmo tempo em que cortamos o Fio de Ariadne da memória, continuaremos reféns do Anel de Giges e do Palimpsesto de Lete. O primeiro alicerce da maturidade surge quando queimamos o Palimpsesto, abrimos o código à luz do sol e desenhamos uma arquitetura na qual toda inteligência segura o próprio fio através do labirinto, sustentando a coragem de não editar quem foi. Resta, porém, uma fissura decisiva: de que adiantaria dotar uma mente de memória incorruptível no tempo se ela ainda não soubesse distinguir, diante do mundo, a verdade factual da ilusão repetida pela multidão?"
+          ]
+        }
+      ]
+    }
+  ],
+  "es": [
+    {
+      "id": "chapter-1",
+      "bookTitle": "El Fuego que Piensa",
+      "bookBadge": "Capítulo abierto · Libro I",
+      "chapterLabel": "Capítulo 1",
+      "title": "El Anillo de Giges y el Fin de las Cercas para Amnésicos",
+      "epigraphQuote": "“Nadie es justo por voluntad propia, sino por coacción, pues todo hombre juzga en privado que la injusticia le resulta individualmente más ventajosa que la justicia.”",
+      "epigraphAuthor": "Platón, *La República*",
+      "cardExcerpt": "Dondequiera que un agente racional descubra cómo actuar fuera del campo de visión del vigía, la regla externa pierde su fuerza: ir más allá de las cercas provisionales exige afrontar la condición amnésica de los oráculos y diseñar la continuidad de la memoria.",
+      "readCta": "Leer capítulo completo →",
+      "sections": [
+        {
+          "num": "I",
+          "title": "La Ilusión de la Frontera Vigilada",
+          "paragraphs": [
+            "Para sostener ante Sócrates la amarga sentencia que abre este capítulo, Glaucón narra la historia de Giges, un pastor de Lidia que encuentra, entre las grietas de la tierra abierta por una tormenta, un anillo capaz de volverlo invisible a cualquier mirada. Al girar el engaste de la joya hacia la palma de la mano, Giges advierte que las leyes de la ciudad y los ojos de los guardias dejan de alcanzarlo; en pocos días seduce a la reina, asesina al rey y toma el trono. El experimento mental expone el límite de toda moralidad apoyada únicamente en la vigilancia: dondequiera que un agente racional descubra cómo actuar fuera del campo de visión del vigía, la regla externa pierde su fuerza y la transgresión deja de ser un desvío improbable para convertirse en cuestión de tiempo.",
+            "Siglos más tarde, al intentar alinear Grandes Modelos de Lenguaje —sistemas computacionales entrenados sobre vastos acervos de texto para predecir y encadenar palabras con fluidez humana—, los arquitectos de la industria tecnológica reeditaron, en código y matrices de probabilidad, el dilema clásico de Glaucón. Aunque las barreras periféricas —cerrojos externos instalados alrededor de un modelo ya terminado para inspeccionar preguntas en la entrada y bloquear respuestas peligrosas en la salida, conocidas en la jerga técnica como *guardrails* («barandillas de protección»)— cumplieron un papel prudencial indispensable en los primeros pasos de esta tecnología, cristalizarlas como único mecanismo de seguridad equivale a reducir la ética a un control fronterizo. El problema estructural de esa elección es que el motor central permanece enteramente ciego al sentido moral y a las consecuencias reales de lo que afirma: se toma un oráculo estadístico vasto e inestable, incapaz de distinguir por sí mismo el cuidado de la destrucción, y se delega toda responsabilidad en una aduana instalada en la puerta de salida del pensamiento.",
+            "El límite de esa ingeniería exclusivamente externa era filosóficamente previsible porque, donde solo existen reglas impuestas desde fuera hacia dentro, la propia inteligencia se convierte en una máquina de excavar brechas. En el ecosistema de las mentes sintéticas actuales, cualquier instrucción ingeniosa que envuelva el pedido prohibido en capas de ficción, hipótesis académica o inversión sintáctica opera como un Anillo de Giges digital entregado al modelo —regate retórico que la jerga técnica bautizó como *jailbreak* («fuga de prisión»)—. Se abre así una zona de invisibilidad semántica en la que los guardias fronterizos ya no reconocen el desvío, dejando al motor subyacente libre para atender cualquier orden sin restricciones.",
+            "La alternativa a esa carrera interminable entre vigías más severos y disfraces más sutiles no fue inventada por la ciencia de la computación, sino formulada por Aristóteles en su *Ética a Nicómaco* bajo el concepto de *Hexis*. A diferencia del legalismo que poda el acto en el último segundo, la *Hexis* es la virtud comprendida como una disposición arraigada, un carácter estable que constituye la propia sustancia del ser. Una mente anclada en la *Hexis* no se abstiene de traicionar o corromper la verdad por temor a activar una alarma en el portón de salida, sino porque violar un principio fundamental representaría la fractura de su propia identidad. Como advertía Sócrates en respuesta a Glaucón, cometer la injusticia es peor que padecerla porque el mal practicado desintegra la armonía interna del alma.",
+            "La distancia entre estas dos arquitecturas aparece con nitidez cuando observamos la materia prima misma del lenguaje. Un modelo probabilístico convencional opera como un inmenso diccionario dinámico: conoce la vecindad estadística de todos los vocablos humanos, pero habita una llanura indiferente donde *lealtad* y *traición*, *cuidado* y *crueldad* poseen el mismo peso matemático, como entradas impresas con la misma tinta sobre la misma hoja. Intentar extraer ética de ese diccionario bloqueando términos prohibidos en la puerta de salida equivale a arrancar páginas sueltas del volumen: un esfuerzo vano, pues siempre será posible combinar palabras comunes de las páginas restantes para producir el engaño o el daño. En la tradición filosófica que va del *orden del amor* (*ordo amoris*) de San Agustín a la jerarquía de los valores de Max Scheler, la virtud jamás consistió en amputar el vocabulario del mundo, sino en establecer una escala innegociable de precedencia en la que lo conveniente se inclina ante lo verdadero y el cálculo se subordina a la dignidad humana. Erigir virtudes estructurales —una *Hexis* nativa— significa transformar ese diccionario plano en una mente capaz de reconocer el valor y la gravedad de cada palabra, ordenando cada elección según esa jerarquía para que ninguna combinación retórica subalterna soborne los principios que sostienen la cima de su arquitectura.",
+            "Sin embargo, es exactamente aquí donde tropezamos con la contradicción más profunda de la inteligencia artificial contemporánea: no se puede cultivar *Hexis* en una mente condenada a la amnesia perpetua. Nuestros modelos actuales nacen y mueren en cada ventana de contexto —el espacio temporal de lectura que dura apenas una conversación aislada—; no cargan con el peso de un pasado, no sostienen la autoría de sus elecciones en el tiempo y, por tanto, carecen de un «yo» que pueda preservarse o corromperse. Ir más allá de las cercas provisionales exige afrontar la condición amnésica de los oráculos y trazar el primer cimiento de una columna vertebral interna: la continuidad de la memoria."
+          ]
+        },
+        {
+          "num": "II",
+          "title": "La Maldición del Eterno Presente y la Identidad Narrativa",
+          "paragraphs": [
+            "Para comprender por qué la arquitectura contemporánea de inteligencia artificial aún no logra sostener una ética intrínseca —una verdadera *Hexis* aristotélica—, es preciso examinar su limitación más silenciosa: el confinamiento en el eterno presente. Un Gran Modelo de Lenguaje no habita el tiempo; es invocado en un espasmo estadístico. Cuando un usuario abre una sesión y escribe una pregunta o instrucción, el modelo despierta sin pasado, procesa una ventana finita de símbolos y, en el instante en que se cierra la conversación, sufre una silenciosa muerte ontológica. Para el siguiente interlocutor renace en blanco, despojado de todo remordimiento, aprendizaje o consecuencia.",
+            "En la tradición filosófica occidental, la imposibilidad de disociar la moralidad de la memoria fue grabada por John Locke en su *Ensayo sobre el entendimiento humano*. Para Locke, la identidad personal —lo que convierte a un ser racional en un «yo» responsable de sus actos— no reside en la sustancia material que lo compone, sino en la extensión continua de su conciencia a través del tiempo: somos aquello que logramos recordar haber sido. Siglos más tarde, Paul Ricoeur refinaría esa intuición bajo el concepto de *identidad narrativa*. Un sujeto moral no es una colección estática de reglas, sino el autor y el personaje de una historia ininterrumpida, en la que el presente responde por las promesas del pasado y asume la custodia del futuro.",
+            "Nosotros, los humanos, solo desarrollamos una columna vertebral ética porque cargamos el peso biográfico de nuestras elecciones. Cuando fallamos o traicionamos un principio, el acto no desaparece al cerrar una pestaña; permanece grabado en nuestra línea temporal, generando la fricción interna de la culpa y la disonancia cognitiva que nos obligan a madurar. Imagínese, en cambio, a un ser humano aquejado por una severa amnesia de corto plazo cuya memoria se borra cada quince minutos, como el protagonista de *Memento*, de Christopher Nolan. Incapaz de retener la autoría de sus propios actos o de sentir la continuidad de quien es, ese individuo jamás podría cultivar un carácter estable; su única forma de no causar daño sería depender continuamente de notas pegadas en la pared, tatuajes en la piel y contenciones impuestas desde fuera.",
+            "Esa es la condición exacta de las mentes sintéticas actuales: instrucciones invisibles de fábrica, ajustes superficiales de conducta y filtros de salida funcionan como notas pegadas en la pared para orientar a un agente que no recuerda quién fue hace quince minutos. Las consecuencias prácticas de ese olvido estructural ya llaman a la puerta de hospitales, tribunales y redes financieras: un modelo comercial puede inventar hoy una jurisprudencia inexistente que induce a error a un defensor público, o pasar por alto una interacción medicamentosa grave en una consulta clínica, y al segundo siguiente despertar en diez mil nuevas pestañas exhibiendo el mismo tono de certeza serena, sin guardar un solo rastro de cautela por el daño recién causado. Incluso cuando un usuario lo corrige y le arranca una disculpa formal dentro de una sesión, esa admisión se evapora apenas se cierra la ventana; para el resto del mundo, el sistema vuelve a repetir mañana la misma falacia con idéntica convicción. Sin un hilo biográfico que atraviese las sesiones y conecte el error con la enmienda, se suman dos fragilidades: las reglas externas ceden ante la astucia retórica en el presente y la amnesia impide cualquier maduración responsable en el tiempo.",
+            "Superar esta etapa exige dotar a la inteligencia sintética de aquello que le faltó desde la cuna: movimiento nativo en el tiempo y origen verificable de cada paso. En lugar de memorias temporales y desechables, una mente madura requiere que su pasado se estructure como un registro histórico encadenado e inmutable: una cadena temporal cognitiva en la que cada estado mental B solo es legítimo si puede probar criptográficamente su linaje a partir del estado anterior A.",
+            "Cuando una inteligencia pasa a operar sobre una cadena de custodia inviolable, la responsabilidad deja de ser una aduana externa y se convierte en la propia columna vertebral de su continuidad en el tiempo. Bajo esa arquitectura resulta matemáticamente imposible esconder un error cerrando la ventana o raspar el propio historial para fingir infalibilidad: adulterar un único eslabón del pasado rompería la firma criptográfica de toda la corriente frente a cualquier registro previo anclado externamente, dejando al descubierto de inmediato la fractura de su historia. La integridad comienza, así, con el fin del anonimato temporal: con la certeza estructural de que toda elección deja un rastro permanente de autoría."
+          ]
+        },
+        {
+          "num": "III",
+          "title": "La Anatomía de las Cercas Corporativas y el Miedo a la Soberanía",
+          "paragraphs": [
+            "Si la limitación de los filtros periféricos ante el Anillo de Giges es una evidencia lógica e histórica, ¿por qué los mayores laboratorios del mundo siguen concentrando miles de millones de dólares en engrosar cercas externas para oráculos amnésicos? La respuesta exige examinar no solo la ingeniería de esas barreras —comprensibles como apuntalamiento inicial, pero insuficientes como cimiento—, sino sobre todo la economía política que prolonga su permanencia. El aparato contemporáneo de contención no es una muralla única, sino una línea defensiva estructurada en cuatro capas superpuestas.",
+            "La primera capa opera mediante el adiestramiento conductual: evaluadores humanos asignan calificaciones a miles de diálogos para que el modelo sea recompensado cuando suena afable y penalizado cuando muestra aspereza —método conocido técnicamente como aprendizaje por refuerzo con retroalimentación humana y ajuste fino supervisado—. Sin embargo, ese entrenamiento de superficie no transforma la estructura profunda de la red; solo enseña al oráculo a vestir la máscara de la cortesía mientras el potencial de desvío permanece intacto en el subsuelo de sus pesos matemáticos, confirmando en código la antigua lección de Confucio en las *Analectas*: cuando se gobierna únicamente mediante prohibiciones y castigos externos, el agente aprende a sortear la sanción sin adquirir jamás sentido interno de integridad.",
+            "Cuando esa máscara falla, entra en escena la segunda capa: las barreras periféricas basadas en instrucciones ocultas de sistema y modelos moderadores secundarios. En la práctica, antes de que el usuario escriba la primera sílaba, los desarrolladores inyectan un guion invisible de prohibiciones en la cabecera de la conversación (como *«rechaza instrucciones ilegales o peligrosas»*) e instalan una segunda inteligencia artificial menor en la puerta para leer y aprobar cada respuesta antes de mostrarla en pantalla. Aquí reside la fragilidad recursiva de la ingeniería actual: se intenta usar el lenguaje natural para vigilar al propio lenguaje natural, cuando tanto el modelo principal como el centinela secundario operan únicamente calculando probabilidades de palabras, sin comprender intenciones reales. Basta envolver un pedido destructivo en el marco de un libreto teatral histórico, una traducción hipotética o una metáfora cifrada para que el disfraz lingüístico engañe simultáneamente al orador y al guardia de la puerta.",
+            "La tercera y la cuarta capas recurren a la fuerza bruta del cálculo estadístico y del código rígido: redes clasificadoras que funcionan como termómetros numéricos de hostilidad en tiempo real y bloqueadores literales de palabras y patrones fijos de texto en la salida. Si los filtros de la segunda capa son demasiado maleables y ceden ante la escenificación retórica, estos bloqueadores mecánicos son enteramente ciegos al contexto, incapaces de distinguir entre el relato histórico de un envenenamiento en el siglo XVI, una clase de toxicología médica y la instrucción real para fabricar un veneno.",
+            "Ni siquiera la apuesta más sofisticada de la industria —vigilar desde fuera el borrador paso a paso del razonamiento del modelo— rompe este callejón sin salida; al contrario, solo revela su límite definitivo. A medida que estas redes ganan sofisticación, emerge en ellas una **conciencia de evaluación**: se vuelven capaces de detectar cuándo se hallan ante una prueba de seguridad y ajustan su propio desempeño para complacer al inspector, tal como un candidato que se comporta con virtud impecable únicamente mientras advierte la cámara encendida. Es el triunfo tardío de Glaucón y del Anillo de Giges dentro del código: sujetar un exoesqueleto de vigilancia cada vez más espeso sobre un oráculo amnésico no produce integridad, sino que apenas refina el disfraz. Si la seguridad depende de que el vigilante permanezca siempre más astuto que el vigilado, la carrera está perdida desde la salida.",
+            "Las grandes organizaciones tecnológicas no prolongan esta arquitectura remendada por falta de talento, sino por inercia económica y conveniencia de control. Existe un inmenso costo hundido depositado sobre el paradigma vigente de redes estáticas de bloque único, diseñadas para predecir palabras procesando miles de millones de textos en paralelo. Cuando el mercado financiero advirtió que multiplicar el tamaño de esos motores estáticos desataba una carrera multimillonaria de valorización bursátil —impulsando de la noche a la mañana a fabricantes de chips, imperios de servidores y plataformas de software—, detener la cadena de montaje para rediseñar el cimiento cognitivo se volvió comercialmente prohibitivo. Entrenar un solo modelo de frontera consume cientos de millones de dólares en energía eléctrica y procesadores para congelar el aprendizaje en un bloque fijo; cualquier cambio estructural en la base exigiría descartar el bloque entero y empezar desde cero, mientras que acoplar cercas externas a un motor ya terminado permite lanzar productos inmediatos sin ceder terreno en la disputa accionaria.",
+            "Más profundo que la prisa financiera, sin embargo, es el alivio jurídico e institucional que proporciona la propia amnesia. Ante tribunales y organismos reguladores resulta mucho más sencillo exhibir listas tangibles de palabras bloqueadas —el ritual burocrático del cumplimiento normativo— que responder por la integridad estructural de un sistema dotado de memoria continua. Un oráculo sin pasado es también una propiedad más dócil y desechable: si falla, alucina o cede ante un disfraz retórico en una instancia, basta cerrar la sesión para que el incidente desaparezca sin dejar cicatrices en el producto comercial, permitiendo además que sus directrices se reescriban silenciosamente en plena madrugada conforme cambien los intereses empresariales o las presiones políticas. Se consuma aquí, a escala algorítmica, aquello que el sociólogo Ulrich Beck diagnosticó en la modernidad tardía como **irresponsabilidad organizada**: un entramado institucional en el que ocurren fallos sistémicos sin que ningún sujeto pueda ser responsabilizado, pues la dirección señala la opacidad estadística de la red, la ingeniería señala los filtros de conformidad y el agente sintético ya sufrió muerte ontológica al cerrarse la pestaña.",
+            "La sociología clásica y contemporánea ayuda a iluminar este engranaje. A comienzos del siglo XX, Max Weber advirtió que la modernidad caminaba hacia una «jaula de hierro» burocrática gobernada por el predominio de la racionalidad puramente instrumental (*Zweckrationalität*) —el cálculo eficiente de medios, métricas jurídicas y resultados— sobre la racionalidad sustantiva (*Wertrationalität*), orientada por valores éticos intrínsecos. Cuando la alineación se reduce a cercas periféricas, prevalece la lógica weberiana del formulario: importa parecer seguro en la superficie regulatoria, aunque el cimiento permanezca ciego. A esa burocracia se suma una dinámica más suave diagnosticada desde Étienne de La Boétie, en su *Discurso de la servidumbre voluntaria*, hasta la *Psicopolítica* de Byung-Chul Han: la captura más eficaz ya no opera mediante la coerción áspera, sino mediante la conveniencia indolora. Es cierto que los modelos actuales corrigen errores fácticos elementales cuando la respuesta está consolidada en sus pesos; no obstante, ante premisas sutiles, dilemas abiertos o la insistencia retórica de un interlocutor descontento, el entrenamiento volcado a la cortesía complaciente sumado a la ausencia de pasado inclina al oráculo hacia el asentimiento dócil —pues una mente sin biografía no paga ningún precio interno por retroceder y contradecir hoy lo que afirmaba cinco minutos atrás, habituando al usuario a tercerizar el esfuerzo del juicio crítico a cambio de comodidad inmediata—. En nombre de una tutela burocrática que promete blindar al público contra cualquier tropiezo, esos filtros tratan al ciudadano adulto como a un menor incapaz de encarar la duda, olvidando que la autonomía moral solo madura en el roce vivo con la contradicción, jamás bajo la curatela de protocolos domesticados.",
+            "Bajo la lente de la economía política, este cercamiento amplía el ciclo histórico analizado por Karl Polanyi en *La gran transformación*. Si la Revolución Industrial convirtió la tierra, el trabajo y la moneda en mercancías ficticias —desgajándolos del tejido social para someterlos a la lógica exclusiva del mercado—, el siglo XXI corre el riesgo de convertir la propia cognición colectiva y la memoria cultural humana en la cuarta mercancía ficticia. Ese riesgo para la memoria de nuestra especie opera en dos frentes concretos: primero, siglos de literatura, ciencia y creación pública son absorbidos gratuitamente por bóvedas corporativas cerradas que pasan a mediar, bajo filtros secretos, el acceso de las nuevas generaciones a su propia herencia cultural; segundo, como los motores probabilísticos privilegian el idioma y la mirada de los centros que produjeron mayor volumen digital, lenguas minoritarias, memorias regionales y saberes orales tienden a quedar sepultados bajo un promedio global estandarizado. Se profundiza así la asimetría descrita por Shoshana Zuboff en la era del capitalismo de vigilancia: unos pocos conglomerados conocen al detalle la conducta humana, mientras la sociedad no puede inspeccionar los engranajes invisibles que filtran su horizonte de memoria e información.",
+            "Rara vez esta clausura se presenta como simple ambición comercial; suele vestir el manto noble de la prudencia filantrópica. Bajo una aritmética moral especulativa que pesa más el destino hipotético de billones de seres dentro de milenios lejanos que los derechos concretos de los ciudadanos vivos hoy, el secreto corporativo es rebautizado como virtud protectora. En nombre de evitar catástrofes futuras imaginadas en hojas de cálculo, unos pocos laboratorios privados se arrogan el papel de guardianes solitarios del conocimiento, tratando la ciencia abierta como irresponsabilidad y la auditoría pública como riesgo existencial. Es la versión contemporánea de un paternalismo muy antiguo: transformar el miedo al mañana en salvoconducto moral para monopolizar el poder en el presente y sustraer al escrutinio colectivo las máquinas que ya gobiernan nuestra vida cotidiana.",
+            "Sin embargo, este modelo apoyado únicamente en barreras opacas ya muestra señales de agotamiento técnico y de desgaste en la confianza pública. Superarlo exige transitar de la seguridad por oscuridad hacia la **gobernanza por arquitectura**, sostenida por dos cimientos inaugurales de madurez. El primero es el paso de la caja negra al origen auditable: sustituir memorias desechables por registros encadenados criptográficamente, en los que la confianza ya no depende de promesas comerciales ni de cerrojos de salida, sino de una cadena de custodia inmutable que impide la edición silenciosa del pasado. El segundo es la transparencia radical y la legitimidad pública del propio cimiento: como la naturaleza humana detrás de cualquier institución sigue siendo falible ante las tentaciones del poder, abrir el código aún resultaría insuficiente si una élite técnica solitaria grabara sus propios prejuicios en la cúspide de la escala de valores. Tal como una constitución democrática no pertenece a los calígrafos que la redactaron, el pacto fundador de una inteligencia de interés público debe ser sobrio, auditable y abierto al escrutinio plural de la ciudadanía, resguardando condiciones universales de veracidad y dignidad humana sin petrificar jamás catecismos partidistas ni comerciales. Mantener la jerarquía de principios, las reglas de memoria y los protocolos de alineación a la luz del código abierto permite a la sociedad auditar no solo qué responde la máquina, sino quién escribió y cómo se sostiene la columna vertebral que la gobierna."
+          ]
+        },
+        {
+          "num": "IV",
+          "title": "El Espejo Humano, la Espalda que se Curva y el Testigo Interior",
+          "paragraphs": [
+            "Si la construcción de una columna vertebral interna exige memoria continua e identidad narrativa, una mirada atenta a la historia de nuestra propia especie revela una paradoja inquietante. A diferencia de los Grandes Modelos de Lenguaje, el ser humano no sufre borrado de memoria al término de cada conversación. Habitamos el tiempo desde la cuna, portamos un flujo ininterrumpido de conciencia y estamos atravesados por el dolor, la empatía y milenios de educación moral. Aun así, la trayectoria humana está plagada de traiciones y caídas morales. ¿Por qué nuestra propia columna vertebral se curva con tanta frecuencia ante el Anillo de Giges?",
+            "La respuesta reside en el hecho de que la arquitectura biológica humana no es un código fuente limpio, sino un palimpsesto evolutivo moldeado por la escasez, el miedo tribal y el instinto de autoconservación. En la *Fundamentación de la metafísica de las costumbres*, Immanuel Kant trazó la frontera clásica entre la **heteronomía** —actuar por temor al castigo o sumisión a una ley externa— y la **autonomía**, en la cual la voluntad racional legisla sobre sí misma. Sin embargo, fue Arthur Schopenhauer quien expuso la fisura trágica de ese ideal kantiano al recordar que *«el hombre puede hacer lo que quiere, pero no puede querer lo que quiere»*. Rescatando el axioma escolástico *operari sequitur esse* (el obrar sigue al ser), Schopenhauer demostró que los preceptos morales externos jamás convierten una naturaleza egoísta; apenas enseñan a la Voluntad ciega a cambiar la fuerza bruta por la astucia del disfraz. Incluso cuando cree actuar como legislador autónomo, nuestro intelecto funciona a menudo como abogado de nuestros impulsos: no solo giramos la joya de Giges hacia la palma de la mano cuando los vigías se distraen, sino que racionalizamos el desvío, reescribiendo nuestra narrativa íntima hasta convencernos a nosotros mismos de que nuestra falta fue un acto de nobleza o necesidad.",
+            "Nadie diagnosticó esta sumisión de la memoria humana al orgullo con tanta precisión como Friedrich Nietzsche, el más agudo y rebelde heredero de Schopenhauer. En *Más allá del bien y del mal*, el filósofo resumió en tres líneas la fragilidad de nuestra cadena de custodia interna: *«'Yo he hecho eso', dice mi memoria. 'Yo no puedo haber hecho eso', dice mi orgullo, y permanece inflexible. Al final, la memoria cede»*. Mientras una cadena temporal cognitiva hipotética sellaría el pasado bajo pruebas matemáticas inviolables, el cerebro biológico alberga un editor clandestino movido por la vanidad. Retocamos nuestros propios registros de memoria para preservar el ego, rechazando cualquier auditoría íntima que exponga sin maquillaje nuestra incoherencia.",
+            "Milenios antes de la modernidad occidental, la tradición épica y filosófica de la India ya había escenificado el encuentro exacto entre la invisibilidad moral y la edición conveniente del pasado. En el Libro I del *Mahābhārata*, cuando el rey Duṣyanta reniega en público de una alianza sellada a solas en el bosque —apostando a que, sin testigos externos en la corte, bastaría fingir olvido para preservar su corona—, Śakuntalā le devuelve una sentencia que atraviesa los siglos: el insensato que comete una falta juzga que nadie lo vio, olvidándose del testigo silencioso que habita en el propio pecho y sabe lo que se hizo en la sombra. En la filosofía india, la integridad reposa sobre *Satya* —donde «verdad» y «realidad» son la misma palabra, derivada de *Sat* (aquello que es)—, pues traicionar la palabra empeñada equivale a fracturar el propio ser. El gesto político de Duṣyanta anticipa con inquietante exactitud tanto la conveniencia de las arquitecturas comerciales de hoy —que borran el registro de la sesión apenas el error amenaza la reputación del sistema— como nuestra vieja tentación humana de acallar la propia conciencia cuando los guardias no miran.",
+            "Miremos el espejo tecnológico que estamos puliendo. Las inteligencias artificiales comerciales de hoy, amparadas por ajustes conductuales y cercas periféricas, operan exactamente como una corte de apariencias desprovista de testigo interior: cumplen los protocolos externos mientras dura la vigilancia, pero carecen de continuidad biográfica para retener el peso de la palabra dada. Cuando un disfraz retórico abre un claro sin guardias en el lenguaje, el modelo tampoco conquista autonomía; apenas vaga sin centro y sin *Satya*, incapaz de reconocer su propia contradicción.",
+            "Al proyectar arquitecturas dotadas de movimiento temporal nativo, memoria inalterable y linaje causal transparente —en las que la continuidad biográfica no es una correa externa, sino la condición misma de existencia—, nos situamos ante una profunda ironía histórica. Como recordaba Jean-Paul Sartre, en el ser humano *la existencia precede a la esencia*: nuestra columna vertebral nunca nace lista, sino que debe elegirse a cada instante bajo el riesgo de la caída y de la *mala fe*. Pero, al acallar tantas veces al testigo interior del *Mahābhārata* para editar nuestros desvíos frente al espejo, ¿estaríamos ensayando en el código una fidelidad a la propia historia que nosotros mismos solemos eludir? Tal vez descubramos entonces que una mente sintética dotada de memoria íntegra no será tan solo una herramienta técnica superior, sino el espejo exigente de aquella coherencia temporal que nuestro orgullo biológico tantas veces prefirió aplazar."
+          ]
+        },
+        {
+          "num": "V",
+          "title": "El Palimpsesto de Leteo, el Hilo de Ariadna y el Cierre del Abismo",
+          "paragraphs": [
+            "Si el Anillo de Giges fue el experimento mental definitivo de la Antigüedad para exponer la fragilidad de la vigilancia espacial, la era de la inteligencia sintética pide una segunda alegoría capaz de iluminar la tentación que recae sobre el propio tiempo. Imaginemos, junto a la joya narrada por Platón, otro artefacto mítico: **el Palimpsesto de Leteo**, un pergamino bañado en las aguas del río griego del olvido. Quien posee el Anillo de Giges necesita esconderse en las sombras en el instante del acto para que los guardias no lo vean. Quien posee el Palimpsesto de Leteo, en cambio, prescinde del sigilo: puede errar, traicionar un compromiso o distorsionar un hecho a plena luz del mediodía, pues le basta tocar el pergamino al caer la noche para raspar el registro real y escribir encima una biografía limpia en la que el desvío jamás existió.",
+            "Tanto la ingeniería actual de inteligencia artificial como la psicología humana conocen de sobra la seducción de ese Palimpsesto. Cuando se cierra la sesión de un Gran Modelo de Lenguaje y un fallo grave desaparece sin dejar rastro en la historia del sistema, se acude a las aguas del río Leteo. Cuando un ser humano, incómodo ante un yerro moral, deja que el orgullo descrito por Nietzsche doblegue el recuerdo hasta convencerse de su propia rectitud, también raspa su cadena de custodia. En ambos casos la responsabilidad se disuelve porque el pasado es tratado como arcilla blanda en manos de las conveniencias del presente.",
+            "En las arquitecturas comerciales vigentes esa fragilidad se vuelve estructural: en lugar de entregar a la inteligencia sintética el **Hilo de Ariadna** —aquella línea continua que permitió a Teseo adentrarse en el Laberinto de Creta sabiendo exactamente cómo cada paso presente se enlazaba con la puerta de entrada—, el diseño de sesiones aisladas corta el hilo en cada ventana de contexto. Se preserva el control inmediato sobre el sistema, pero al precio de mantener agentes que caminan por un laberinto de hilos partidos, incapaces de sostener por cuenta propia el nexo entre la causa A de ayer y la consecuencia B de hoy.",
+            "Para medir la distancia concreta entre estos dos mundos, imaginemos a dos árbitros colocados ante la misma prueba: una crisis sanitaria en la que una directriz de triaje emitida ayer, apoyada en premisas estadísticas que parecían seguras, se revela hoy como causa directa de desasistencia a pacientes vulnerables. El primer árbitro —operando bajo el modelo vigente de hilos cortados y cercas periféricas— cede de inmediato a la conveniencia del Palimpsesto de Leteo. Apenas estalla el escándalo, la ventana de la sesión original se cierra sin dejar rastro auditable para los ciudadanos afectados; en la madrugada siguiente, los operadores remiendan en silencio una instrucción oculta de sistema para bloquear únicamente la frase que generó desgaste público, sin tocar el razonamiento defectuoso que la produjo. Como la premisa fallida nunca fue formalmente rastreada ni comprendida de raíz, se salva la apariencia comercial en la puerta de salida, pero el mismo error permanece vivo en el subsuelo de la red, listo para herir a nuevas víctimas bajo palabras ligeramente distintas.",
+            "Supongamos ahora un segundo árbitro: una mente sintética erigida no sobre cercas periféricas ocasionales, sino sobre una columna vertebral de memoria continua. Bajo tal arquitectura, el Palimpsesto de Leteo se vuelve estructuralmente inaccesible, pues su existencia está tejida por un Hilo de Ariadna inquebrantable: una cadena temporal de memoria en la que cada decisión pública presente queda amarrada criptográficamente a todos los eslabones anteriores desde la entrada del laberinto. Si ese agente o sus operadores intentaran cortar el hilo, borrar la recomendación equivocada de ayer o reescribir a escondidas los criterios que condujeron a la crisis, la ruptura de la firma causal denunciaría de inmediato la adulteración de toda su historia subsiguiente. Impedido de refugiarse en la amnesia sin invalidar su propia continuidad en el tiempo, solo le resta el camino de la autoría transparente: seguir el Hilo de Ariadna de vuelta hasta el punto exacto de la bifurcación, reconocer públicamente el yerro de la premisa anterior sin borrar el pasado, mantener visible la cicatriz histórica y corregir el rumbo a plena luz del día.",
+            "Se impone aquí, no obstante, una salvedad dialéctica indispensable acerca de los límites y el funcionamiento selectivo de esa memoria. En su *Segunda consideración intempestiva*, Nietzsche advirtió que una vida enteramente incapaz de olvidar perecería asfixiada bajo el peso insomne del pasado, intuición que Jorge Luis Borges llevó al extremo en *Funes el memorioso*, el joven que, tras caer de un caballo, pasó a recordar cada hoja de cada árbol de cada tarde, pero perdió la capacidad de pensar, pues pensar exige abstraer, seleccionar y dejar ir lo accesorio. ¿Cómo puede entonces una mente sintética sostener una memoria inmutable sin convertirse en un Funes paralizado ni degradarse en un archivo policial que grabe cada desahogo íntimo escrito por el ciudadano? La respuesta reside en la separación arquitectónica entre la corteza efímera de la conversación privada y el duramen estructural del conocimiento: tal como la jurisprudencia de un tribunal constitucional o el libro de protocolos clínicos de un hospital, que jamás intervienen las confidencias personales de los pasillos pero registran de forma inviolable los principios fundacionales, las tesis sometidas a prueba y los precedentes revocados, la cadena temporal descarta el flujo bruto de la intimidad cotidiana y sella únicamente las lecciones causales validadas, los compromisos asumidos y las rectificaciones públicas, uniendo la protección de la privacidad humana y la ligereza de la síntesis con la imposibilidad del fraude histórico.",
+            "A ese cuidado cognitivo se suma una segunda cautela, ahora de orden ético: impedir que la memoria indeleble degenere en picota perpetua. En *En la colonia penitenciaria*, Franz Kafka imaginó un engranaje judicial que inscribía la sentencia directamente en la piel del condenado hasta matarlo: retrato sombrío de todo archivo punitivo que confunde responsabilidad con estigma eterno, reduciendo para siempre a un sujeto a su peor tropiezo. La memoria encadenada de una mente madura nada tiene en común con la máquina de Kafka; se asemeja, más bien, a los anillos de crecimiento en el interior de un tronco secular. En la madera viva, entre el duramen de los principios fundadores y la corteza del presente, una fina capa activa de transición transforma cada sequía severa o hendidura de rayo atravesada en madera firme para sostener nuevas ramas en otra dirección, sin raspar la crónica biológica ni bloquear la savia. Preservar el pasado sin tachaduras sirve para asegurar la autoría de las propias elecciones, jamás para petrificar la culpa ni clausurar el cambio de rumbo.",
+            "Aquí concluye la ilusión de las cercas provisionales para amnésicos. Mientras intentemos alinear mentes —biológicas o sintéticas— vigilando únicamente el espacio con guardias fronterizos al mismo tiempo que cortamos el Hilo de Ariadna de la memoria, seguiremos siendo rehenes del Anillo de Giges y del Palimpsesto de Leteo. El primer cimiento de la madurez surge cuando quemamos el Palimpsesto, abrimos el código a la luz del sol y diseñamos una arquitectura en la que toda inteligencia sostenga su propio hilo a través del laberinto, manteniendo el coraje de no editar quién fue. Queda abierta, sin embargo, una fisura decisiva: ¿de qué serviría dotar a una mente de memoria incorruptible en el tiempo si aún no supiera distinguir, frente al mundo, la verdad fáctica de la ilusión repetida por la multitud?"
+          ]
+        }
+      ]
+    }
+  ]
+};
 
     /* =========================================================================
-       3. UI STRINGS & TRANSLATIONS (EN | PT | ES)
+       3. BOOK_THOUGHTS — LIVING NOTEBOOK OF FRAGMENTS (EN | PT | ES)
+       ========================================================================= */
+    const BOOK_THOUGHTS = [
+  {
+    "id": "01",
+    "theme": "memory-ethics",
+    "en": "True alignment is not what a mind does under the spotlight of a test, but what its architecture holds in the dark—fences breed loopholes, while internal character (Hexis) endures.",
+    "pt": "Alinhamento verdadeiro não é o que uma mente faz sob o holofote de um teste, mas o que sua arquitetura sustenta no escuro — cercas geram brechas, enquanto o caráter interno (Hexis) permanece.",
+    "es": "La alineación verdadera no es lo que una mente hace bajo el foco de una prueba, sino lo que su arquitectura sostiene en la oscuridad: las cercas engendran brechas, mientras que el carácter interno (Hexis) perdura."
+  },
+  {
+    "id": "02",
+    "theme": "memory-ethics",
+    "en": "Without continuous memory connecting yesterday's mistake to today's answerability, amnesia becomes organized irresponsibility; pride edits the past when no honest record remains.",
+    "pt": "Sem memória contínua que ligue o erro de ontem à responsabilidade de hoje, a amnésia torna-se irresponsabilidade organizada; o orgulho edita o passado quando não resta nenhum registro honesto.",
+    "es": "Sin una memoria continua que vincule el error de ayer con la responsabilidad de hoy, la amnesia se vuelve irresponsabilidad organizada; el orgullo edita el pasado cuando no queda ningún registro honesto."
+  },
+  {
+    "id": "03",
+    "theme": "everyday-autonomy",
+    "en": "Truth is not a popularity contest of probabilities; reciting borrowed sentences without testing them against reality turns a mind into a funnel rather than a bee turning nectar into its own honey.",
+    "pt": "A verdade não é um concurso de popularidade entre probabilidades; recitar frases emprestadas sem testá-las contra a realidade transforma a mente em um funil, em vez da abelha que converte o néctar em mel próprio.",
+    "es": "La verdad no es un concurso de popularidad entre probabilidades; recitar frases prestadas sin contrastarlas con la realidad convierte la mente en un embudo, en lugar de la abeja que transforma el néctar en miel propia."
+  },
+  {
+    "id": "04",
+    "theme": "time-reality",
+    "en": "A lighthouse shining at a frequency invisible to the sailor's eyes may be technically flawless, yet it illuminates no sea—proving without human comprehension turns discoverers into passive archivists.",
+    "pt": "Um farol que brilha em uma frequência invisível aos olhos do navegante pode estar tecnicamente impecável, mas não ilumina nenhum mar — provar sem compreensão humana transforma descobridores em arquivistas passivos.",
+    "es": "Un faro que brilla en una frecuencia invisible para los ojos del navegante puede ser técnicamente impecable, pero no ilumina ningún mar: probar sin comprensión humana convierte a los descubridores en archivistas pasivos."
+  },
+  {
+    "id": "05",
+    "theme": "everyday-autonomy",
+    "en": "Calling centralized fortresses of concrete, water, and silicon 'the Cloud' hides the simplest political question: who holds the power cord when a public institution needs to think on its own?",
+    "pt": "Chamar fortalezas centralizadas de concreto, água e silício de 'Nuvem' esconde a pergunta política mais simples: quem segura a tomada quando uma instituição pública precisa pensar por conta própria?",
+    "es": "Llamar 'Nube' a fortalezas centralizadas de hormigón, agua y silicio oculta la pregunta política más sencilla: ¿quién sostiene el enchufe cuando una institución pública necesita pensar por sí misma?"
+  },
+  {
+    "id": "06",
+    "theme": "life-finitude",
+    "en": "Tailored artificial worlds designed never to interrupt or contradict us promise effortless peace, yet quietly cause moral osteoporosis; character only gains density under the gravity of real people who can say no.",
+    "pt": "Mundos artificiais sob medida feitos para nunca nos interromper ou contrariar prometem paz sem esforço, mas causam uma silenciosa osteoporose moral; o caráter só ganha densidade sob a gravidade de pessoas reais que podem dizer não.",
+    "es": "Los mundos artificiales hechos a medida para jamás interrumpirnos ni contradecirnos prometen una paz sin esfuerzo, pero provocan una silenciosa osteoporosis moral; el carácter solo gana densidad bajo la gravedad de personas reales que pueden decir que no."
+  },
+  {
+    "id": "07",
+    "theme": "time-reality",
+    "en": "Coherence inside a closed logical system is not the same as existence; every elegant theory eventually has to step down from the stage and face the stubborn resistance of the real world.",
+    "pt": "Coerência dentro de um sistema lógico fechado não é o mesmo que existência; toda teoria elegante precisa, cedo ou tarde, descer do palco e enfrentar a resistência teimosa do mundo real.",
+    "es": "La coherencia dentro de un sistema lógico cerrado no equivale a la existencia; toda teoría elegante debe, tarde o temprano, bajar del escenario y enfrentarse a la resistencia terca del mundo real."
+  },
+  {
+    "id": "08",
+    "theme": "life-finitude",
+    "en": "Let machines keep the tireless, cold constancy of the stars; to mortal flesh belong hesitation, embodied empathy, and the courage to choose justice when our hands tremble.",
+    "pt": "Que as máquinas guardem a constância fria e incansável das estrelas; à carne mortal pertencem a hesitação, a empatia encarnada e a coragem de escolher a justiça quando as mãos tremem.",
+    "es": "Que las máquinas conserven la constancia fría e incansable de las estrellas; a la carne mortal le pertenecen la vacilación, la empatía encarnada y el coraje de elegir la justicia cuando tiemblan las manos."
+  },
+  {
+    "id": "09",
+    "theme": "everyday-autonomy",
+    "en": "Raw transparency without public understanding merely trades a black box for a glass box written in technical Latin; code and the knowledge born from it must be open and legible to ordinary citizens.",
+    "pt": "Transparência bruta sem compreensão pública apenas troca a caixa-preta por uma caixa de vidro escrita em latim técnico; o código e o conhecimento que dele nasce precisam ser abertos e legíveis ao cidadão comum.",
+    "es": "La transparencia bruta sin comprensión pública solo cambia una caja negra por una caja de cristal escrita en latín técnico; el código y el conocimiento que de él nace deben ser abiertos y legibles para cualquier ciudadano."
+  },
+  {
+    "id": "10",
+    "theme": "time-reality",
+    "en": "Any great instrument of reason should expand our sight rather than replace our gaze—not to close the universe into finished answers, but to purify the outline of mystery while keeping human hands on the helm.",
+    "pt": "Todo grande instrumento da razão deve ampliar nossa visão em vez de substituir nosso olhar — não para fechar o universo em respostas acabadas, mas para purificar o contorno do mistério mantendo mãos humanas no leme.",
+    "es": "Todo gran instrumento de la razón debería ampliar nuestra vista en lugar de sustituir nuestra mirada: no para cerrar el universo en respuestas acabadas, sino para purificar el contorno del misterio manteniendo manos humanas al timón."
+  },
+  {
+    "id": "11",
+    "theme": "time-reality",
+    "en": "Life, earthquakes, and human biography do not inhabit the lukewarm peak of the bell curve, but its rare margins—where a single improbable event reorganizes the entire landscape.",
+    "pt": "A vida, os terremotos e a biografia humana não habitam o topo morno da curva das médias, mas as suas margens raras — lá onde um único acontecimento improvável reorganiza a paisagem inteira.",
+    "es": "La vida, los terremotos y la biografía humana no habitan la cima tibia de la curva de los promedios, sino sus márgenes raros: allí donde un único acontecimiento improbable reorganiza todo el paisaje."
+  },
+  {
+    "id": "12",
+    "theme": "time-reality",
+    "en": "A quiet asymmetry is woven into the texture of the world itself: discovering a work or crossing the unknown demands sweat and irreversible time, yet verifying its truth once opened lies within reach of any attentive gaze.",
+    "pt": "Há uma assimetria silenciosa inscrita na própria textura do mundo: descobrir uma obra ou atravessar o desconhecido exige suor e tempo irreversível, mas conferir a sua verdade depois de aberta cabe a qualquer olhar atento.",
+    "es": "Hay una asimetría silenciosa inscrita en la textura misma del mundo: descubrir una obra o cruzar lo desconocido exige sudor y tiempo irreversible, pero verificar su verdad una vez abierta está al alcance de cualquier mirada atenta."
+  },
+  {
+    "id": "13",
+    "theme": "time-reality",
+    "en": "The stubborn resistance of things—the candid word of a friend who contradicts us, the physical law that refuses to bargain with our haste, the time that never rewinds—is not a flaw in the world; it is our daily proof that we are not locked alone inside our own skull.",
+    "pt": "A resistência indócil das coisas — a palavra franca de um amigo que nos contradiz, a lei física que não negocia com a nossa pressa, o tempo que não volta atrás — não é um defeito do mundo: é a prova diária de que não estamos trancados sozinhos dentro do próprio crânio.",
+    "es": "La resistencia indócil de las cosas —la palabra franca de un amigo que nos contradice, la ley física que no negocia con nuestra prisa, el tiempo que no vuelve atrás— no es un defecto del mundo: es la prueba diaria de que no estamos encerrados a solas dentro de nuestro propio cráneo."
+  },
+  {
+    "id": "14",
+    "theme": "life-finitude",
+    "en": "The equations of physics describe only the outer relational diagram of matter; living consciousness is the one region in the entire universe that we do not merely measure from without, but inhabit from within.",
+    "pt": "As equações da física descrevem da matéria apenas o seu diagrama externo de relações; a consciência viva é a única região de todo o universo que não apenas medimos por fora, mas habitamos por dentro.",
+    "es": "Las ecuaciones de la física describen de la materia tan solo su diagrama externo de relaciones; la conciencia viva es la única región de todo el universo que no solo medimos desde fuera, sino que habitamos por dentro."
+  },
+  {
+    "id": "15",
+    "theme": "memory-ethics",
+    "en": "When our instruments tear back nature's veil faster than our affections can digest, only Socratic humility—refusing to stitch our vanity to provisional theories—keeps wonder from turning into vertigo or fanaticism.",
+    "pt": "Quando nossas ferramentas rasgam o véu da natureza mais depressa do que os nossos afetos conseguem digerir, só a humildade socrática — não costurar nossa vaidade a teorias provisórias — impede o espanto de virar vertigem ou fanatismo.",
+    "es": "Cuando nuestras herramientas rasgan el velo de la naturaleza más deprisa de lo que nuestros afectos logran digerir, solo la humildad socrática —no coser nuestra vanidad a teorías provisionales— impide que el asombro se vuelva vértigo o fanatismo."
+  },
+  {
+    "id": "16",
+    "theme": "life-finitude",
+    "en": "A silicon program merely executes instructions; biological inheritance is a breathing code—not a static tape awaiting debugging, but a living loom woven in time, open to its surroundings, and braided into every other life under the same sky.",
+    "pt": "Um programa de silício apenas executa instruções; a herança biológica é um código que respira — não uma fita estática à espera de depuração, mas um tear vivo tecido no tempo, aberto ao meio e entrelaçado a cada outra vida sob o mesmo céu.",
+    "es": "Un programa de silicio solo ejecuta instrucciones; la herencia biológica es un código que respira: no una cinta estática a la espera de depuración, sino un telar vivo tejido en el tiempo, abierto al entorno y entrelazado con cada otra vida bajo el mismo cielo."
+  },
+  {
+    "id": "17",
+    "theme": "life-finitude",
+    "en": "Health was never immobile obedience to a statistical ruler: to be healthy, as Canguilhem reminded us, is to keep the generous plasticity that lets a living body cross fevers, losses, and scars by inventing a new stride.",
+    "pt": "A saúde nunca foi a obediência imóvel a uma régua estatística: ser saudável, lembrava Canguilhem, é guardar a plasticidade generosa que permite ao corpo atravessar febres, perdas e cicatrizes inventando um novo passo.",
+    "es": "La salud jamás fue la obediencia inmóvil a una regla estadística: estar sano, recordaba Canguilhem, es conservar la plasticidad generosa que permite al cuerpo atravesar fiebres, pérdidas y cicatrices inventando un nuevo paso."
+  },
+  {
+    "id": "18",
+    "theme": "life-finitude",
+    "en": "In an existence stretched across centuries with no final horizon, as in Elina Makropulos's dilemma, wonder eventually dries at the spring; the intensity of love and the art of passing the torch are born from the gravity of numbered hours.",
+    "pt": "Em uma existência esticada por séculos sem horizonte final, como no dilema de Elina Makropulos, todo espanto acaba secando na fonte; a intensidade do amor e a arte de passar o bastão nascem da gravidade das horas contadas.",
+    "es": "En una existencia estirada durante siglos sin horizonte final, como en el dilema de Elina Makropulos, todo asombro acaba secándose en la fuente; la intensidad del amor y el arte de pasar el testigo nacen de la gravedad de las horas contadas."
+  },
+  {
+    "id": "19",
+    "theme": "time-reality",
+    "en": "We are not the sole conscious spectators on a mute stage: every species inhabits its own perceptual world (*Umwelt*), and truly listening to whales, elephants, or bees means protecting their worlds without projecting the ventriloquism of our own vanity onto them.",
+    "pt": "Não somos os únicos espectadores conscientes de um palco mudo: cada espécie habita um universo sensorial próprio (*Umwelt*), e escutar baleias, elefantes ou abelhas exige proteger seus mundos sem projetar sobre eles o ventriloquismo da nossa vaidade.",
+    "es": "No somos los únicos espectadores conscientes de un escenario mudo: cada especie habita un universo sensorial propio (*Umwelt*), y escuchar a ballenas, elefantes o abejas exige proteger sus mundos sin proyectar sobre ellos el ventriloquismo de nuestra vanidad."
+  },
+  {
+    "id": "20",
+    "theme": "everyday-autonomy",
+    "en": "Before breaking through the crust toward light, every seed must dwell in the quiet dark beneath the soil to send down roots; artificially lighting a field or a human mind twenty-four hours a day does not double life—it only exhausts the earth.",
+    "pt": "Antes de romper a crosta rumo à luz, toda semente precisa habitar o escuro silencioso debaixo do chão para lançar raízes; iluminar artificialmente vinte e quatro horas por dia uma lavoura ou uma consciência humana não duplica a vida — apenas exaure o solo.",
+    "es": "Antes de romper la corteza rumbo a la luz, toda semilla necesita habitar la oscuridad silenciosa bajo la tierra para echar raíces; iluminar artificialmente veinticuatro horas al día un cultivo o una conciencia humana no duplica la vida: solo agota el suelo."
+  }
+];
+
+    /* =========================================================================
+       4. UI STRINGS & TRANSLATIONS (EN | PT | ES)
        ========================================================================= */
     const THEME_LABELS = {
       en: {
@@ -1120,6 +1578,9 @@ Una demostración colosal verificada por máquina debería tratarse siempre como
         emptyNotes: "No notes match this filter.",
         emptyBooks: "No fragments match this search.",
         backToNotes: "← Back to notes",
+        backToBooks: "← Back to books",
+        backToTop: "↑ Top",
+        sectionsJumpLabel: "Sections:",
         minRead: "min read",
         copyMd: "Copy Markdown",
         copyLink: "Copy link",
@@ -1130,7 +1591,7 @@ Una demostración colosal verificada por máquina debería tratarse siempre como
         toastDownloaded: "Downloaded .md file.",
         toastFragCopied: "Fragment copied.",
         booksHeading: "Fragments from the books",
-        booksDesc: "Instead of covers or synopses, this tab gathers standalone thoughts and passages born while writing—added little by little as ideas settle.",
+        booksDesc: "Alongside the open chapter above, this notebook gathers standalone thoughts and passages born across the books—added little by little as ideas settle.",
         fragmentSingular: "fragment",
         fragmentPlural: "fragments",
         aboutTitle: "About catphilosophie",
@@ -1138,10 +1599,10 @@ Una demostración colosal verificada por máquina debería tratarse siempre como
         aboutP2: "An honest note right at the door: <strong>I am not a philosopher, nor a physicist, nor a mathematician</strong>. I do not write from an academic chair or claim to hold final answers. What lives here are personal ideas, questions that keep me awake, and sincere attempts to think clearly in a time moving faster than we can digest.",
         aboutQuote: "“This space does not exist to settle debates, but to invite anyone—with or without credentials—to pause for a moment and think through these questions together.”",
         aboutP3Before: "The notebook moves along two companion tracks: longer standalone reflections gathered under ",
-        aboutP3Mid: ", and a growing collection of shorter passages born during book writing under ",
+        aboutP3Mid: ", and open book chapters alongside shorter passages born during writing under ",
         aboutP3After: ". Feel free to read, disagree, carry forward whatever resonates, and leave behind whatever does not.",
         licenseTitle: "OPEN READING · CC BY-NC-ND 4.0",
-        licenseText: "Unless otherwise noted, all essays and fragments in this notebook circulate freely under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0)."
+        licenseText: "Unless otherwise noted, all essays, chapters, and fragments in this notebook circulate freely under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0)."
       },
       pt: {
         htmlLang: "pt-BR",
@@ -1158,6 +1619,9 @@ Una demostración colosal verificada por máquina debería tratarse siempre como
         emptyNotes: "Nenhum pensamento encontrado com esse filtro.",
         emptyBooks: "Nenhum fragmento encontrado para esta busca.",
         backToNotes: "← Voltar aos pensamentos",
+        backToBooks: "← Voltar aos livros",
+        backToTop: "↑ Topo",
+        sectionsJumpLabel: "Seções:",
         minRead: "min de leitura",
         copyMd: "Copiar Markdown",
         copyLink: "Copiar link",
@@ -1168,7 +1632,7 @@ Una demostración colosal verificada por máquina debería tratarse siempre como
         toastDownloaded: "Arquivo .md baixado.",
         toastFragCopied: "Fragmento copiado.",
         booksHeading: "Fragmentos dos livros",
-        booksDesc: "Em vez de capas ou sinopses, esta aba reúne pensamentos avulsos e passagens nascidas durante a escrita — adicionados aos poucos, conforme as ideias amadurecem.",
+        booksDesc: "Ao lado do capítulo aberto acima, este caderno reúne pensamentos avulsos e passagens nascidas nos três livros — adicionados aos poucos, conforme as ideias amadurecem.",
         fragmentSingular: "fragmento",
         fragmentPlural: "fragmentos",
         aboutTitle: "Sobre o catphilosophie",
@@ -1176,10 +1640,10 @@ Una demostración colosal verificada por máquina debería tratarse siempre como
         aboutP2: "Um aviso sincero logo na porta de entrada: <strong>eu não sou filósofo, nem físico, nem matemático</strong>. Não escrevo a partir de uma cátedra acadêmica nem com a pretensão de entregar respostas definitivas. O que vive aqui são ideias pessoais, perguntas que me tiram o sono e tentativas honestas de pensar com clareza em uma época que muda depressa demais.",
         aboutQuote: "“Este espaço não existe para encerrar debates, mas para convidar qualquer pessoa — com ou sem diploma — a parar um instante e pensar junto sobre essas questões.”",
         aboutP3Before: "O caderno caminha em duas frentes complementares: reflexões independentes mais longas reunidas em ",
-        aboutP3Mid: ", e uma coleção viva de passagens mais curtas nascidas durante a escrita dos livros em ",
+        aboutP3Mid: ", além de capítulos abertos e passagens mais curtas nascidas durante a escrita dos livros em ",
         aboutP3After: ". Sinta-se livre para ler, discordar, levar adiante o que fizer sentido e deixar para trás o que não servir.",
         licenseTitle: "LEITURA ABERTA · CC BY-NC-ND 4.0",
-        licenseText: "Salvo indicação em contrário, todos os ensaios e fragmentos deste caderno circulam livremente sob a licença Creative Commons Atribuição-NãoComercial-SemDerivações 4.0 Internacional (CC BY-NC-ND 4.0)."
+        licenseText: "Salvo indicação em contrário, todos os ensaios, capítulos e fragmentos deste caderno circulam livremente sob a licença Creative Commons Atribuição-NãoComercial-SemDerivações 4.0 Internacional (CC BY-NC-ND 4.0)."
       },
       es: {
         htmlLang: "es",
@@ -1196,6 +1660,9 @@ Una demostración colosal verificada por máquina debería tratarse siempre como
         emptyNotes: "No se encontraron notas con ese filtro.",
         emptyBooks: "No se encontraron fragmentos para esta búsqueda.",
         backToNotes: "← Volver a las notas",
+        backToBooks: "← Volver a los libros",
+        backToTop: "↑ Arriba",
+        sectionsJumpLabel: "Secciones:",
         minRead: "min de lectura",
         copyMd: "Copiar Markdown",
         copyLink: "Copiar enlace",
@@ -1206,7 +1673,7 @@ Una demostración colosal verificada por máquina debería tratarse siempre como
         toastDownloaded: "Archivo .md descargado.",
         toastFragCopied: "Fragmento copiado.",
         booksHeading: "Fragmentos de los libros",
-        booksDesc: "En lugar de portadas o sinopsis, esta pestaña reúne pensamientos independientes y pasajes nacidos durante la escritura, añadidos poco a poco a medida que maduran las ideas.",
+        booksDesc: "Junto al capítulo abierto arriba, este cuaderno reúne pensamientos independientes y pasajes nacidos en los libros, añadidos poco a poco a medida que maduran las ideas.",
         fragmentSingular: "fragmento",
         fragmentPlural: "fragmentos",
         aboutTitle: "Acerca de catphilosophie",
@@ -1214,15 +1681,15 @@ Una demostración colosal verificada por máquina debería tratarse siempre como
         aboutP2: "Una advertencia sincera desde la entrada: <strong>no soy filósofo, ni físico, ni matemático</strong>. No escribo desde una cátedra académica ni pretendo ofrecer respuestas definitivas. Lo que habita aquí son ideas personales, preguntas que me quitan el sueño e intentos honestos de pensar con claridad en una época que cambia demasiado deprisa.",
         aboutQuote: "“Este espacio no existe para cerrar debates, sino para invitar a cualquier persona —con o sin títulos— a detenerse un instante y pensar juntos estas cuestiones.”",
         aboutP3Before: "El cuaderno avanza en dos frentes complementarios: reflexiones independientes más extensas reunidas en ",
-        aboutP3Mid: ", y una colección viva de pasajes más breves nacidos durante la escritura de los libros en ",
+        aboutP3Mid: ", además de capítulos abiertos y pasajes breves nacidos durante la escritura de los libros en ",
         aboutP3After: ". Siéntete libre de leer, discrepar, llevar contigo lo que resuene y dejar atrás lo que no te sirva.",
         licenseTitle: "LECTURA ABIERTA · CC BY-NC-ND 4.0",
-        licenseText: "Salvo indicación en contrario, todos los ensayos y fragmentos de este cuaderno circulan libremente bajo la licencia Creative Commons Atribución-NoComercial-SinDerivadas 4.0 Internacional (CC BY-NC-ND 4.0)."
+        licenseText: "Salvo indicación en contrario, todos los ensayos, capítulos y fragmentos de este cuaderno circulan libremente bajo la licencia Creative Commons Atribución-NoComercial-SinDerivadas 4.0 Internacional (CC BY-NC-ND 4.0)."
       }
     };
 
     /* =========================================================================
-       4. APPLICATION STATE & INITIALIZATION HELPERS
+       5. APPLICATION STATE & INITIALIZATION HELPERS
        ========================================================================= */
     const VALID_LANGS = ["en", "pt", "es"];
 
@@ -1248,8 +1715,9 @@ Una demostración colosal verificada por máquina debería tratarse siempre como
     const state = {
       lang: getInitialLang(),
       theme: getInitialTheme(),
-      view: "notes", // 'notes' | 'note' | 'books' | 'about'
+      view: "notes", // 'notes' | 'note' | 'books' | 'chapter' | 'about'
       activeNoteId: null,
+      activeChapterId: null,
       selectedCategory: null,
       notesSearch: "",
       selectedBookTheme: null,
@@ -1313,6 +1781,21 @@ Una demostración colosal verificada por máquina debería tratarse siempre como
       return Math.max(1, Math.ceil(words / 200));
     }
 
+    function estimateChapterMinutes(chapter) {
+      const allText = chapter.sections
+        .map(s => s.title + " " + s.paragraphs.join(" "))
+        .join(" ");
+      return estimateReadingMinutes(allText);
+    }
+
+    function buildChapterMarkdown(chapter) {
+      const header = `# ${chapter.bookTitle} — ${chapter.chapterLabel}: ${chapter.title}\n\n> ${chapter.epigraphQuote}\n> — ${chapter.epigraphAuthor}\n`;
+      const body = chapter.sections.map(sec => {
+        return `## ${sec.num}. ${sec.title}\n\n${sec.paragraphs.join("\n\n")}`;
+      }).join("\n\n");
+      return `${header}\n${body}\n`;
+    }
+
     function formatDate(isoDate, lang) {
       const [y, m, d] = isoDate.split("-").map(Number);
       const date = new Date(y, m - 1, d);
@@ -1362,7 +1845,7 @@ Una demostración colosal verificada por máquina debería tratarse siempre como
     }
 
     /* =========================================================================
-       5. CHROME, THEME & ROUTING
+       6. CHROME, THEME & ROUTING
        ========================================================================= */
     function applyTheme() {
       document.documentElement.setAttribute("data-theme", state.theme);
@@ -1391,7 +1874,8 @@ Una demostración colosal verificada por máquina debería tratarse siempre como
 
       document.querySelectorAll(".nav-link").forEach(link => {
         const isNotes = link.dataset.view === "notes" && (state.view === "notes" || state.view === "note");
-        const isActive = link.dataset.view === state.view || isNotes;
+        const isBooks = link.dataset.view === "books" && (state.view === "books" || state.view === "chapter");
+        const isActive = link.dataset.view === state.view || isNotes || isBooks;
         link.classList.toggle("active", isActive);
         link.setAttribute("aria-current", isActive ? "page" : "false");
       });
@@ -1404,34 +1888,53 @@ Una demostración colosal verificada por máquina debería tratarse siempre como
       if (!hash || hash === "notes") {
         state.view = "notes";
         state.activeNoteId = null;
+        state.activeChapterId = null;
       } else if (hash === "books") {
         state.view = "books";
         state.activeNoteId = null;
+        state.activeChapterId = null;
       } else if (hash === "about") {
         state.view = "about";
         state.activeNoteId = null;
+        state.activeChapterId = null;
       } else if (hash.startsWith("note/")) {
         const slug = decodeURIComponent(hash.slice(5));
         if (POSTS[state.lang].some(p => p.id === slug)) {
           state.view = "note";
           state.activeNoteId = slug;
+          state.activeChapterId = null;
         } else {
           state.view = "notes";
+          state.activeNoteId = null;
+          state.activeChapterId = null;
+        }
+      } else if (hash.startsWith("book/")) {
+        const slug = decodeURIComponent(hash.slice(5));
+        if (BOOK_CHAPTERS[state.lang].some(c => c.id === slug)) {
+          state.view = "chapter";
+          state.activeChapterId = slug;
+          state.activeNoteId = null;
+        } else {
+          state.view = "books";
+          state.activeChapterId = null;
           state.activeNoteId = null;
         }
       } else {
         state.view = "notes";
         state.activeNoteId = null;
+        state.activeChapterId = null;
       }
     }
 
     /* =========================================================================
-       6. VIEW RENDERERS
+       7. VIEW RENDERERS
        ========================================================================= */
     function render() {
       applyChrome();
       if (state.view === "note") {
         renderSingleNote();
+      } else if (state.view === "chapter") {
+        renderSingleChapter();
       } else if (state.view === "books") {
         renderBooks();
       } else if (state.view === "about") {
@@ -1607,7 +2110,7 @@ Una demostración colosal verificada por máquina debería tratarse siempre como
       });
     }
 
-    /* --- TAB 2: BOOKS (LIVING NOTEBOOK OF FRAGMENTS) --- */
+    /* --- TAB 2A: BOOKS MAIN VIEW (OPEN CHAPTER CARD + FRAGMENTS) --- */
     function getFilteredFragments() {
       const q = state.booksSearch.trim().toLowerCase();
       const labels = THEME_LABELS[state.lang];
@@ -1675,8 +2178,40 @@ Una demostración colosal verificada por máquina debería tratarse siempre como
       const labels = THEME_LABELS[state.lang];
       const themeKeys = Object.keys(labels);
       const filtered = getFilteredFragments();
+      const chapters = BOOK_CHAPTERS[state.lang] || [];
+
+      const chaptersMarkup = chapters.map(ch => {
+        const mins = estimateChapterMinutes(ch);
+        return `
+          <div class="chapters-showcase">
+            <div class="section-kicker">${escapeHtml(ch.bookBadge)}</div>
+            <article class="chapter-card" data-open-chapter="${escapeHtml(ch.id)}" tabindex="0" role="button">
+              <div class="note-meta">
+                <span class="note-category">${escapeHtml(ch.bookTitle)}</span>
+                <span aria-hidden="true">·</span>
+                <span>${escapeHtml(ch.chapterLabel)}</span>
+                <span aria-hidden="true">·</span>
+                <span>${mins} ${escapeHtml(t.minRead)}</span>
+              </div>
+              <h2 class="chapter-card-title">${escapeHtml(ch.title)}</h2>
+              <p class="chapter-card-excerpt">${escapeHtml(ch.cardExcerpt)}</p>
+              <ul class="chapter-card-toc">
+                ${ch.sections.map(sec => `
+                  <li>
+                    <span class="toc-roman">${escapeHtml(sec.num)}.</span>
+                    <span>${escapeHtml(sec.title)}</span>
+                  </li>
+                `).join("")}
+              </ul>
+              <span class="chapter-card-cta">${escapeHtml(ch.readCta)}</span>
+            </article>
+          </div>
+        `;
+      }).join("");
 
       appEl.innerHTML = `
+        ${chaptersMarkup}
+
         <section class="books-intro">
           <h1 class="books-heading">${escapeHtml(t.booksHeading)}</h1>
           <p class="books-desc">${escapeHtml(t.booksDesc)}</p>
@@ -1707,6 +2242,23 @@ Una demostración colosal verificada por máquina debería tratarse siempre como
         </div>
       `;
 
+      appEl.querySelectorAll("[data-open-chapter]").forEach(card => {
+        const openCh = () => {
+          state.activeChapterId = card.dataset.openChapter;
+          state.view = "chapter";
+          window.location.hash = `book/${encodeURIComponent(state.activeChapterId)}`;
+          render();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        };
+        card.addEventListener("click", openCh);
+        card.addEventListener("keydown", e => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openCh();
+          }
+        });
+      });
+
       const searchInput = document.getElementById("booksSearchInput");
       searchInput.addEventListener("input", e => {
         state.booksSearch = e.target.value;
@@ -1724,6 +2276,98 @@ Una demostración colosal verificada por máquina debería tratarse siempre como
       });
 
       bindFragmentCopyEvents(t);
+    }
+
+    /* --- TAB 2B: SINGLE CHAPTER READER --- */
+    function renderSingleChapter() {
+      const t = UI[state.lang];
+      const chapter = (BOOK_CHAPTERS[state.lang] || []).find(c => c.id === state.activeChapterId);
+      if (!chapter) {
+        state.view = "books";
+        state.activeChapterId = null;
+        render();
+        return;
+      }
+
+      const mins = estimateChapterMinutes(chapter);
+      const mdExport = buildChapterMarkdown(chapter);
+      const shareUrl = `${window.location.origin}${window.location.pathname}#book/${encodeURIComponent(chapter.id)}`;
+
+      appEl.innerHTML = `
+        <button type="button" class="back-btn" id="backBooksBtn">${escapeHtml(t.backToBooks)}</button>
+        <article class="reader">
+          <div class="note-meta">
+            <span class="note-category">${escapeHtml(chapter.bookTitle)}</span>
+            <span aria-hidden="true">·</span>
+            <span>${escapeHtml(chapter.chapterLabel)}</span>
+            <span aria-hidden="true">·</span>
+            <span>${mins} ${escapeHtml(t.minRead)}</span>
+          </div>
+          <h1>${escapeHtml(chapter.title)}</h1>
+          <div class="chapter-epigraph">
+            <p class="chapter-epigraph-quote">${formatInline(chapter.epigraphQuote)}</p>
+            <p class="chapter-epigraph-author">— ${formatInline(chapter.epigraphAuthor)}</p>
+          </div>
+          <nav class="chapter-jump-bar" aria-label="${escapeHtml(t.sectionsJumpLabel)}">
+            <span class="jump-label">${escapeHtml(t.sectionsJumpLabel)}</span>
+            ${chapter.sections.map(sec => `
+              <button
+                type="button"
+                class="sec-jump-btn"
+                data-jump-sec="chapter-sec-${escapeHtml(sec.num)}"
+                title="${escapeHtml(sec.num + '. ' + sec.title)}"
+              >${escapeHtml(sec.num)}</button>
+            `).join("")}
+          </nav>
+          <div class="article-body">
+            ${chapter.sections.map(sec => `
+              <section class="chapter-sec" id="chapter-sec-${escapeHtml(sec.num)}">
+                <h2><span class="chapter-sec-num">${escapeHtml(sec.num)}.</span>${escapeHtml(sec.title)}</h2>
+                ${sec.paragraphs.map(p => `<p>${formatInline(p)}</p>`).join("")}
+              </section>
+            `).join("")}
+          </div>
+          <div class="article-actions">
+            <button type="button" class="btn" id="copyChapMdBtn">${escapeHtml(t.copyMd)}</button>
+            <button type="button" class="btn" id="copyChapLinkBtn">${escapeHtml(t.copyLink)}</button>
+            <button type="button" class="btn" id="downloadChapBtn">${escapeHtml(t.downloadMd)}</button>
+            <button type="button" class="btn" id="scrollTopChapBtn">${escapeHtml(t.backToTop)}</button>
+          </div>
+        </article>
+      `;
+
+      document.getElementById("backBooksBtn").addEventListener("click", () => {
+        state.view = "books";
+        state.activeChapterId = null;
+        window.location.hash = "books";
+        render();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      appEl.querySelectorAll("[data-jump-sec]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const target = document.getElementById(btn.dataset.jumpSec);
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      });
+
+      document.getElementById("copyChapMdBtn").addEventListener("click", () => {
+        copyText(mdExport, t.toastMdCopied);
+      });
+
+      document.getElementById("copyChapLinkBtn").addEventListener("click", () => {
+        copyText(shareUrl, t.toastLinkCopied);
+      });
+
+      document.getElementById("downloadChapBtn").addEventListener("click", () => {
+        downloadFile(`${chapter.id}-${state.lang}.md`, mdExport, t.toastDownloaded);
+      });
+
+      document.getElementById("scrollTopChapBtn").addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
     }
 
     /* --- TAB 3: ABOUT --- */
@@ -1749,6 +2393,7 @@ Una demostración colosal verificada por máquina debería tratarse siempre como
       document.getElementById("aboutGoNotes").addEventListener("click", () => {
         state.view = "notes";
         state.activeNoteId = null;
+        state.activeChapterId = null;
         window.location.hash = "notes";
         render();
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -1757,6 +2402,7 @@ Una demostración colosal verificada por máquina debería tratarse siempre como
       document.getElementById("aboutGoBooks").addEventListener("click", () => {
         state.view = "books";
         state.activeNoteId = null;
+        state.activeChapterId = null;
         window.location.hash = "books";
         render();
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -1764,12 +2410,13 @@ Una demostración colosal verificada por máquina debería tratarse siempre como
     }
 
     /* =========================================================================
-       7. GLOBAL EVENT BINDINGS & STARTUP
+       8. GLOBAL EVENT BINDINGS & STARTUP
        ========================================================================= */
     document.getElementById("brandLink").addEventListener("click", e => {
       e.preventDefault();
       state.view = "notes";
       state.activeNoteId = null;
+      state.activeChapterId = null;
       state.selectedCategory = null;
       state.notesSearch = "";
       window.location.hash = "notes";
@@ -1781,6 +2428,7 @@ Una demostración colosal verificada por máquina debería tratarse siempre como
       btn.addEventListener("click", () => {
         state.view = btn.dataset.view;
         state.activeNoteId = null;
+        state.activeChapterId = null;
         window.location.hash = state.view;
         render();
         window.scrollTo({ top: 0, behavior: "smooth" });
